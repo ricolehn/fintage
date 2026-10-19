@@ -11,7 +11,7 @@
 ### ✨ What Fintage brings
 
 - a dark, cinematic look in desert tones: almost black with a faint film grain, glass panels with hairline edges, soft layered shadows, white play buttons and a restrained champagne accent
-- a warm light mode with sand whites and bronze accents
+- a soft, warm light mode in sand tones with espresso and bronze accents, where logos keep their own colors
 - slow, smooth motion: cards lift and catch a soft sheen
 - made for Jellyfin 12.2: the new layout (`Auto`) as well as the `Desktop (Legacy)`, `Mobile (Legacy)` and `TV` display modes
 - a frosted app bar like milk glass, with a clean bottom edge on every page
@@ -20,7 +20,7 @@
 - the episodes of a season as a clear list on every device, with 16:9 images and the first three lines of the plot
 - audio and subtitles as cards of their own above the details, so the chosen tracks are clear at a glance
 - a straight TV layout for series, seasons and episodes
-- clearly separated release days in the Upcoming tab of TV shows
+- the Upcoming tab of TV shows as a timeline of release days, with the episodes of each day as a compact list
 - smoother scrolling and animations, especially on older devices
 - optional scripts for episode backdrops in full resolution and short track names like `German · EAC3`
 
@@ -305,8 +305,8 @@ The [Previews](Previews) folder has screenshots of ElegantFin, the theme Fintage
 | File | What it is |
 | --- | --- |
 | `Theme/Fintage-latest-minified.css` | the newest version of Fintage, minified; this is what the import loads |
-| `Theme/Fintage_v1.0.0.css` | Fintage v1.0.0, readable |
-| `Theme/assets/add-ons/` | the add-ons (`*-latest-min.css` to import, `*-v1.0.0.css` readable) and the optional scripts |
+| `Theme/Fintage_v1.0.1.css` | Fintage v1.0.1, readable |
+| `Theme/assets/add-ons/` | the add-ons (`*-latest-min.css` to import, `*-v1.0.1.css` readable) and the optional scripts |
 | `Theme/ElegantFin-theme-v*.css` and the dated add-ons | the releases of ElegantFin up to v26.09.05, which Fintage is based on |
 
 <hr>
@@ -316,7 +316,7 @@ The [Previews](Previews) folder has screenshots of ElegantFin, the theme Fintage
 <details>
   <summary><i>Which version am I using?</i></summary>
 
-> - The version is shown at the bottom of the settings, like `Fintage v1.0.0`.
+> - The version is shown at the bottom of the settings, like `Fintage v1.0.1`.
 
 </details>
 
