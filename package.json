@@ -1,0 +1,16 @@
+{
+    "name": "fintage",
+    "version": "1.0.0",
+    "private": true,
+    "description": "Fintage, a theme for Jellyfin on phones, desktops and TVs",
+    "devDependencies": {
+        "css-declaration-sorter": "^7.4.0",
+        "cssnano": "^8.0.1",
+        "postcss": "^8.5.15",
+        "postcss-cli": "^11.0.1"
+    },
+    "scripts": {
+        "build": "node build.js",
+        "new-version": "node build.js new"
+    }
+}
