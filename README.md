@@ -1,0 +1,387 @@
+<div align="center">
+
+# 🎞️ Fintage
+
+**A calm, cinematic theme for Jellyfin on phones, desktops and TVs, with a single import.**
+
+</div>
+
+<hr>
+
+### ✨ What Fintage brings
+
+- a dark, cinematic look in desert tones: almost black with a faint film grain, glass panels with hairline edges, soft layered shadows, white play buttons and a restrained champagne accent
+- a warm light mode with sand whites and bronze accents
+- slow, smooth motion: cards lift and catch a soft sheen
+- made for Jellyfin 12.2: the new layout (`Auto`) as well as the `Desktop (Legacy)`, `Mobile (Legacy)` and `TV` display modes
+- a frosted app bar like milk glass, with a clean bottom edge on every page
+- episode pages with the image of the episode as the backdrop and the logo of the series
+- season pages with the bright backdrop of the series and its logo right above the season title
+- the episodes of a season as a clear list on every device, with 16:9 images and the first three lines of the plot
+- audio and subtitles as cards of their own above the details, so the chosen tracks are clear at a glance
+- a straight TV layout for series, seasons and episodes
+- clearly separated release days in the Upcoming tab of TV shows
+- smoother scrolling and animations, especially on older devices
+- optional scripts for episode backdrops in full resolution and short track names like `German · EAC3`
+
+<hr>
+
+### 👇 Installation
+
+Paste this line into the Custom CSS code box:
+
+```css
+@import url("https://cdn.jsdelivr.net/gh/ricolehn/fintage@main/Theme/Fintage-latest-minified.css");
+```
+
+The link updates by itself. jsDelivr keeps `@main` in its cache for up to 12 hours, so a new version can take a while to show up. To get it right away, open `https://purge.jsdelivr.net/gh/ricolehn/fintage@main/Theme/Fintage-latest-minified.css` once, or replace `@main` with the full id of the newest commit. A link with the id of a commit loads exactly that state right away, but it does not update by itself.
+
+<details>
+  <summary><i>For everyone on the server (Dashboard)</i></summary>
+
+> 1. Open the Dashboard from the Administration section of the settings.
+> 2. Open Branding in the side bar.
+> 3. Paste the line into the Custom CSS code box.
+> 4. Click Save and reload the page.
+
+</details>
+
+<details>
+  <summary><i>Only for you (User Settings)</i></summary>
+
+> 1. Open Display in your settings.
+> 2. Paste the line into the Custom CSS code box.
+> 3. Click Save and reload the page.
+
+</details>
+
+**Note:** Jellyfin 12 does not apply custom CSS to the Dashboard, so the Dashboard always keeps the stock Jellyfin look.
+
+<hr>
+
+### 🧩 Options
+
+Each option goes into the Custom CSS code box, after the import. To undo one, remove it again.
+
+<details>
+  <summary><i>1. Light and Dark</i></summary>
+
+> - Fintage is dark by default and also comes with a light mode in the same desert tones.
+> - To switch, go to `User Settings > Display > Theme` and select **Dark** or **Light**. Jellyfin does not switch between them by itself.
+> - This setting is not the same as the theme of the Dashboard, which Fintage does not change.
+
+</details>
+
+<details>
+  <summary><i>2. App bar styles</i></summary>
+
+> - There are four styles: frosted (the default), solid, seamless and fully transparent.
+> - Frosted needs nothing: the content glows through the bar like through milk glass, and the bar keeps a clean bottom edge on every page.
+> - Solid (fully opaque):
+>   ```css
+>   :root {
+>       --appBarBlurStrength: none;
+>       --appBarColor: var(--solidHeaderColor);
+>   }
+>   ```
+> - Seamless (fades out at the bottom):
+>   ```css
+>   :root {
+>       --appBarSeamlessBlur: initial;
+>       --appBarBlurStrength: initial;
+>       --appBarColor: initial;
+>       --appBarBorder: initial;
+>       --appBarShadow: initial;
+>       --appBarTabsPadding: initial;
+>   }
+>   ```
+> - Fully transparent:
+>   ```css
+>   :root {
+>       --appBarSeamlessBlur: none;
+>       --appBarBlurStrength: none;
+>       --appBarColor: transparent;
+>       --appBarBorder: none;
+>       --appBarShadow: none;
+>   }
+>   ```
+
+</details>
+
+<details>
+  <summary><i>3. Extra buttons on cards (desktop)</i></summary>
+
+> - Shows the Mark Played and Add to Favorites buttons at the bottom right of a card when the mouse is over it:
+>   ```css
+>   :root {
+>       --extraCardButtonsVisibility: block;
+>   }
+>   ```
+> - To also hide the three-dot button next to them, add `--menuButtonVisibility: none;` to the same block.
+
+</details>
+
+<details>
+  <summary><i>4. Play button in the middle of cards (desktop)</i></summary>
+
+> ```css
+> :root {
+>     --overlayPlayButtonPosition: 50%;
+> }
+> ```
+> - The default is `2.8em`.
+
+</details>
+
+<details>
+  <summary><i>5. No sheen on cards (desktop)</i></summary>
+
+> - Turns off the sheen on a card when the mouse is over it:
+>   ```css
+>   :root {
+>       --cardHoverEffect: none;
+>   }
+>   ```
+
+</details>
+
+<details>
+  <summary><i>6. Labels below the library cards</i></summary>
+
+> ```css
+> :root {
+>     --libraryLabelVisibility: block;
+> }
+> ```
+
+</details>
+
+<details>
+  <summary><i>7. Bigger Continue Watching cards</i></summary>
+
+> - Any value above `1` makes them bigger:
+>   ```css
+>   :root {
+>       --resumeCardScale: 1.25;
+>   }
+>   ```
+
+</details>
+
+<details>
+  <summary><i>8. Titles and logos on the pages of movies, shows and artists</i></summary>
+
+> - These are the defaults; change only what you need:
+>   ```css
+>   :root {
+>       /* movies and shows */
+>       --itemOriginalTitleVisibility: block; /* block: show the original title if there is one; none: always hide it */
+>       --clearLogoVisibility: block; /* block: show the logo if there is one; none: always hide it */
+>       --itemTitleVisibility: none; /* none: hide the title when there is a logo; block: always show it */
+>
+>       /* music */
+>       --artistClearLogoVisibility: block; /* block: show the logo of the artist if there is one; none: always hide it */
+>       --artistTitleVisibility: none; /* none: hide the name of the artist; block: always show it */
+>       --artistPageBackground: unset; /* unset: dim the background so the logo stands out on desktops; none: show it fully */
+>   }
+>   ```
+
+</details>
+
+<details>
+  <summary><i>9. Small elements on phones</i></summary>
+
+> - These are the defaults; change only what you need:
+>   ```css
+>   :root {
+>       --miniOverlayButtonVisibility: block; /* block: show the small play or three-dot button on cards; none: hide them */
+>       --endsAtVisibility: block; /* block: show when a video ends; none: hide it */
+>       --criticsRatingVisibility: none; /* none: hide the critics rating; block: show it */
+>   }
+>   ```
+
+</details>
+
+<details>
+  <summary><i>10. Corners and borders (advanced)</i></summary>
+
+> - Other values can break the layout on some screens, so change them only if you are comfortable with CSS. These are the defaults:
+>   ```css
+>   :root {
+>       /* corner radius */
+>       --largerRadius: 1.25em;
+>       --largeRadius: 1em;
+>       --smallRadius: 0.5em;
+>       --smallerRadius: 0.375em;
+>
+>       /* border thickness */
+>       --borderWidth: 0.06em;
+>       --borderWidthDouble: 0.12em;
+>   }
+>   ```
+
+</details>
+
+<details>
+  <summary><i>11. IMDb colors for the star rating</i></summary>
+
+> - The star uses the TMDB colors by default, since the rating comes from there. For the gold IMDb colors:
+>   ```css
+>   .starIcon {
+>       --colors: var(--imdb);
+>   }
+>   ```
+
+</details>
+
+<details>
+  <summary><i>12. Background and button text of the login page (Jellyfin before 10.11)</i></summary>
+
+> - Since Jellyfin 10.11, the login page shows the splash screen by itself. On older versions, tick `Enable the splash screen` below the Custom CSS code box in the Dashboard and add:
+>   ```css
+>   :root {
+>       --loginPageBgUrl: url("<YOUR-JELLYFIN-SERVER-ADDRESS>/Branding/Splashscreen?format=webp&foregroundLayer=1&quality=33&width=3840&height=2160&blur=2");
+>   }
+>   ```
+> - Replace `<YOUR-JELLYFIN-SERVER-ADDRESS>` with the address of your server, with `http` or `https`, for example `http://192.168.0.1:8096`. The blur and the size can be changed in the link.
+> - To change the text of the login button, add `--loginPageText: "Your text";` to the same block.
+
+</details>
+
+<details>
+  <summary><i>13. Custom covers for the media libraries (add-on)</i></summary>
+
+> - Gives the libraries on the home screen colored covers; read more in [custom-media-covers.md](custom-media-covers.md).
+>   ```css
+>   @import url("https://cdn.jsdelivr.net/gh/ricolehn/fintage@main/Theme/assets/add-ons/custom-media-covers-latest-min.css");
+>   ```
+
+</details>
+
+<details>
+  <summary><i>14. Media Bar plugin (add-on)</i></summary>
+
+> - Styles the [Media Bar plugin](https://github.com/IAmParadox27/jellyfin-plugin-media-bar) to match Fintage. Add it right after the main import:
+>   ```css
+>   @import url("https://cdn.jsdelivr.net/gh/ricolehn/fintage@main/Theme/assets/add-ons/media-bar-plugin-support-latest-min.css");
+>   ```
+
+</details>
+
+<details>
+  <summary><i>15. Episode images in full resolution (optional JavaScript)</i></summary>
+
+> - On the page of an episode, Fintage shows the image of the episode as the backdrop. Jellyfin only loads this image at a quarter of the window width, so it looks soft when it is enlarged, and custom CSS cannot change the size Jellyfin asks for.
+> - This script loads the image in the resolution of your screen instead. It only changes the pages of episodes, and the TV layout keeps the small image.
+> - It needs a plugin that adds JavaScript to the web client, such as [JavaScript Injector](https://github.com/n00bcodr/Jellyfin-JavaScript-Injector):
+>   1. Open Dashboard > Plugins > Catalog, click the settings icon and add the repository of the plugin for your Jellyfin version: `https://raw.githubusercontent.com/n00bcodr/jellyfin-plugins/main/12/manifest.json` for Jellyfin 12, `https://raw.githubusercontent.com/n00bcodr/jellyfin-plugins/main/10.11/manifest.json` for Jellyfin 10.11.
+>   2. Install JavaScript Injector from the Catalog and restart your Jellyfin server.
+>   3. Open Dashboard > Plugins > JavaScript Injector, click Add Script, paste the content of [full-resolution-episode-images.js](Theme/assets/add-ons/full-resolution-episode-images.js) and save.
+>   4. Reload the web page once without the cache: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd> (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd> on a Mac). In the Jellyfin apps, clear the cache of the app instead (on Android: Settings > Apps > Jellyfin > Storage > Clear cache). A normal reload is not enough, since the page from before the plugin was installed stays in the cache.
+> - The browser console (<kbd>F12</kbd>) then shows `Fintage: full resolution episode images are active`.
+
+</details>
+
+<details>
+  <summary><i>16. Short names for audio and subtitle tracks (optional JavaScript)</i></summary>
+
+> - Jellyfin names the tracks like `German - Dolby Digital+ - 5.1 - Default` and `German - Forced - SUBRIP`. These names come from the server, so custom CSS cannot change them.
+> - This script shortens them to the language and the codec, like `German · EAC3`, and marks forced subtitles, like `(Forced) German · SRT`. The full name stays as the tooltip, and tracks that would get the same name keep what tells them apart, like the title of a commentary.
+> - It needs JavaScript Injector, set up as in option 15: click Add Script, paste the content of [short-track-names.js](Theme/assets/add-ons/short-track-names.js), save and reload the web page once without the cache.
+> - The browser console (<kbd>F12</kbd>) then shows `Fintage: short track names are active`.
+
+</details>
+
+<hr>
+
+### 🖼️ Previews
+
+The [Previews](Previews) folder has screenshots of ElegantFin, the theme Fintage is built on. They show the layout of most pages, which Fintage keeps; the colors, the surfaces and the motion are Fintage's own, and so are the app bar, the pages of seasons and episodes and the audio and subtitle cards.
+
+<hr>
+
+### 📁 Files
+
+| File | What it is |
+| --- | --- |
+| `Theme/Fintage-latest-minified.css` | the newest version of Fintage, minified; this is what the import loads |
+| `Theme/Fintage_v1.0.0.css` | Fintage v1.0.0, readable |
+| `Theme/assets/add-ons/` | the add-ons (`*-latest-min.css` to import, `*-v1.0.0.css` readable) and the optional scripts |
+| `Theme/ElegantFin-theme-v*.css` and the dated add-ons | the releases of ElegantFin up to v26.09.05, which Fintage is based on |
+
+<hr>
+
+### 🛠️ Troubleshooting
+
+<details>
+  <summary><i>Which version am I using?</i></summary>
+
+> - The version is shown at the bottom of the settings, like `Fintage v1.0.0`.
+
+</details>
+
+<details>
+  <summary><i>A new version is out, but I still see the old one.</i></summary>
+
+> - jsDelivr can take up to 12 hours to serve a new version; the purge link in Installation skips that wait.
+> - Browsers and apps also keep the theme in their cache. In a browser, reload with <kbd>Ctrl</kbd>+<kbd>F5</kbd>. In the apps, sign out and in again, or clear the cache of the app.
+
+</details>
+
+<details>
+  <summary><i>Why does Jellyfin Media Player show visual glitches?</i></summary>
+
+> - Jellyfin Media Player uses an old web engine (Qt 5) that lacks many modern CSS features, so it is not supported. [Jellium Desktop](https://github.com/andrewrabert/jellium-desktop) is an unofficial alternative that is worth a try.
+
+</details>
+
+<details>
+  <summary><i>Does it work in the Jellyfin app for Android TV?</i></summary>
+
+> - The Android TV app does not support custom CSS (as of version 0.18.11). The Android app for phones does, and the webOS app on LG TVs supports it as well.
+
+</details>
+
+<details>
+  <summary><i>The icons on my LG TV are broken.</i></summary>
+
+> - Some webOS TVs cannot show the modern Material icons ([details](https://github.com/lscambo13/ElegantFin/issues/39)). The older icons work there:
+>   ```css
+>   :root {
+>       --iconPack: 'Material Icons';
+>   }
+>   ```
+
+</details>
+
+<details>
+  <summary><i>How do I report a bug?</i></summary>
+
+> - First check whether it comes from a plugin: turn your plugins off, or remove the CSS of their add-ons, and see whether the bug is still there.
+> - Then look through the [issues](https://github.com/ricolehn/fintage/issues), and if it is not there yet, [report it](https://github.com/ricolehn/fintage/issues/new/choose) with the version of Fintage, of Jellyfin and your device.
+
+</details>
+
+<hr>
+
+### 🆗 Tested on
+
+- Jellyfin 12.2 in the `Auto`, `Desktop (Legacy)`, `Mobile (Legacy)` and `TV` display modes, with the Dark and the Light theme, in Chromium-based browsers
+
+<hr>
+
+### 📌 Contributing
+
+Pull requests and ideas are welcome. Please read the [Contributor Guidelines](CONTRIBUTING.md) first; they also explain how a new version is built.
+
+<hr>
+
+### 📜 License
+
+Fintage is free software under the [GNU General Public License v2.0](LICENSE), the same license as ElegantFin.
+
+<hr>
+
+### 🍴 Where Fintage comes from
+
+Fintage started as a fork of [ElegantFin](https://github.com/lscambo13/ElegantFin) by [lscambo13](https://github.com/lscambo13), a Jellyfin theme inspired by Jellyseerr. Fintage v1.0.0 builds on ElegantFin v26.09.05, and the structure and most of the code come from there. Many thanks to lscambo13 for this great foundation.
