@@ -1303,8 +1303,8 @@ also when Jellyfin scrolls a row to the current item, e.g. the row of the other 
     scroll-padding-inline: var(--sidePadding);
 }
 
-/* the rows never show a scrollbar; on desktops with a mouse, Jellyfin shows arrows above them instead,
-and on desktops with a touch screen, where it shows a scrollbar under each row, option 17 adds the arrows */
+/* the rows never show a scrollbar; with a mouse, Jellyfin shows arrows above them instead,
+and on touch screens they scroll with a swipe */
 .emby-scroller:not([data-horizontal="false"]),
 .scrollX {
     scrollbar-width: none;
@@ -1759,6 +1759,21 @@ and the series name becomes a small heading when the series has no logo */
     color: var(--fullContrastColor);
     margin: 0;
     padding: 0 0 0.4em;
+}
+
+/* with the optional script of option 17, the title has two lines: the season and the number of the episode,
+smaller and a little darker, and the name of the episode below them */
+#itemDetailPage .itemName .fintageEpisodeNumbers {
+    display: block;
+    margin-bottom: 0.2em;
+    font-size: 0.55em;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--dimTextColor);
+}
+
+#itemDetailPage .itemName .fintageEpisodeName {
+    display: block;
 }
 
 /* the full plot is always visible on episode pages */

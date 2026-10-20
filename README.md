@@ -23,7 +23,7 @@
 - a straight TV layout for series, seasons and episodes
 - the Upcoming tab of TV shows as a timeline of release days, with the episodes of each day as a compact list
 - smoother scrolling and animations, especially on older devices
-- optional scripts for episode backdrops in full resolution, short track names like `German · EAC3` and arrows above the rows on desktops with a touch screen
+- optional scripts for episode backdrops in full resolution, short track names like `German · EAC3` and episode titles in two lines
 
 <hr>
 
@@ -309,12 +309,12 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
 </details>
 
 <details>
-  <summary><i>17. Arrows above the rows on desktops with a touch screen (optional JavaScript)</i></summary>
+  <summary><i>17. Episode titles in two lines (optional JavaScript)</i></summary>
 
-> - On desktops, Jellyfin shows two arrows above each row that scrolls sideways, like the rows of the home page, but only when the browser reports a mouse as the main pointer. On desktops with a touch screen, it leaves them out and shows a scrollbar under each row instead. Fintage hides these scrollbars, and custom CSS cannot add buttons that scroll.
-> - This script adds the same arrows there. Wherever Jellyfin shows its own arrows, and on phones and TVs, it changes nothing.
-> - It needs JavaScript Injector, set up as in option 15: click Add Script, paste the content of [scroll-buttons.js](Theme/assets/add-ons/scroll-buttons.js), save and reload the web page once without the cache.
-> - The browser console (<kbd>F12</kbd>) then shows `Fintage: scroll buttons are active`.
+> - On the page of an episode, Jellyfin writes the season, the number and the name in one line, like `Season 2 - 4. Woe's Hollow`. The number and the name come as one piece of text, so custom CSS cannot split them.
+> - This script splits the title into a smaller, slightly darker line with the season and the number, like `Season 2 · Episode 4`, and the name of the episode below it. It uses the word for "Episode" from the language of Jellyfin, like `Staffel 2 · Folge 4` in German.
+> - It needs JavaScript Injector, set up as in option 15: click Add Script, paste the content of [episode-titles.js](Theme/assets/add-ons/episode-titles.js), save and reload the web page once without the cache.
+> - The browser console (<kbd>F12</kbd>) then shows `Fintage: episode titles are active`.
 
 </details>
 
