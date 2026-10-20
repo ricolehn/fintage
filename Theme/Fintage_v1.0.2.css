@@ -5475,11 +5475,24 @@ fades the tint out, and like the blur, it is turned off by the other app bar sty
     margin-top: 1.25em;
 }
 
+/* the view selector, the buttons and the item count share one row, also on phones, so the header takes up
+less space while scrolling; when the row is full, the name in the view selector is shortened */
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root {
+    flex-wrap: nowrap;
+}
+
 /* library view selector, e.g. Movies, Suggestions or Genres */
 .MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root > .MuiButton-root {
+    min-width: 0;
     padding: 0.1em 0.5em 0.1em 0.75em;
     border-radius: var(--largeRadius);
     color: var(--fullContrastColor);
+}
+
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root > .MuiButton-root .MuiTypography-h2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root > .MuiButton-root .MuiButton-endIcon {
@@ -5490,7 +5503,20 @@ fades the tint out, and like the blur, it is turned off by the other app bar sty
     font-size: 1.35rem;
 }
 
-/* item count */
+/* item count, at the end of the row with the reset filters button before it */
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root > .MuiBox-root:has(> .MuiChip-root) {
+    flex: none;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 0.5em;
+    order: 1;
+    margin-inline-start: 0.5em;
+}
+
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root > .MuiBox-root:has(> .MuiChip-root) > * {
+    margin: 0;
+}
+
 .MuiAppBar-root .MuiChip-root {
     height: 1.75em;
     background-color: var(--darkerGradientPointAlpha);
@@ -5513,27 +5539,44 @@ fades the tint out, and like the blur, it is turned off by the other app bar sty
     color: var(--accentHoverColor);
 }
 
-/* play all, shuffle and queue buttons; the first one is styled like the play button in main media pages */
-.MuiAppBar-root .MuiButtonGroup-contained {
-    gap: 0.5em;
-    box-shadow: none;
-}
-
-.MuiAppBar-root .MuiButtonGroup-contained > .MuiButton-root {
+/* on small screens, Jellyfin makes the other buttons small and shows only their icons; the reset filters button
+then shows only its icon too, in their size and shape, and its text is hidden but still read by screen readers */
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root:has(.MuiButton-sizeSmall) .MuiButton-textPrimary {
+    justify-content: flex-start;
+    width: 2.5em;
+    min-width: 0;
     height: 2.5em;
-    padding: 0 0.75em;
-    border-radius: 3em !important;
-    box-shadow: none;
-    color: var(--textColor) !important;
-    background: transparent !important;
-    border: var(--borderWidth) solid transparent !important;
+    padding: 0;
+    overflow: hidden;
+    font-size: 0.8125rem;
+    white-space: nowrap;
 }
 
-.MuiAppBar-root .MuiButtonGroup-contained > .MuiButton-root:first-child {
-    padding: 0 1.1em;
-    color: var(--zeroContrastColor) !important;
-    background: var(--btnPlayColor) !important;
-    border-color: var(--btnPlayBorderColor) !important;
+.MuiAppBar-root
+    > .MuiToolbar-root
+    + .MuiToolbar-root:has(.MuiButton-sizeSmall)
+    .MuiButton-textPrimary
+    .MuiButton-startIcon {
+    flex-shrink: 0;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+}
+
+/* the buttons, at the end of the row before the item count; the play all, shuffle and queue buttons
+are hidden to keep the row short */
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root > .MuiStack-root {
+    flex: 1 0 auto;
+    justify-content: flex-end;
+    margin-block: 0;
+}
+
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root > .MuiStack-root > .MuiBox-root {
+    flex-grow: 0;
+}
+
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root .MuiButtonGroup-contained {
+    display: none;
 }
 
 /* filter, sort, view and page buttons, styled like the round icon buttons of the legacy layout */
@@ -5745,14 +5788,12 @@ like the selected options in the legacy menus */
     .MuiAppBar-root .MuiIconButton-root:hover,
     .MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root > .MuiButton-root:hover,
     .MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root .MuiButton-textPrimary:hover,
-    .MuiAppBar-root .MuiButtonGroup-text > .MuiButton-root:hover,
-    .MuiAppBar-root .MuiButtonGroup-contained > .MuiButton-root:not(:first-child):hover {
+    .MuiAppBar-root .MuiButtonGroup-text > .MuiButton-root:hover {
         color: var(--zeroContrastColor) !important;
         background-color: var(--hoverBackgroundColor) !important;
         text-shadow: none !important;
     }
 
-    .MuiAppBar-root .MuiButtonGroup-contained > .MuiButton-root:first-child:hover,
     .MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root .MuiButton-contained:not(.MuiButtonGroup-grouped):hover {
         filter: brightness(1.1);
     }
@@ -6537,10 +6578,6 @@ they grow a little on hover and shrink when pressed, and the focus on TVs keeps 
     box-shadow:
         inset 0 var(--borderWidth) 0 hsla(0, 0%, 100%, 0.35),
         var(--fintageButtonShadow);
-}
-
-.MuiAppBar-root .MuiButtonGroup-contained > .MuiButton-root:first-child {
-    box-shadow: var(--fintageButtonShadow);
 }
 
 .itemExternalLinks > .button-link {
