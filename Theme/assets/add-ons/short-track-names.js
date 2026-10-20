@@ -9,6 +9,11 @@ that adds JavaScript to the web client, e.g. JavaScript Injector. */
 (function () {
     "use strict";
 
+    // the script runs only once, also when the loader of option 15 brings it too
+    const active = (window.fintageScripts ??= new Set());
+    if (active.has("short-track-names")) return;
+    active.add("short-track-names");
+
     const selector = "#itemDetailPage:not(.hide) .trackSelections :is(.selectAudio, .selectSubtitles)";
 
     const audioCodecs = {

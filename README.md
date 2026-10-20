@@ -23,7 +23,7 @@
 - a straight TV layout for series, seasons and episodes
 - the Upcoming tab of TV shows as a timeline of release days, with the episodes of each day as a compact list
 - smoother scrolling and animations, especially on older devices
-- optional scripts for episode backdrops in full resolution, short track names like `German · EAC3` and episode titles in two lines
+- optional scripts for episode backdrops in full resolution, short track names like `German · EAC3` and episode titles in two lines, all with one paste that keeps them up to date
 
 <hr>
 
@@ -285,35 +285,48 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
 </details>
 
 <details>
-  <summary><i>15. Episode images in full resolution (optional JavaScript)</i></summary>
+  <summary><i>15. All optional scripts with one paste, always up to date (optional JavaScript)</i></summary>
 
-> - On the page of an episode, Fintage shows the image of the episode as the backdrop. Jellyfin only loads this image at a quarter of the window width, so it looks soft when it is enlarged, and custom CSS cannot change the size Jellyfin asks for.
-> - This script loads the image in the resolution of your screen instead. It only changes the pages of episodes, and the TV layout keeps the small image.
+> - Some things are beyond custom CSS, so Fintage comes with a few optional scripts, described in options 16 to 18. This loader brings all of them at once, in their newest version and on every device: you paste it once, and new and improved scripts arrive by themselves, the way the import does it for the theme.
 > - It needs a plugin that adds JavaScript to the web client, such as [JavaScript Injector](https://github.com/n00bcodr/Jellyfin-JavaScript-Injector):
 >   1. Open Dashboard > Plugins > Catalog, click the settings icon and add the repository of the plugin for your Jellyfin version: `https://raw.githubusercontent.com/n00bcodr/jellyfin-plugins/main/12/manifest.json` for Jellyfin 12, `https://raw.githubusercontent.com/n00bcodr/jellyfin-plugins/main/10.11/manifest.json` for Jellyfin 10.11.
 >   2. Install JavaScript Injector from the Catalog and restart your Jellyfin server.
->   3. Open Dashboard > Plugins > JavaScript Injector, click Add Script, paste the content of [full-resolution-episode-images.js](Theme/assets/add-ons/full-resolution-episode-images.js) and save.
+>   3. Open Dashboard > Plugins > JavaScript Injector, click Add Script, paste the content of [fintage-scripts.js](Theme/assets/add-ons/fintage-scripts.js) and save.
 >   4. Reload the web page once without the cache: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd> (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd> on a Mac). In the Jellyfin apps, clear the cache of the app instead (on Android: Settings > Apps > Jellyfin > Storage > Clear cache). A normal reload is not enough, since the page from before the plugin was installed stays in the cache.
+> - The browser console (<kbd>F12</kbd>) then shows the version of the scripts, like `Fintage: scripts v1.1.1 are loaded`, and a line for each script.
+> - To leave out a script, name it in the loader, like `window.fintageScriptsOff = ["short-track-names"];`. The names are those of the files in options 16 to 18.
+> - Each device fetches the scripts again once a day. jsDelivr, which delivers them, can keep an older version for up to 12 hours.
+> - The loader runs whatever is on the main branch of this repository, on every device that opens Jellyfin. To stay on a version you have looked at, replace `@main` in it with a release, like `@v1.1.1`.
+> - If you added single scripts of options 16 to 18 before, remove them: older copies of them would run a second time next to the loader.
+
+</details>
+
+<details>
+  <summary><i>16. Episode images in full resolution (optional JavaScript)</i></summary>
+
+> - On the page of an episode, Fintage shows the image of the episode as the backdrop. Jellyfin only loads this image at a quarter of the window width, so it looks soft when it is enlarged, and custom CSS cannot change the size Jellyfin asks for.
+> - This script loads the image in the resolution of your screen instead. It only changes the pages of episodes, and the TV layout keeps the small image.
+> - It is part of the loader of option 15. To use it on its own instead, paste the content of [full-resolution-episode-images.js](Theme/assets/add-ons/full-resolution-episode-images.js) into JavaScript Injector, set up as in option 15, and reload the web page once without the cache.
 > - The browser console (<kbd>F12</kbd>) then shows `Fintage: full resolution episode images are active`.
 
 </details>
 
 <details>
-  <summary><i>16. Short names for audio and subtitle tracks (optional JavaScript)</i></summary>
+  <summary><i>17. Short names for audio and subtitle tracks (optional JavaScript)</i></summary>
 
 > - Jellyfin names the tracks like `German - Dolby Digital+ - 5.1 - Default` and `German - Forced - SUBRIP`. These names come from the server, so custom CSS cannot change them.
 > - This script shortens them to the language and the codec, like `German · EAC3`, and marks forced subtitles, like `(Forced) German · SRT`. The full name stays as the tooltip, and tracks that would get the same name keep what tells them apart, like the title of a commentary.
-> - It needs JavaScript Injector, set up as in option 15: click Add Script, paste the content of [short-track-names.js](Theme/assets/add-ons/short-track-names.js), save and reload the web page once without the cache.
+> - It is part of the loader of option 15. To use it on its own instead, paste the content of [short-track-names.js](Theme/assets/add-ons/short-track-names.js) into JavaScript Injector, set up as in option 15, and reload the web page once without the cache.
 > - The browser console (<kbd>F12</kbd>) then shows `Fintage: short track names are active`.
 
 </details>
 
 <details>
-  <summary><i>17. Episode titles in two lines (optional JavaScript)</i></summary>
+  <summary><i>18. Episode titles in two lines (optional JavaScript)</i></summary>
 
 > - On the page of an episode, Jellyfin writes the season, the number and the name in one line, like `Season 2 - 4. Woe's Hollow`. The number and the name come as one piece of text, so custom CSS cannot split them.
 > - This script splits the title into a smaller, slightly darker line with the season and the number, like `Season 2 · Episode 4`, and the name of the episode below it. It uses the word for "Episode" from the language of Jellyfin, like `Staffel 2 · Folge 4` in German.
-> - It needs JavaScript Injector, set up as in option 15: click Add Script, paste the content of [episode-titles.js](Theme/assets/add-ons/episode-titles.js), save and reload the web page once without the cache.
+> - It is part of the loader of option 15. To use it on its own instead, paste the content of [episode-titles.js](Theme/assets/add-ons/episode-titles.js) into JavaScript Injector, set up as in option 15, and reload the web page once without the cache.
 > - The browser console (<kbd>F12</kbd>) then shows `Fintage: episode titles are active`.
 
 </details>
@@ -389,7 +402,7 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
 
 </details>
 
-The previews show Fintage v1.0.3 on Jellyfin 12.2 with the optional scripts of options 15 and 16. The library holds only empty placeholder files; the titles, the artwork and the information come from [TMDB](https://www.themoviedb.org), the channel logos from [tv-logo/tv-logos](https://github.com/tv-logo/tv-logos) and the TV guide from [globetvapp/epg](https://github.com/globetvapp/epg), and all of them belong to their owners.
+The previews show Fintage v1.0.3 on Jellyfin 12.2 with the optional scripts of options 16 and 17. The library holds only empty placeholder files; the titles, the artwork and the information come from [TMDB](https://www.themoviedb.org), the channel logos from [tv-logo/tv-logos](https://github.com/tv-logo/tv-logos) and the TV guide from [globetvapp/epg](https://github.com/globetvapp/epg), and all of them belong to their owners.
 
 <hr>
 
@@ -398,8 +411,8 @@ The previews show Fintage v1.0.3 on Jellyfin 12.2 with the optional scripts of o
 | File | What it is |
 | --- | --- |
 | `Theme/Fintage-latest-minified.css` | the newest version of Fintage, minified; this is what the import loads |
-| `Theme/Fintage_v1.1.0.css` | Fintage v1.1.0, readable |
-| `Theme/assets/add-ons/` | the add-ons (`*-latest-min.css` to import, `*-v1.1.0.css` readable) and the optional scripts |
+| `Theme/Fintage_v1.1.1.css` | Fintage v1.1.1, readable |
+| `Theme/assets/add-ons/` | the add-ons (`*-latest-min.css` to import, `*-v1.1.1.css` readable) and the optional scripts (`fintage-scripts.js` is the loader, `fintage-scripts-latest.js` the file it loads) |
 | `Theme/ElegantFin-theme-v*.css` and the dated add-ons | the releases of ElegantFin up to v26.09.05, which Fintage is based on |
 
 <hr>
@@ -409,7 +422,7 @@ The previews show Fintage v1.0.3 on Jellyfin 12.2 with the optional scripts of o
 <details>
   <summary><i>Which version am I using?</i></summary>
 
-> - The version is shown at the bottom of the settings, like `Fintage v1.1.0`.
+> - The version is shown at the bottom of the settings, like `Fintage v1.1.1`.
 
 </details>
 

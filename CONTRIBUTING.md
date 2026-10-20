@@ -39,7 +39,8 @@ Please open a GitHub issue first to discuss the proposal before submitting a PR.
 
 - `Theme/Fintage_vX.Y.Z.css` is the readable theme of a version, and `Theme/assets/add-ons/*-vX.Y.Z.css` are its add-ons. Changes go into the files of the newest version.
 - To start a new version, run `npm run new-version -- 1.0.1`. It copies the files of the current version to the new one and updates the version in their names, in their headers, in the footer of the settings and in `package.json`.
-- Run `npm ci` once, then `npm run build`. This builds the minified files that the imports load: `Theme/Fintage-latest-minified.css` and the `-latest-min.css` files of the add-ons. Commit them together with the readable files.
+- Run `npm ci` once, then `npm run build`. This builds the minified files that the imports load: `Theme/Fintage-latest-minified.css` and the `-latest-min.css` files of the add-ons, and `Theme/assets/add-ons/fintage-scripts-latest.js`, the file with all optional scripts that the loader loads. Commit them together with the readable files.
+- The optional scripts are `Theme/assets/add-ons/*.js`. A new one goes into the list of scripts in `build.js`, so that the loader brings it too.
 - The `ElegantFin-*` files and the other dated versions of the add-ons are the releases of ElegantFin that Fintage is based on, and they stay as they are.
 - Follow the existing CSS naming conventions and structure, and group related styles with a comment that says what they are for.
 
