@@ -1,4 +1,5 @@
-// npm run build: builds the minified files that the imports load from the readable files of the version in package.json
+// npm run build: builds the minified files that the imports load from the readable files of the version in package.json,
+// and the file with all optional scripts that the loader of option 15 loads
 // npm run new-version -- 1.0.1: copies the readable files of the current version to a new version, which then gets the changes
 const fs = require("fs");
 const postcss = require("postcss");
@@ -8,6 +9,9 @@ process.chdir(__dirname);
 const pkg = JSON.parse(fs.readFileSync("package.json", "utf8"));
 const theme = "Theme/";
 const addOns = "Theme/assets/add-ons/";
+
+// the optional scripts, in the order in which the loader of option 15 runs them
+const scripts = ["full-resolution-episode-images", "short-track-names", "episode-titles"];
 
 // the readable files of a version and the minified files they are built into
 const files = (version) => [
@@ -22,6 +26,29 @@ async function build() {
         fs.writeFileSync(to, result.css);
         console.log(`${from} -> ${to}`);
     }
+    bundle();
+}
+
+// the loader of option 15 loads all optional scripts as one file; each of them can be left out
+// by naming it in window.fintageScriptsOff, and each runs only once, also when it is installed on its own
+function bundle() {
+    const to = `${addOns}fintage-scripts-latest.js`;
+    const parts = scripts.map((name) => {
+        const code = fs.readFileSync(`${addOns}${name}.js`, "utf8").replace(/^\/\*![\s\S]*?\*\/\s*/, "");
+        return `// ${name}\nif (!off.includes("${name}")) {\n${code}}\n`;
+    });
+    const text = [
+        `/*! Fintage Scripts v${pkg.version} for Jellyfin by ricolehn: ${scripts.join(", ")} */`,
+        "(function () {",
+        '"use strict";',
+        "const off = window.fintageScriptsOff || [];",
+        ...parts,
+        `console.info("Fintage: scripts v${pkg.version} are loaded");`,
+        "})();",
+        "",
+    ].join("\n");
+    fs.writeFileSync(to, text);
+    console.log(`${scripts.map((name) => name + ".js").join(", ")} -> ${to}`);
 }
 
 // the version is in the name of each file, in its header and in the footer of the settings

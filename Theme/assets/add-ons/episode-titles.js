@@ -8,6 +8,11 @@ that adds JavaScript to the web client, e.g. JavaScript Injector. */
 (function () {
     "use strict";
 
+    // the script runs only once, also when the loader of option 15 brings it too
+    const active = (window.fintageScripts ??= new Set());
+    if (active.has("episode-titles")) return;
+    active.add("episode-titles");
+
     const selector = '#itemDetailPage .itemName > bdi:has(> a[data-type="Season"])';
 
     // the word Jellyfin itself uses for "Episode" in each language, where it is not "Episode"

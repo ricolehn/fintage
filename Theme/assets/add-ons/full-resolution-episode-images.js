@@ -8,6 +8,11 @@ that adds JavaScript to the web client, e.g. JavaScript Injector. */
 (function () {
     "use strict";
 
+    // the script runs only once, also when the loader of option 15 brings it too
+    const active = (window.fintageScripts ??= new Set());
+    if (active.has("full-resolution-episode-images")) return;
+    active.add("full-resolution-episode-images");
+
     const selector = "#itemDetailPage:not(.hide) .detailImageContainer > .backdropCard .cardImageContainer";
     const maxWidth = Math.min(Math.round(screen.width * (window.devicePixelRatio || 1)), 3840);
 
