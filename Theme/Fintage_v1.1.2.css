@@ -2185,13 +2185,14 @@ before, the logo was placed from the bottom of the screen and the title from the
     background: none;
 }
 
+/* the logo has the same size as on the page of the series */
 .layout-desktop #itemDetailPage:has(.parentName [data-type="Series"]):not(:has(.itemName [data-type="Season"])) {
-    --seasonLogoHeight: clamp(5em, 15vh, 9em);
+    --seasonLogoHeight: 25vh;
     --seasonTitleTop: max(42vh, calc(var(--appBarHeight) + var(--seasonLogoHeight) + 3em));
 }
 
 .layout-mobile #itemDetailPage:has(.parentName [data-type="Series"]):not(:has(.itemName [data-type="Season"])) {
-    --seasonLogoHeight: min(11vh, 6.5em);
+    --seasonLogoHeight: 17vh;
     --seasonTitleTop: 38vh;
 }
 
