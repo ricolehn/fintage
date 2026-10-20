@@ -296,7 +296,74 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
 
 ### 🖼️ Previews
 
-The [Previews](Previews) folder has screenshots of ElegantFin, the theme Fintage is built on. They show the layout of most pages, which Fintage keeps; the colors, the surfaces and the motion are Fintage's own, and so are the app bar, the pages of seasons and episodes and the audio and subtitle cards.
+[![A short demo video of Fintage](Previews/fintage-demo.webp)](Previews/fintage-demo.mp4)
+
+<p align="center">
+  <img src="Previews/desktop/01-home.webp" width="49%" alt="Home">
+  <img src="Previews/desktop/04-movie.webp" width="49%" alt="Movie">
+  <img src="Previews/desktop/11-season.webp" width="49%" alt="Season">
+  <img src="Previews/desktop/12-episode.webp" width="49%" alt="Episode">
+  <img src="Previews/desktop/13-upcoming.webp" width="49%" alt="Upcoming">
+  <img src="Previews/light/03-movie.webp" width="49%" alt="Movie in the light mode">
+</p>
+
+<details>
+  <summary><i>Desktop</i></summary>
+<br>
+
+<img src="Previews/desktop/01-home.webp" width="49%" alt="Home"> <img src="Previews/desktop/02-movies.webp" width="49%" alt="Movies">
+<img src="Previews/desktop/03-filters.webp" width="49%" alt="Filters"> <img src="Previews/desktop/04-movie.webp" width="49%" alt="Movie">
+<img src="Previews/desktop/05-movie-details.webp" width="49%" alt="Details of a movie"> <img src="Previews/desktop/06-metadata-editor.webp" width="49%" alt="Metadata editor">
+<img src="Previews/desktop/07-collection.webp" width="49%" alt="Collection"> <img src="Previews/desktop/08-shows.webp" width="49%" alt="Shows">
+<img src="Previews/desktop/09-series.webp" width="49%" alt="Series"> <img src="Previews/desktop/10-series-details.webp" width="49%" alt="Details of a series">
+<img src="Previews/desktop/11-season.webp" width="49%" alt="Season"> <img src="Previews/desktop/12-episode.webp" width="49%" alt="Episode">
+<img src="Previews/desktop/13-upcoming.webp" width="49%" alt="Upcoming"> <img src="Previews/desktop/14-person.webp" width="49%" alt="Person">
+<img src="Previews/desktop/15-search.webp" width="49%" alt="Search"> <img src="Previews/desktop/16-player.webp" width="49%" alt="Player">
+<img src="Previews/desktop/17-live-tv-guide.webp" width="49%" alt="Live TV guide"> <img src="Previews/desktop/18-live-tv-channels.webp" width="49%" alt="Live TV channels">
+<img src="Previews/desktop/19-user-menu.webp" width="49%" alt="User menu"> <img src="Previews/desktop/20-settings.webp" width="49%" alt="Settings">
+<img src="Previews/desktop/21-login.webp" width="49%" alt="Login"> <img src="Previews/desktop/22-media-covers-add-on.webp" width="49%" alt="Custom media covers add-on">
+<img src="Previews/desktop/23-legacy-layout.webp" width="49%" alt="Desktop (Legacy) layout">
+
+</details>
+
+<details>
+  <summary><i>Light mode</i></summary>
+<br>
+
+<img src="Previews/light/01-home.webp" width="49%" alt="Home"> <img src="Previews/light/02-movies.webp" width="49%" alt="Movies">
+<img src="Previews/light/03-movie.webp" width="49%" alt="Movie"> <img src="Previews/light/04-movie-details.webp" width="49%" alt="Details of a movie">
+<img src="Previews/light/05-series.webp" width="49%" alt="Series"> <img src="Previews/light/06-season.webp" width="49%" alt="Season">
+<img src="Previews/light/07-episode.webp" width="49%" alt="Episode"> <img src="Previews/light/08-upcoming.webp" width="49%" alt="Upcoming">
+<img src="Previews/light/09-settings.webp" width="49%" alt="Settings">
+
+</details>
+
+<details>
+  <summary><i>TV</i></summary>
+<br>
+
+<img src="Previews/tv/01-home.webp" width="49%" alt="Home"> <img src="Previews/tv/02-movies.webp" width="49%" alt="Movies">
+<img src="Previews/tv/03-shows.webp" width="49%" alt="Shows"> <img src="Previews/tv/04-movie.webp" width="49%" alt="Movie">
+<img src="Previews/tv/05-movie-details.webp" width="49%" alt="Details of a movie"> <img src="Previews/tv/06-series.webp" width="49%" alt="Series">
+<img src="Previews/tv/07-season.webp" width="49%" alt="Season"> <img src="Previews/tv/08-episode.webp" width="49%" alt="Episode">
+<img src="Previews/tv/09-upcoming.webp" width="49%" alt="Upcoming"> <img src="Previews/tv/10-person.webp" width="49%" alt="Person">
+<img src="Previews/tv/11-live-tv-guide.webp" width="49%" alt="Live TV guide"> <img src="Previews/tv/12-live-tv-channels.webp" width="49%" alt="Live TV channels">
+
+</details>
+
+<details>
+  <summary><i>Phone</i></summary>
+<br>
+
+<img src="Previews/mobile/01-home.webp" width="24%" alt="Home"> <img src="Previews/mobile/02-movies.webp" width="24%" alt="Movies"> <img src="Previews/mobile/03-shows.webp" width="24%" alt="Shows"> <img src="Previews/mobile/04-movie.webp" width="24%" alt="Movie">
+<img src="Previews/mobile/05-movie-details.webp" width="24%" alt="Details of a movie"> <img src="Previews/mobile/06-series.webp" width="24%" alt="Series"> <img src="Previews/mobile/07-season.webp" width="24%" alt="Season"> <img src="Previews/mobile/08-episode.webp" width="24%" alt="Episode">
+<img src="Previews/mobile/09-upcoming.webp" width="24%" alt="Upcoming"> <img src="Previews/mobile/10-person.webp" width="24%" alt="Person"> <img src="Previews/mobile/11-search.webp" width="24%" alt="Search"> <img src="Previews/mobile/12-user-menu.webp" width="24%" alt="User menu">
+<img src="Previews/mobile/13-settings.webp" width="24%" alt="Settings"> <img src="Previews/mobile/14-live-tv-guide.webp" width="24%" alt="Live TV guide"> <img src="Previews/mobile/16-login.webp" width="24%" alt="Login">
+<img src="Previews/mobile/15-player.webp" width="98%" alt="Player">
+
+</details>
+
+The previews show Fintage v1.0.1 on Jellyfin 12.2 with the optional scripts of options 15 and 16. The library holds only empty placeholder files; the titles, the artwork and the information come from [TMDB](https://www.themoviedb.org), the channel logos from [tv-logo/tv-logos](https://github.com/tv-logo/tv-logos) and the TV guide from [globetvapp/epg](https://github.com/globetvapp/epg), and all of them belong to their owners.
 
 <hr>
 
