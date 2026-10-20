@@ -363,7 +363,7 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
 
 </details>
 
-The previews show Fintage v1.0.1 on Jellyfin 12.2 with the optional scripts of options 15 and 16. The library holds only empty placeholder files; the titles, the artwork and the information come from [TMDB](https://www.themoviedb.org), the channel logos from [tv-logo/tv-logos](https://github.com/tv-logo/tv-logos) and the TV guide from [globetvapp/epg](https://github.com/globetvapp/epg), and all of them belong to their owners.
+The previews show Fintage v1.0.2 on Jellyfin 12.2 with the optional scripts of options 15 and 16. The library holds only empty placeholder files; the titles, the artwork and the information come from [TMDB](https://www.themoviedb.org), the channel logos from [tv-logo/tv-logos](https://github.com/tv-logo/tv-logos) and the TV guide from [globetvapp/epg](https://github.com/globetvapp/epg), and all of them belong to their owners.
 
 <hr>
 
@@ -372,8 +372,8 @@ The previews show Fintage v1.0.1 on Jellyfin 12.2 with the optional scripts of o
 | File | What it is |
 | --- | --- |
 | `Theme/Fintage-latest-minified.css` | the newest version of Fintage, minified; this is what the import loads |
-| `Theme/Fintage_v1.0.1.css` | Fintage v1.0.1, readable |
-| `Theme/assets/add-ons/` | the add-ons (`*-latest-min.css` to import, `*-v1.0.1.css` readable) and the optional scripts |
+| `Theme/Fintage_v1.0.2.css` | Fintage v1.0.2, readable |
+| `Theme/assets/add-ons/` | the add-ons (`*-latest-min.css` to import, `*-v1.0.2.css` readable) and the optional scripts |
 | `Theme/ElegantFin-theme-v*.css` and the dated add-ons | the releases of ElegantFin up to v26.09.05, which Fintage is based on |
 
 <hr>
@@ -383,7 +383,7 @@ The previews show Fintage v1.0.1 on Jellyfin 12.2 with the optional scripts of o
 <details>
   <summary><i>Which version am I using?</i></summary>
 
-> - The version is shown at the bottom of the settings, like `Fintage v1.0.1`.
+> - The version is shown at the bottom of the settings, like `Fintage v1.0.2`.
 
 </details>
 
