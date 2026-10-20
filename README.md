@@ -22,7 +22,7 @@
 - a straight TV layout for series, seasons and episodes
 - the Upcoming tab of TV shows as a timeline of release days, with the episodes of each day as a compact list
 - smoother scrolling and animations, especially on older devices
-- optional scripts for episode backdrops in full resolution and short track names like `German · EAC3`
+- optional scripts for episode backdrops in full resolution, short track names like `German · EAC3` and arrows above the rows on desktops with a touch screen
 
 <hr>
 
@@ -292,6 +292,16 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
 
 </details>
 
+<details>
+  <summary><i>17. Arrows above the rows on desktops with a touch screen (optional JavaScript)</i></summary>
+
+> - On desktops, Jellyfin shows two arrows above each row that scrolls sideways, like the rows of the home page, but only when the browser reports a mouse as the main pointer. On desktops with a touch screen, it leaves them out and shows a scrollbar under each row instead. Fintage hides these scrollbars, and custom CSS cannot add buttons that scroll.
+> - This script adds the same arrows there. Wherever Jellyfin shows its own arrows, and on phones and TVs, it changes nothing.
+> - It needs JavaScript Injector, set up as in option 15: click Add Script, paste the content of [scroll-buttons.js](Theme/assets/add-ons/scroll-buttons.js), save and reload the web page once without the cache.
+> - The browser console (<kbd>F12</kbd>) then shows `Fintage: scroll buttons are active`.
+
+</details>
+
 <hr>
 
 ### 🖼️ Previews
@@ -363,7 +373,7 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
 
 </details>
 
-The previews show Fintage v1.0.2 on Jellyfin 12.2 with the optional scripts of options 15 and 16. The library holds only empty placeholder files; the titles, the artwork and the information come from [TMDB](https://www.themoviedb.org), the channel logos from [tv-logo/tv-logos](https://github.com/tv-logo/tv-logos) and the TV guide from [globetvapp/epg](https://github.com/globetvapp/epg), and all of them belong to their owners.
+The previews show Fintage v1.0.3 on Jellyfin 12.2 with the optional scripts of options 15 and 16. The library holds only empty placeholder files; the titles, the artwork and the information come from [TMDB](https://www.themoviedb.org), the channel logos from [tv-logo/tv-logos](https://github.com/tv-logo/tv-logos) and the TV guide from [globetvapp/epg](https://github.com/globetvapp/epg), and all of them belong to their owners.
 
 <hr>
 
@@ -372,8 +382,8 @@ The previews show Fintage v1.0.2 on Jellyfin 12.2 with the optional scripts of o
 | File | What it is |
 | --- | --- |
 | `Theme/Fintage-latest-minified.css` | the newest version of Fintage, minified; this is what the import loads |
-| `Theme/Fintage_v1.0.2.css` | Fintage v1.0.2, readable |
-| `Theme/assets/add-ons/` | the add-ons (`*-latest-min.css` to import, `*-v1.0.2.css` readable) and the optional scripts |
+| `Theme/Fintage_v1.0.3.css` | Fintage v1.0.3, readable |
+| `Theme/assets/add-ons/` | the add-ons (`*-latest-min.css` to import, `*-v1.0.3.css` readable) and the optional scripts |
 | `Theme/ElegantFin-theme-v*.css` and the dated add-ons | the releases of ElegantFin up to v26.09.05, which Fintage is based on |
 
 <hr>
@@ -383,7 +393,7 @@ The previews show Fintage v1.0.2 on Jellyfin 12.2 with the optional scripts of o
 <details>
   <summary><i>Which version am I using?</i></summary>
 
-> - The version is shown at the bottom of the settings, like `Fintage v1.0.2`.
+> - The version is shown at the bottom of the settings, like `Fintage v1.0.3`.
 
 </details>
 
