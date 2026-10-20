@@ -5515,10 +5515,10 @@ less space while scrolling; when the row is full, the name in the view selector 
     font-size: 1.35rem;
 }
 
-/* item count, at the end of the row with the reset filters button before it */
+/* item count, at the end of the row right after the page buttons, with the reset filters button after it */
 .MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root > .MuiBox-root:has(> .MuiChip-root) {
     flex: none;
-    flex-direction: row-reverse;
+    flex-direction: row;
     align-items: center;
     gap: 0.5em;
     order: 1;
@@ -5534,8 +5534,13 @@ less space while scrolling; when the row is full, the name in the view selector 
     background-color: var(--darkerGradientPointAlpha);
     border: var(--defaultBorder);
     color: var(--dimTextColor);
+    font-size: 0.75rem;
     font-weight: 600;
     font-variant-numeric: tabular-nums;
+}
+
+.MuiAppBar-root .MuiChip-label {
+    padding-inline: 0.75em;
 }
 
 /* reset filters button */
@@ -5613,6 +5618,73 @@ are hidden to keep the row short */
 .MuiAppBar-root .MuiButtonGroup-root > .MuiButton-root.Mui-disabled {
     color: var(--dimTextColor) !important;
     opacity: 0.5;
+}
+
+/* the page buttons and the item count form one capsule, ‹ › | 1-100 of 525, so that the count takes little room
+and the name of the library stays readable on phones; the page buttons are the left part of it, the count the right part */
+.MuiAppBar-root
+    > .MuiToolbar-root
+    + .MuiToolbar-root:has(.MuiChip-root)
+    .MuiButtonGroup-text:has([data-testid="NavigateNextIcon"]) {
+    box-sizing: border-box;
+    align-self: center;
+    gap: 0;
+    height: 1.85rem;
+    padding-inline-start: 0.15rem;
+    background-color: var(--darkerGradientPointAlpha);
+    border: var(--defaultBorder);
+    border-inline-end: 0;
+    border-radius: 0;
+    border-start-start-radius: 3em;
+    border-end-start-radius: 3em;
+}
+
+.MuiAppBar-root
+    > .MuiToolbar-root
+    + .MuiToolbar-root:has(.MuiChip-root)
+    .MuiButtonGroup-text:has([data-testid="NavigateNextIcon"])
+    > .MuiButton-root {
+    width: 1.85rem;
+    height: 100%;
+}
+
+.MuiAppBar-root
+    > .MuiToolbar-root
+    + .MuiToolbar-root:has(.MuiChip-root)
+    .MuiButtonGroup-text:has([data-testid="NavigateNextIcon"])
+    .MuiSvgIcon-root {
+    font-size: 1.25rem;
+}
+
+.MuiAppBar-root
+    > .MuiToolbar-root
+    + .MuiToolbar-root:has([data-testid="NavigateNextIcon"])
+    > .MuiBox-root:has(> .MuiChip-root) {
+    margin-inline-start: 0;
+}
+
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root:has([data-testid="NavigateNextIcon"]) .MuiChip-root {
+    position: relative;
+    height: 1.85rem;
+    border-inline-start: 0;
+    border-radius: 0;
+    border-start-end-radius: 3em;
+    border-end-end-radius: 3em;
+}
+
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root:has([data-testid="NavigateNextIcon"]) .MuiChip-label {
+    padding-inline: 0.6em 0.9em;
+}
+
+/* a short, faint line between the arrows and the count */
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root:has([data-testid="NavigateNextIcon"]) .MuiChip-root::before {
+    content: "";
+    position: absolute;
+    inset-block: 28%;
+    inset-inline-start: 0;
+    width: var(--borderWidth);
+    background-color: currentColor;
+    opacity: 0.35;
 }
 
 .MuiAppBar-root .MuiBadge-dot {
