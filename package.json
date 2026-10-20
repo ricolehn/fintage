@@ -1,6 +1,6 @@
 {
     "name": "fintage",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "private": true,
     "description": "Fintage, a theme for Jellyfin on phones, desktops and TVs",
     "devDependencies": {
