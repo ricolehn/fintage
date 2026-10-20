@@ -15,6 +15,7 @@
 - slow, smooth motion: cards lift and catch a soft sheen
 - made for Jellyfin 12.2: the new layout (`Auto`) as well as the `Desktop (Legacy)`, `Mobile (Legacy)` and `TV` display modes
 - a frosted app bar like milk glass, with a clean bottom edge on every page
+- soft, rounded icons everywhere, also in the app bar, the menus and the sidebar of the new layout
 - episode pages with the image of the episode as the backdrop and the logo of the series
 - season pages with the bright backdrop of the series and its logo right above the season title
 - the episodes of a season as a clear list on every device, with 16:9 images and the first three lines of the plot
@@ -73,7 +74,7 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
 </details>
 
 <details>
-  <summary><i>2. App bar styles</i></summary>
+  <summary><i>2. App bar styles and buttons</i></summary>
 
 > - There are four styles: frosted (the default), solid, seamless and fully transparent.
 > - Frosted needs nothing: the content glows through the bar like through milk glass, and the bar keeps a clean bottom edge on every page.
@@ -105,6 +106,21 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
 >       --appBarShadow: none;
 >   }
 >   ```
+> - No SyncPlay button, e.g. if nobody watches together:
+>   ```css
+>   .headerSyncButton,
+>   .MuiIconButton-root:has([data-testid="GroupsIcon"]) {
+>       display: none;
+>   }
+>   ```
+> - No Cast button, for playing on other devices:
+>   ```css
+>   .headerCastButton,
+>   .MuiIconButton-root:has([data-testid="CastIcon"], [data-testid="CastConnectedIcon"]) {
+>       display: none;
+>   }
+>   ```
+> - Both work in every display mode and in every language.
 
 </details>
 
@@ -382,8 +398,8 @@ The previews show Fintage v1.0.3 on Jellyfin 12.2 with the optional scripts of o
 | File | What it is |
 | --- | --- |
 | `Theme/Fintage-latest-minified.css` | the newest version of Fintage, minified; this is what the import loads |
-| `Theme/Fintage_v1.0.3.css` | Fintage v1.0.3, readable |
-| `Theme/assets/add-ons/` | the add-ons (`*-latest-min.css` to import, `*-v1.0.3.css` readable) and the optional scripts |
+| `Theme/Fintage_v1.1.0.css` | Fintage v1.1.0, readable |
+| `Theme/assets/add-ons/` | the add-ons (`*-latest-min.css` to import, `*-v1.1.0.css` readable) and the optional scripts |
 | `Theme/ElegantFin-theme-v*.css` and the dated add-ons | the releases of ElegantFin up to v26.09.05, which Fintage is based on |
 
 <hr>
@@ -393,7 +409,7 @@ The previews show Fintage v1.0.3 on Jellyfin 12.2 with the optional scripts of o
 <details>
   <summary><i>Which version am I using?</i></summary>
 
-> - The version is shown at the bottom of the settings, like `Fintage v1.0.3`.
+> - The version is shown at the bottom of the settings, like `Fintage v1.1.0`.
 
 </details>
 
