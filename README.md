@@ -403,7 +403,7 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
 
 </details>
 
-The previews show Fintage v1.0.3 on Jellyfin 12.2 with the optional scripts of options 16 and 17. The library holds only empty placeholder files; the titles, the artwork and the information come from [TMDB](https://www.themoviedb.org), the channel logos from [tv-logo/tv-logos](https://github.com/tv-logo/tv-logos) and the TV guide from [globetvapp/epg](https://github.com/globetvapp/epg), and all of them belong to their owners.
+The screenshots show Fintage v1.2.0 on Jellyfin 12.2 with the optional scripts of option 15. The library holds only empty placeholder files; the titles, the artwork and the information come from [TMDB](https://www.themoviedb.org), the channel logos from [tv-logo/tv-logos](https://github.com/tv-logo/tv-logos) and the TV guide from [globetvapp/epg](https://github.com/globetvapp/epg), and all of them belong to their owners.
 
 <hr>
 
