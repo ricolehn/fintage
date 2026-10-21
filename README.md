@@ -412,8 +412,8 @@ The screenshots show Fintage v1.2.0 on Jellyfin 12.2 with the optional scripts o
 | File | What it is |
 | --- | --- |
 | `Theme/Fintage-latest-minified.css` | the newest version of Fintage, minified; this is what the import loads |
-| `Theme/Fintage_v1.2.0.css` | Fintage v1.2.0, readable |
-| `Theme/assets/add-ons/` | the add-ons (`*-latest-min.css` to import, `*-v1.2.0.css` readable) and the optional scripts (`fintage-scripts.js` is the loader, `fintage-scripts-latest.js` the file it loads) |
+| `Theme/Fintage_v1.2.1.css` | Fintage v1.2.1, readable |
+| `Theme/assets/add-ons/` | the add-ons (`*-latest-min.css` to import, `*-v1.2.1.css` readable) and the optional scripts (`fintage-scripts.js` is the loader, `fintage-scripts-latest.js` the file it loads) |
 | `Theme/ElegantFin-theme-v*.css` and the dated add-ons | the releases of ElegantFin up to v26.09.05, which Fintage is based on |
 
 <hr>
@@ -423,7 +423,7 @@ The screenshots show Fintage v1.2.0 on Jellyfin 12.2 with the optional scripts o
 <details>
   <summary><i>Which version am I using?</i></summary>
 
-> - The version is shown at the bottom of the settings, like `Fintage v1.2.0`.
+> - The version is shown at the bottom of the settings, like `Fintage v1.2.1`.
 
 </details>
 
