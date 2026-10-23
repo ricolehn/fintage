@@ -20,7 +20,10 @@
 - episode pages with the image of the episode as the backdrop and the logo of the series; on phones, the image is a card of its own with a soft glow in its colors and the logo of the series small in its corner
 - season pages with the bright backdrop of the series and its logo right above the season title
 - the episodes of a season as a clear list on every device, with 16:9 images and the first three lines of the plot
-- audio and subtitles as cards of their own above the details, so the chosen tracks are clear at a glance
+- audio and subtitles as cards of their own below the plot, so the chosen tracks are clear at a glance
+- the directors, writers, studios and genres at the very end of the page of a movie, show, season or episode, like the credits at the end of a film
+- a compact sign-in card in front of the splash screen of the server, also on phones
+- the results of the searches for subtitles and lyrics as glass cards under the names of their sources, with quiet pills and a round gold download button, which the search for images gets too
 - a straight TV layout for series, seasons and episodes
 - the Upcoming tab of TV shows as a timeline of release days, with the episodes of each day as a compact list
 - smoother scrolling and animations, especially on older devices
@@ -252,7 +255,7 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
 </details>
 
 <details>
-  <summary><i>12. Background and button text of the login page (Jellyfin before 10.11)</i></summary>
+  <summary><i>12. Background and title of the login page (Jellyfin before 10.11)</i></summary>
 
 > - Since Jellyfin 10.11, the login page shows the splash screen by itself. On older versions, tick `Enable the splash screen` below the Custom CSS code box in the Dashboard and add:
 >   ```css
@@ -261,7 +264,7 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
 >   }
 >   ```
 > - Replace `<YOUR-JELLYFIN-SERVER-ADDRESS>` with the address of your server, with `http` or `https`, for example `http://192.168.0.1:8096`. The blur and the size can be changed in the link.
-> - To change the text of the login button, add `--loginPageText: "Your text";` to the same block.
+> - To change the title above the form, `Sign in to continue`, add `--loginPageText: "Your text";` to the same block.
 
 </details>
 
@@ -412,8 +415,8 @@ The screenshots show Fintage v1.2.0 on Jellyfin 12.2 with the optional scripts o
 | File | What it is |
 | --- | --- |
 | `Theme/Fintage-latest-minified.css` | the newest version of Fintage, minified; this is what the import loads |
-| `Theme/Fintage_v1.2.1.css` | Fintage v1.2.1, readable |
-| `Theme/assets/add-ons/` | the add-ons (`*-latest-min.css` to import, `*-v1.2.1.css` readable) and the optional scripts (`fintage-scripts.js` is the loader, `fintage-scripts-latest.js` the file it loads) |
+| `Theme/Fintage_v1.3.0.css` | Fintage v1.3.0, readable |
+| `Theme/assets/add-ons/` | the add-ons (`*-latest-min.css` to import, `*-v1.3.0.css` readable) and the optional scripts (`fintage-scripts.js` is the loader, `fintage-scripts-latest.js` the file it loads) |
 | `Theme/ElegantFin-theme-v*.css` and the dated add-ons | the releases of ElegantFin up to v26.09.05, which Fintage is based on |
 
 <hr>
@@ -423,7 +426,7 @@ The screenshots show Fintage v1.2.0 on Jellyfin 12.2 with the optional scripts o
 <details>
   <summary><i>Which version am I using?</i></summary>
 
-> - The version is shown at the bottom of the settings, like `Fintage v1.2.1`.
+> - The version is shown at the bottom of the settings, like `Fintage v1.3.0`.
 
 </details>
 

@@ -1,4 +1,4 @@
-/*! Fintage Scripts v1.2.1 for Jellyfin by ricolehn: full-resolution-episode-images, short-track-names, episode-titles */
+/*! Fintage Scripts v1.3.0 for Jellyfin by ricolehn: full-resolution-episode-images, short-track-names, episode-titles */
 (function () {
 "use strict";
 const off = window.fintageScriptsOff || [];
@@ -470,5 +470,5 @@ that adds JavaScript to the web client, e.g. JavaScript Injector. */
 })();
 }
 
-console.info("Fintage: scripts v1.2.1 are loaded");
+console.info("Fintage: scripts v1.3.0 are loaded");
 })();
