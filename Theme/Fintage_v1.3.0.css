@@ -6634,6 +6634,12 @@ panels, dialogs, menus and bars share one frosted glass material */
     border: var(--fintageGlassBorder) !important;
 }
 
+/* tooltips have the color of the fields as their background, which is light in the light theme,
+so their text takes the color of the text instead of white */
+.MuiTooltip-tooltip {
+    color: var(--textColor);
+}
+
 .dialog:not(.dialog-fullscreen) {
     border-radius: var(--largerRadius) !important;
 }
