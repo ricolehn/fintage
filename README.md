@@ -435,7 +435,7 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
 
 </details>
 
-The screenshots show Fintage v1.3.1 on Jellyfin 12.2 with the optional scripts of option 15. The phone screenshots have the status bar of a phone above the app, as Jellyfin looks when it is installed on a phone, and the images at the top and in `Previews/mockups` put real screenshots into frames of devices. The library holds only placeholder files without real video; the titles, the artwork and the information come from [TMDB](https://www.themoviedb.org), the channel logos from [tv-logo/tv-logos](https://github.com/tv-logo/tv-logos) and the TV guide from [open-epg.com](https://www.open-epg.com), and all of them belong to their owners.
+The screenshots show Fintage v1.3.1 on Jellyfin 12.2 with the optional scripts of option 15, and the images at the top and in `Previews/mockups` put real screenshots into frames of devices. The library holds only placeholder files without real video; the titles, the artwork and the information come from [TMDB](https://www.themoviedb.org), the channel logos from [tv-logo/tv-logos](https://github.com/tv-logo/tv-logos) and the TV guide from [open-epg.com](https://www.open-epg.com), and all of them belong to their owners.
 
 <hr>
 
