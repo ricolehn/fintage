@@ -1862,6 +1862,15 @@ on tablets at most 45em, and on a phone held sideways only as tall as leaves roo
     margin-top: 0;
 }
 
+/* the card lies below the title, the details and the buttons, so its glow, which reaches below the card,
+is behind the text; Jellyfin lifts the card above them, which painted the glow over the text.
+The block of the title and the buttons is a layer of its own, so the card stays above the page */
+.layout-mobile
+    #itemDetailPage:has(.itemName [data-type="Season"]):has(.detailImageContainer > .backdropCard)
+    .detailRibbon {
+    isolation: isolate;
+}
+
 .layout-mobile
     #itemDetailPage:has(.itemName [data-type="Season"]):has(.detailImageContainer > .backdropCard)
     .infoWrapper
@@ -1871,6 +1880,7 @@ on tablets at most 45em, and on a phone held sideways only as tall as leaves roo
     left: calc(50% - var(--episodeCardWidth) / 2);
     width: var(--episodeCardWidth);
     height: var(--episodeCardHeight);
+    z-index: -1;
 }
 
 /* the image keeps its rounded corners itself, so the glow behind it can reach beyond the card;
