@@ -1260,60 +1260,6 @@ full brightness; only a soft band at the top stays, so the icons of the app bar 
     box-shadow: inset 0 6em 4em -3em hsla(0, 0%, 0%, 0.5);
 }
 
-/* on the pages of movies, shows and seasons, the backdrop glows softly into the page in its own colors, like the card
-of an episode: a blurred, more colorful copy of the image lies behind it, shows where the image fades out and reaches
-a little past it, behind the logo and the title. These pages are recognised by the type on their played button.
-The element keeps the image for the backdrop and its glow, but does not paint it itself; the backdrop is painted
-above the glow with the same fade and the same band at the top, so it looks as before */
-.layout-mobile
-    #itemDetailPage:has(.btnPlaystate:is([data-type="Movie"], [data-type="Series"], [data-type="Season"]))
-    .itemBackdrop {
-    /* the glow is the backdrop itself, blurred and a little more colorful */
-    --backdropGlow: blur(3em) saturate(1.5);
-    --backdropGlowOpacity: 0.55;
-    background-size: 0 0;
-    -webkit-mask: none;
-    mask: none;
-}
-
-.layout-mobile
-    #itemDetailPage:has(.btnPlaystate:is([data-type="Movie"], [data-type="Series"], [data-type="Season"]))
-    .itemBackdrop::before,
-.layout-mobile
-    #itemDetailPage:has(.btnPlaystate:is([data-type="Movie"], [data-type="Series"], [data-type="Season"]))
-    .itemBackdrop::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: inherit;
-    background-size: cover;
-}
-
-.layout-mobile
-    #itemDetailPage:has(.btnPlaystate:is([data-type="Movie"], [data-type="Series"], [data-type="Season"]))
-    .itemBackdrop::before {
-    box-shadow: none;
-    opacity: var(--backdropGlowOpacity);
-    filter: var(--backdropGlow);
-}
-
-.layout-mobile
-    #itemDetailPage:has(.btnPlaystate:is([data-type="Movie"], [data-type="Series"], [data-type="Season"]))
-    .itemBackdrop::after {
-    box-shadow: inset 0 6em 4em -3em hsla(0, 0%, 0%, 0.5);
-    -webkit-mask: var(--itemBackdropMask);
-    mask: var(--itemBackdropMask);
-}
-
-/* on the sand of the light theme, the glow is lighter, more colorful and fainter,
-so dark images leave no grey haze on the page */
-:root[data-theme="light"].layout-mobile
-    #itemDetailPage:has(.btnPlaystate:is([data-type="Movie"], [data-type="Series"], [data-type="Season"]))
-    .itemBackdrop {
-    --backdropGlow: blur(3em) saturate(1.8) brightness(1.5);
-    --backdropGlowOpacity: 0.36;
-}
-
 .layout-tv .itemBackdrop {
     height: 33vh;
 }
