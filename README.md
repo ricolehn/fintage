@@ -4,6 +4,10 @@
 
 **A calm, cinematic theme for Jellyfin on phones, desktops and TVs, with a single import.**
 
+<br>
+
+<img src="Previews/fintage-hero.webp" width="100%" alt="Fintage on phones: the home screen, the page of The Super Mario Galaxy Movie and the page of Avatar: Seven Havens">
+
 </div>
 
 <hr>
@@ -339,16 +343,53 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
 
 ### 🖼️ Previews
 
+<p align="center">
+  <img src="Previews/mockups/phones.webp" width="100%" alt="Five phones: the page of a movie with its backdrop in full brightness, an episode with a glow in its colors, the audio and subtitle cards, the Upcoming timeline and the credits at the end of a page">
+</p>
+
+<p align="center">
+  <img src="Previews/mobile/01-home.webp" width="24%" alt="Home on a phone">
+  <img src="Previews/mobile/04-movie.webp" width="24%" alt="Movie on a phone">
+  <img src="Previews/mobile/08-series.webp" width="24%" alt="Series on a phone">
+  <img src="Previews/mobile/10-episode.webp" width="24%" alt="Episode on a phone">
+  <img src="Previews/mobile/07-collection.webp" width="24%" alt="Collection on a phone">
+  <img src="Previews/mobile/09-season.webp" width="24%" alt="Season on a phone">
+  <img src="Previews/mobile/11-upcoming.webp" width="24%" alt="Upcoming on a phone">
+  <img src="Previews/mobile-light/02-movie.webp" width="24%" alt="Movie on a phone in the light mode">
+</p>
+
 [![A short demo video of Fintage](Previews/fintage-demo.webp)](Previews/fintage-demo.mp4)
 
 <p align="center">
+  <img src="Previews/mockups/devices.webp" width="49%" alt="Fintage on a TV, a laptop and a phone">
+  <img src="Previews/mockups/dark-and-light.webp" width="49%" alt="The page of a series on two phones, in the dark and in the light mode">
   <img src="Previews/desktop/01-home.webp" width="49%" alt="Home">
   <img src="Previews/desktop/04-movie.webp" width="49%" alt="Movie">
-  <img src="Previews/desktop/11-season.webp" width="49%" alt="Season">
+  <img src="Previews/desktop/09-series.webp" width="49%" alt="Series">
   <img src="Previews/desktop/12-episode.webp" width="49%" alt="Episode">
-  <img src="Previews/desktop/13-upcoming.webp" width="49%" alt="Upcoming">
-  <img src="Previews/light/03-movie.webp" width="49%" alt="Movie in the light mode">
 </p>
+
+<details>
+  <summary><i>Phone</i></summary>
+<br>
+
+<img src="Previews/mobile/01-home.webp" width="24%" alt="Home"> <img src="Previews/mobile/02-movies.webp" width="24%" alt="Movies"> <img src="Previews/mobile/03-shows.webp" width="24%" alt="Shows"> <img src="Previews/mobile/04-movie.webp" width="24%" alt="Movie">
+<img src="Previews/mobile/05-movie-details.webp" width="24%" alt="Details of a movie"> <img src="Previews/mobile/06-movie-credits.webp" width="24%" alt="Credits at the end of a movie"> <img src="Previews/mobile/07-collection.webp" width="24%" alt="Collection"> <img src="Previews/mobile/08-series.webp" width="24%" alt="Series">
+<img src="Previews/mobile/09-season.webp" width="24%" alt="Season"> <img src="Previews/mobile/10-episode.webp" width="24%" alt="Episode"> <img src="Previews/mobile/11-upcoming.webp" width="24%" alt="Upcoming"> <img src="Previews/mobile/12-person.webp" width="24%" alt="Person">
+<img src="Previews/mobile/13-search.webp" width="24%" alt="Search"> <img src="Previews/mobile/14-user-menu.webp" width="24%" alt="User menu"> <img src="Previews/mobile/15-settings.webp" width="24%" alt="Settings"> <img src="Previews/mobile/16-live-tv-guide.webp" width="24%" alt="Live TV guide">
+<img src="Previews/mobile/17-login.webp" width="24%" alt="Login">
+<img src="Previews/mobile/18-player.webp" width="98%" alt="Player">
+
+</details>
+
+<details>
+  <summary><i>Phone in the light mode</i></summary>
+<br>
+
+<img src="Previews/mobile-light/01-home.webp" width="24%" alt="Home"> <img src="Previews/mobile-light/02-movie.webp" width="24%" alt="Movie"> <img src="Previews/mobile-light/03-movie-details.webp" width="24%" alt="Details of a movie"> <img src="Previews/mobile-light/04-series.webp" width="24%" alt="Series">
+<img src="Previews/mobile-light/05-episode.webp" width="24%" alt="Episode"> <img src="Previews/mobile-light/06-upcoming.webp" width="24%" alt="Upcoming">
+
+</details>
 
 <details>
   <summary><i>Desktop</i></summary>
@@ -370,7 +411,7 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
 </details>
 
 <details>
-  <summary><i>Light mode</i></summary>
+  <summary><i>Desktop in the light mode</i></summary>
 <br>
 
 <img src="Previews/light/01-home.webp" width="49%" alt="Home"> <img src="Previews/light/02-movies.webp" width="49%" alt="Movies">
@@ -394,19 +435,7 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
 
 </details>
 
-<details>
-  <summary><i>Phone</i></summary>
-<br>
-
-<img src="Previews/mobile/01-home.webp" width="24%" alt="Home"> <img src="Previews/mobile/02-movies.webp" width="24%" alt="Movies"> <img src="Previews/mobile/03-shows.webp" width="24%" alt="Shows"> <img src="Previews/mobile/04-movie.webp" width="24%" alt="Movie">
-<img src="Previews/mobile/05-movie-details.webp" width="24%" alt="Details of a movie"> <img src="Previews/mobile/06-series.webp" width="24%" alt="Series"> <img src="Previews/mobile/07-season.webp" width="24%" alt="Season"> <img src="Previews/mobile/08-episode.webp" width="24%" alt="Episode">
-<img src="Previews/mobile/09-upcoming.webp" width="24%" alt="Upcoming"> <img src="Previews/mobile/10-person.webp" width="24%" alt="Person"> <img src="Previews/mobile/11-search.webp" width="24%" alt="Search"> <img src="Previews/mobile/12-user-menu.webp" width="24%" alt="User menu">
-<img src="Previews/mobile/13-settings.webp" width="24%" alt="Settings"> <img src="Previews/mobile/14-live-tv-guide.webp" width="24%" alt="Live TV guide"> <img src="Previews/mobile/16-login.webp" width="24%" alt="Login">
-<img src="Previews/mobile/15-player.webp" width="98%" alt="Player">
-
-</details>
-
-The screenshots show Fintage v1.2.0 on Jellyfin 12.2 with the optional scripts of option 15. The library holds only empty placeholder files; the titles, the artwork and the information come from [TMDB](https://www.themoviedb.org), the channel logos from [tv-logo/tv-logos](https://github.com/tv-logo/tv-logos) and the TV guide from [globetvapp/epg](https://github.com/globetvapp/epg), and all of them belong to their owners.
+The screenshots show Fintage v1.3.1 on Jellyfin 12.2 with the optional scripts of option 15. The phone screenshots have the status bar of a phone above the app, as Jellyfin looks when it is installed on a phone, and the images at the top and in `Previews/mockups` put real screenshots into frames of devices. The library holds only placeholder files without real video; the titles, the artwork and the information come from [TMDB](https://www.themoviedb.org), the channel logos from [tv-logo/tv-logos](https://github.com/tv-logo/tv-logos) and the TV guide from [open-epg.com](https://www.open-epg.com), and all of them belong to their owners.
 
 <hr>
 
