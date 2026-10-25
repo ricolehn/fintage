@@ -20,9 +20,9 @@
 - made for Jellyfin 12.2: the new layout (`Auto`) as well as the `Desktop (Legacy)`, `Mobile (Legacy)` and `TV` display modes
 - a frosted app bar like milk glass, with a clean bottom edge on every page
 - soft, rounded icons everywhere, also in the app bar, the menus and the sidebar of the new layout
-- backdrops on phones in their full brightness, fading out to the page on a soft curve without a visible edge
-- episode pages with the image of the episode as the backdrop and the logo of the series; on phones, the image is a card of its own with a soft glow in its colors and the logo of the series small in its corner
-- season pages with the bright backdrop of the series and its logo right above the season title
+- on phones, movies, shows, collections and seasons show their backdrop as a card below the app bar, whole and with rounded corners, with a soft glow in its colors; below the card, the logo is the title of the page, and small in the corner of the card, it marks a season or an episode as part of a show
+- episode pages with the image of the episode as the backdrop and the logo of the series; on phones, the image is the card, with the logo of the series small in its corner
+- season pages with the bright backdrop of the series and its logo right above the season title; on phones, the backdrop of the series is the card, with its logo small in the corner and the season title below it
 - the episodes of a season as a clear list on every device, with 16:9 images and the first three lines of the plot
 - audio and subtitles as cards of their own below the plot, so the chosen tracks are clear at a glance
 - the directors, writers, studios and genres at the very end of the page of a movie, show, season or episode, like the credits at the end of a film
@@ -444,8 +444,8 @@ The screenshots show Fintage v1.3.1 on Jellyfin 12.2 with the optional scripts o
 | File | What it is |
 | --- | --- |
 | `Theme/Fintage-latest-minified.css` | the newest version of Fintage, minified; this is what the import loads |
-| `Theme/Fintage_v1.3.2.css` | Fintage v1.3.2, readable |
-| `Theme/assets/add-ons/` | the add-ons (`*-latest-min.css` to import, `*-v1.3.2.css` readable) and the optional scripts (`fintage-scripts.js` is the loader, `fintage-scripts-latest.js` the file it loads) |
+| `Theme/Fintage_v1.4.0.css` | Fintage v1.4.0, readable |
+| `Theme/assets/add-ons/` | the add-ons (`*-latest-min.css` to import, `*-v1.4.0.css` readable) and the optional scripts (`fintage-scripts.js` is the loader, `fintage-scripts-latest.js` the file it loads) |
 | `Theme/ElegantFin-theme-v*.css` and the dated add-ons | the releases of ElegantFin up to v26.09.05, which Fintage is based on |
 
 <hr>
@@ -455,7 +455,7 @@ The screenshots show Fintage v1.3.1 on Jellyfin 12.2 with the optional scripts o
 <details>
   <summary><i>Which version am I using?</i></summary>
 
-> - The version is shown at the bottom of the settings, like `Fintage v1.3.2`.
+> - The version is shown at the bottom of the settings, like `Fintage v1.4.0`.
 
 </details>
 
