@@ -20,9 +20,9 @@
 - made for Jellyfin 12.2: the new layout (`Auto`) as well as the `Desktop (Legacy)`, `Mobile (Legacy)` and `TV` display modes
 - a frosted app bar like milk glass, with a clean bottom edge on every page
 - soft, rounded icons everywhere, also in the app bar, the menus and the sidebar of the new layout
-- on phones, movies, shows, collections and seasons show their backdrop as a card below the app bar, whole and with rounded corners, with a soft glow in its colors; below the card, the logo is the title of the page, and small in the corner of the card, it marks a season or an episode as part of a show
-- episode pages with the image of the episode as the backdrop and the logo of the series; on phones, the image is the card, with the logo of the series small in its corner
-- season pages with the bright backdrop of the series and its logo right above the season title; on phones, the backdrop of the series is the card, with its logo small in the corner and the season title below it
+- movies, shows, collections, seasons and episodes show their image whole in a card with rounded corners and a soft glow in its colors, instead of across the top of the page
+- on phones, the card sits below the app bar: below it, the logo is the title of the page, and small in its corner, the logo of the series marks a season or an episode
+- on desktops, the card almost fills the screen, with the logo, the details and the buttons on a tinted, frosted area in its lower left corner and the plot below it; seasons and episodes carry the small logo of the series above their title
 - the episodes of a season as a clear list on every device, with 16:9 images and the first three lines of the plot
 - audio and subtitles as cards of their own below the plot, so the chosen tracks are clear at a glance
 - the directors, writers, studios and genres at the very end of the page of a movie, show, season or episode, like the credits at the end of a film
