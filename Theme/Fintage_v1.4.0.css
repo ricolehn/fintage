@@ -2094,8 +2094,9 @@ Like on phones, the logo of a movie, a show or a collection is its title, while 
 a season or an episode, whose own title stands below it.
 The card shows the backdrop of the page, which lies outside of the page, so it looks for the page itself;
 seasons and episodes are recognised by the series link of their title. Episodes with an image of their own
-show that image in the card instead, and pages without a backdrop, e.g. in windows narrower than 1000px,
-show no card and start below the app bar */
+show that image in the card instead. The card stands before the backdrop has loaded, so nothing moves when
+the image shows; only in windows narrower than 1000px, where Jellyfin loads no backdrop, there is no card
+and the page starts below the app bar */
 .layout-desktop {
     --heroTop: 4.25em;
     /* as wide as the page, and as high as the screen leaves room for, at most 16:9 */
@@ -2122,8 +2123,7 @@ show no card and start below the app bar */
         linear-gradient(90deg, rgba(237, 232, 222, 0.75), rgba(237, 232, 222, 0.3) 40%, transparent 65%);
 }
 
-/* the backdrop becomes the card: it scrolls with the page instead of staying behind it,
-and the shade that lies over the backdrop is not needed */
+/* the backdrop becomes the card: it scrolls with the page instead of staying behind it */
 .layout-desktop
     .backdropContainer:is(
         :has(
@@ -2144,6 +2144,10 @@ and the shade that lies over the backdrop is not needed */
     background: none;
 }
 
+/* behind the card, the background of the page stays in place like on every other page, without the shade that lies
+over the backdrop elsewhere, and below the card. Without it, the background of the document would show, which
+starts over every screen height and draws hard lines across the page when it scrolls.
+Theme videos keep the page see-through, so they show behind it as before */
 .layout-desktop
     .backgroundContainer:is(
         :has(
@@ -2156,8 +2160,74 @@ and the shade that lies over the backdrop is not needed */
             )
         ),
         :has(~ * #itemDetailPage:not(.hide) .parentName [data-type="Series"])
+    ):not(.backgroundContainer-transparent) {
+    z-index: -2;
+    opacity: 1;
+    background: var(--backgroundGradient);
+}
+
+.layout-desktop
+    .backgroundContainer.backgroundContainer-transparent:is(
+        :has(
+            ~ * #itemDetailPage:not(.hide) .detailImageContainer .cardImageIcon:is(.movie, .tv, .video_library, .folder)
+        ):not(
+            :has(
+                ~ *
+                    #itemDetailPage:not(.hide)
+                    :is(.subtitle, .musicParentName, .detailImageContainer :is(.backdropCard, .squareCard))
+            )
+        ),
+        :has(~ * #itemDetailPage:not(.hide) .parentName [data-type="Series"])
     ) {
     display: none;
+}
+
+/* while the backdrop loads, the card is already there, empty like any card before its image shows, so the logo,
+the details and the buttons stand in their place right away and only the image fades in;
+the empty card goes once the image has faded in over it */
+.layout-desktop
+    .backdropContainer:is(
+        :has(
+            ~ * #itemDetailPage:not(.hide) .detailImageContainer .cardImageIcon:is(.movie, .tv, .video_library, .folder)
+        ):not(
+            :has(
+                ~ *
+                    #itemDetailPage:not(.hide)
+                    :is(.subtitle, .musicParentName, .detailImageContainer :is(.backdropCard, .squareCard))
+            )
+        ),
+        :has(~ * #itemDetailPage:not(.hide) .parentName [data-type="Series"])
+    )::before {
+    content: "";
+    position: absolute;
+    top: var(--heroTop);
+    left: var(--sidePadding);
+    right: var(--sidePadding);
+    height: var(--heroHeight);
+    border-radius: var(--largerRadius);
+    background:
+        var(--fintageGrain) 0 0 / 12.5em 12.5em,
+        var(--cardBackgroundGradient);
+    box-shadow:
+        inset 0 0 0 var(--borderWidth) var(--fintageRingColor),
+        var(--heroShadow);
+}
+
+.layout-desktop
+    .backdropContainer:is(
+        :has(
+            ~ * #itemDetailPage:not(.hide) .detailImageContainer .cardImageIcon:is(.movie, .tv, .video_library, .folder)
+        ):not(
+            :has(
+                ~ *
+                    #itemDetailPage:not(.hide)
+                    :is(.subtitle, .musicParentName, .detailImageContainer :is(.backdropCard, .squareCard))
+            )
+        ),
+        :has(~ * #itemDetailPage:not(.hide) .parentName [data-type="Series"])
+    ):has(> .backdropImage[style*="url("])::before {
+    opacity: 0;
+    transition: opacity 0s 0.5s;
 }
 
 /* the element of the backdrop keeps the image for the card and its glow, but does not paint it itself */
@@ -2262,8 +2332,7 @@ and the shade that lies over the backdrop is not needed */
         var(--heroShadow);
 }
 
-/* the tint lies over the card and below the text; Jellyfin lifts the backdrop it shows to the layer above,
-so the tint goes one higher */
+/* the image fades in where the card stands, instead of sliding down like the backdrop of other pages */
 .layout-desktop
     .backdropContainer:is(
         :has(
@@ -2276,7 +2345,26 @@ so the tint goes one higher */
             )
         ),
         :has(~ * #itemDetailPage:not(.hide) .parentName [data-type="Series"])
-    ):has(> .backdropImage[style*="url("])::after {
+    )
+    > .backdropImageFadeIn {
+    animation: fintageFadeIn 0.5s ease-out;
+}
+
+/* the tint lies over the card and below the text; Jellyfin lifts the backdrop it shows to the layer above,
+so the tint goes one higher. It fades in together with the image, since the empty card needs none */
+.layout-desktop
+    .backdropContainer:is(
+        :has(
+            ~ * #itemDetailPage:not(.hide) .detailImageContainer .cardImageIcon:is(.movie, .tv, .video_library, .folder)
+        ):not(
+            :has(
+                ~ *
+                    #itemDetailPage:not(.hide)
+                    :is(.subtitle, .musicParentName, .detailImageContainer :is(.backdropCard, .squareCard))
+            )
+        ),
+        :has(~ * #itemDetailPage:not(.hide) .parentName [data-type="Series"])
+    )::after {
     content: "";
     position: absolute;
     z-index: 2;
@@ -2291,6 +2379,24 @@ so the tint goes one higher */
     -webkit-mask: var(--heroTintMask);
     mask: var(--heroTintMask);
     pointer-events: none;
+    opacity: 0;
+}
+
+.layout-desktop
+    .backdropContainer:is(
+        :has(
+            ~ * #itemDetailPage:not(.hide) .detailImageContainer .cardImageIcon:is(.movie, .tv, .video_library, .folder)
+        ):not(
+            :has(
+                ~ *
+                    #itemDetailPage:not(.hide)
+                    :is(.subtitle, .musicParentName, .detailImageContainer :is(.backdropCard, .squareCard))
+            )
+        ),
+        :has(~ * #itemDetailPage:not(.hide) .parentName [data-type="Series"])
+    ):has(> .backdropImage[style*="url("])::after {
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
 }
 
 /* episodes with a landscape image show it in the card; it lies below the page, so its glow is behind the text.
@@ -2614,33 +2720,6 @@ without anchor positioning, it stands where it does above the text of most pages
     .layout-desktop #itemDetailPage:has(.itemName [data-type="Season"]) .detailLogo:not(.hide) {
         top: calc(var(--heroTop) + var(--heroHeight) - var(--heroInset) - 10.25em);
     }
-
-    .layout-desktop
-        > body
-        .backgroundContainer:not(.withBackdrop)
-        ~ *
-        :is(
-            #itemDetailPage:has(.detailImageContainer .cardImageIcon:is(.movie, .tv, .video_library, .folder)):not(
-                    :has(.subtitle, .musicParentName, .detailImageContainer :is(.backdropCard, .squareCard))
-                ),
-            #itemDetailPage:has(.parentName [data-type="Series"]):not(:has(.itemName [data-type="Season"])),
-            #itemDetailPage:has(.itemName [data-type="Season"]):not(:has(.detailImageContainer > .backdropCard))
-        )
-        .detailLogo:not(.hide) {
-        top: calc(var(--heroTop) + var(--heroLogoHeight));
-    }
-
-    .layout-desktop
-        > body
-        .backgroundContainer:not(.withBackdrop)
-        ~ *
-        :is(
-            #itemDetailPage:has(.parentName [data-type="Series"]):not(:has(.itemName [data-type="Season"])),
-            #itemDetailPage:has(.itemName [data-type="Season"]):not(:has(.detailImageContainer > .backdropCard))
-        )
-        .detailLogo:not(.hide) {
-        top: calc(var(--heroTop) + 4.5em);
-    }
 }
 
 @supports (anchor-name: --a) {
@@ -2660,92 +2739,143 @@ without anchor positioning, it stands where it does above the text of most pages
     }
 }
 
-/* without a backdrop, the page starts below the app bar, with room for the logo above the text */
-.layout-desktop
-    > body
-    .backgroundContainer:not(.withBackdrop)
-    ~ *
-    :is(
-        #itemDetailPage:has(.detailImageContainer .cardImageIcon:is(.movie, .tv, .video_library, .folder)):not(
-                :has(.subtitle, .musicParentName, .detailImageContainer :is(.backdropCard, .squareCard))
+/* in windows narrower than 1000px, Jellyfin loads no backdrop, so there is no card: the page starts below the app bar,
+with room for the logo above the text. Wider windows always show the card, which stands while the backdrop loads */
+@media (max-width: 999px) {
+    .layout-desktop
+        .backdropContainer:is(
+            :has(
+                ~ *
+                    #itemDetailPage:not(.hide)
+                    .detailImageContainer
+                    .cardImageIcon:is(.movie, .tv, .video_library, .folder)
+            ):not(
+                :has(
+                    ~ *
+                        #itemDetailPage:not(.hide)
+                        :is(.subtitle, .musicParentName, .detailImageContainer :is(.backdropCard, .squareCard))
+                )
             ),
-        #itemDetailPage:has(.parentName [data-type="Series"]):not(:has(.itemName [data-type="Season"])),
-        #itemDetailPage:has(.itemName [data-type="Season"]):not(:has(.detailImageContainer > .backdropCard))
-    )
-    .detailPagePrimaryContainer
-    > .detailRibbon {
-    height: auto;
-    justify-content: flex-start;
-    padding-left: 0;
-}
+            :has(~ * #itemDetailPage:not(.hide) .parentName [data-type="Series"])
+        ):has(~ .backgroundContainer:not(.withBackdrop)) {
+        display: none;
+    }
 
-.layout-desktop
-    > body
-    .backgroundContainer:not(.withBackdrop)
-    ~ *
-    :is(
+    .layout-desktop
+        > body
+        .backgroundContainer:not(.withBackdrop)
+        ~ *
+        :is(
+            #itemDetailPage:has(.detailImageContainer .cardImageIcon:is(.movie, .tv, .video_library, .folder)):not(
+                    :has(.subtitle, .musicParentName, .detailImageContainer :is(.backdropCard, .squareCard))
+                ),
+            #itemDetailPage:has(.parentName [data-type="Series"]):not(:has(.itemName [data-type="Season"])),
+            #itemDetailPage:has(.itemName [data-type="Season"]):not(:has(.detailImageContainer > .backdropCard))
+        )
+        .detailPagePrimaryContainer
+        > .detailRibbon {
+        height: auto;
+        justify-content: flex-start;
+        padding-left: 0;
+    }
+
+    .layout-desktop
+        > body
+        .backgroundContainer:not(.withBackdrop)
+        ~ *
+        :is(
+            #itemDetailPage:has(.detailImageContainer .cardImageIcon:is(.movie, .tv, .video_library, .folder)):not(
+                    :has(.subtitle, .musicParentName, .detailImageContainer :is(.backdropCard, .squareCard))
+                ),
+            #itemDetailPage:has(.parentName [data-type="Series"]):not(:has(.itemName [data-type="Season"])),
+            #itemDetailPage:has(.itemName [data-type="Season"]):not(:has(.detailImageContainer > .backdropCard))
+        )
+        .itemBackdrop {
+        height: var(--heroTop);
+    }
+
+    .layout-desktop
+        > body
+        .backgroundContainer:not(.withBackdrop)
+        ~ *
         #itemDetailPage:has(.detailImageContainer .cardImageIcon:is(.movie, .tv, .video_library, .folder)):not(
-                :has(.subtitle, .musicParentName, .detailImageContainer :is(.backdropCard, .squareCard))
-            ),
-        #itemDetailPage:has(.parentName [data-type="Series"]):not(:has(.itemName [data-type="Season"])),
-        #itemDetailPage:has(.itemName [data-type="Season"]):not(:has(.detailImageContainer > .backdropCard))
-    )
-    .itemBackdrop {
-    height: var(--heroTop);
-}
+            :has(.subtitle, .musicParentName, .detailImageContainer :is(.backdropCard, .squareCard))
+        ):has(> .detailLogo:not(.hide))
+        .itemBackdrop {
+        height: calc(var(--heroTop) + var(--heroLogoHeight) + 0.75em);
+    }
 
-.layout-desktop
-    > body
-    .backgroundContainer:not(.withBackdrop)
-    ~ *
-    #itemDetailPage:has(.detailImageContainer .cardImageIcon:is(.movie, .tv, .video_library, .folder)):not(
-        :has(.subtitle, .musicParentName, .detailImageContainer :is(.backdropCard, .squareCard))
-    ):has(> .detailLogo:not(.hide))
-    .itemBackdrop {
-    height: calc(var(--heroTop) + var(--heroLogoHeight) + 0.75em);
-}
+    .layout-desktop
+        > body
+        .backgroundContainer:not(.withBackdrop)
+        ~ *
+        :is(
+            #itemDetailPage:has(.parentName [data-type="Series"]):not(:has(.itemName [data-type="Season"])),
+            #itemDetailPage:has(.itemName [data-type="Season"]):not(:has(.detailImageContainer > .backdropCard))
+        ):has(> .detailLogo:not(.hide))
+        .itemBackdrop {
+        height: calc(var(--heroTop) + 5.25em);
+    }
 
-.layout-desktop
-    > body
-    .backgroundContainer:not(.withBackdrop)
-    ~ *
-    :is(
-        #itemDetailPage:has(.parentName [data-type="Series"]):not(:has(.itemName [data-type="Season"])),
-        #itemDetailPage:has(.itemName [data-type="Season"]):not(:has(.detailImageContainer > .backdropCard))
-    ):has(> .detailLogo:not(.hide))
-    .itemBackdrop {
-    height: calc(var(--heroTop) + 5.25em);
-}
+    .layout-desktop
+        > body
+        .backgroundContainer:not(.withBackdrop)
+        ~ *
+        :is(
+            #itemDetailPage:has(.detailImageContainer .cardImageIcon:is(.movie, .tv, .video_library, .folder)):not(
+                    :has(.subtitle, .musicParentName, .detailImageContainer :is(.backdropCard, .squareCard))
+                ),
+            #itemDetailPage:has(.parentName [data-type="Series"]):not(:has(.itemName [data-type="Season"])),
+            #itemDetailPage:has(.itemName [data-type="Season"]):not(:has(.detailImageContainer > .backdropCard))
+        )
+        .detailPagePrimaryContainer
+        > .detailPagePrimaryContent {
+        margin-top: 1.5em;
+    }
 
-.layout-desktop
-    > body
-    .backgroundContainer:not(.withBackdrop)
-    ~ *
-    :is(
-        #itemDetailPage:has(.detailImageContainer .cardImageIcon:is(.movie, .tv, .video_library, .folder)):not(
-                :has(.subtitle, .musicParentName, .detailImageContainer :is(.backdropCard, .squareCard))
-            ),
-        #itemDetailPage:has(.parentName [data-type="Series"]):not(:has(.itemName [data-type="Season"])),
-        #itemDetailPage:has(.itemName [data-type="Season"]):not(:has(.detailImageContainer > .backdropCard))
-    )
-    .detailPagePrimaryContainer
-    > .detailPagePrimaryContent {
-    margin-top: 1.5em;
-}
+    .layout-desktop
+        > body
+        .backgroundContainer:not(.withBackdrop)
+        ~ *
+        :is(
+            #itemDetailPage:has(.detailImageContainer .cardImageIcon:is(.movie, .tv, .video_library, .folder)):not(
+                    :has(.subtitle, .musicParentName, .detailImageContainer :is(.backdropCard, .squareCard))
+                ),
+            #itemDetailPage:has(.parentName [data-type="Series"]):not(:has(.itemName [data-type="Season"])),
+            #itemDetailPage:has(.itemName [data-type="Season"]):not(:has(.detailImageContainer > .backdropCard))
+        )
+        .detailLogo:not(.hide) {
+        left: var(--sidePadding);
+    }
 
-.layout-desktop
-    > body
-    .backgroundContainer:not(.withBackdrop)
-    ~ *
-    :is(
-        #itemDetailPage:has(.detailImageContainer .cardImageIcon:is(.movie, .tv, .video_library, .folder)):not(
-                :has(.subtitle, .musicParentName, .detailImageContainer :is(.backdropCard, .squareCard))
-            ),
-        #itemDetailPage:has(.parentName [data-type="Series"]):not(:has(.itemName [data-type="Season"])),
-        #itemDetailPage:has(.itemName [data-type="Season"]):not(:has(.detailImageContainer > .backdropCard))
-    )
-    .detailLogo:not(.hide) {
-    left: var(--sidePadding);
+    @supports not (anchor-name: --a) {
+        .layout-desktop
+            > body
+            .backgroundContainer:not(.withBackdrop)
+            ~ *
+            :is(
+                #itemDetailPage:has(.detailImageContainer .cardImageIcon:is(.movie, .tv, .video_library, .folder)):not(
+                        :has(.subtitle, .musicParentName, .detailImageContainer :is(.backdropCard, .squareCard))
+                    ),
+                #itemDetailPage:has(.parentName [data-type="Series"]):not(:has(.itemName [data-type="Season"])),
+                #itemDetailPage:has(.itemName [data-type="Season"]):not(:has(.detailImageContainer > .backdropCard))
+            )
+            .detailLogo:not(.hide) {
+            top: calc(var(--heroTop) + var(--heroLogoHeight));
+        }
+
+        .layout-desktop
+            > body
+            .backgroundContainer:not(.withBackdrop)
+            ~ *
+            :is(
+                #itemDetailPage:has(.parentName [data-type="Series"]):not(:has(.itemName [data-type="Season"])),
+                #itemDetailPage:has(.itemName [data-type="Season"]):not(:has(.detailImageContainer > .backdropCard))
+            )
+            .detailLogo:not(.hide) {
+            top: calc(var(--heroTop) + 4.5em);
+        }
+    }
 }
 /* the card on desktops end */
 
