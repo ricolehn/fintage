@@ -344,7 +344,7 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
 ### 🖼️ Previews
 
 <p align="center">
-  <img src="Previews/mockups/phones.webp" width="100%" alt="Five phones: the page of a movie with its backdrop in full brightness, an episode with a glow in its colors, the audio and subtitle cards, the Upcoming timeline and the credits at the end of a page">
+  <img src="Previews/mockups/phones.webp" width="100%" alt="Five phones: the page of a movie with its image whole in a card with a soft glow, an episode with a glow in its colors, the audio and subtitle cards, the Upcoming timeline and the credits at the end of a page">
 </p>
 
 <p align="center">
@@ -435,7 +435,7 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
 
 </details>
 
-The screenshots show Fintage v1.3.1 on Jellyfin 12.2 with the optional scripts of option 15, and the images at the top and in `Previews/mockups` put real screenshots into frames of devices. The library holds only placeholder files without real video; the titles, the artwork and the information come from [TMDB](https://www.themoviedb.org), the channel logos from [tv-logo/tv-logos](https://github.com/tv-logo/tv-logos) and the TV guide from [open-epg.com](https://www.open-epg.com), and all of them belong to their owners.
+The screenshots show Fintage v1.4.1 on Jellyfin 12.3 with the optional scripts of option 15, and the images at the top and in `Previews/mockups` put real screenshots into frames of devices. The library holds only placeholder files without real video; the titles, the artwork and the information come from [TMDB](https://www.themoviedb.org), the channel logos from [tv-logo/tv-logos](https://github.com/tv-logo/tv-logos) and the TV guide from [open-epg.com](https://www.open-epg.com), and all of them belong to their owners.
 
 <hr>
 
