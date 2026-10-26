@@ -2879,6 +2879,776 @@ with room for the logo above the text. Wider windows always show the card, which
 }
 /* the card on desktops end */
 
+/* music on phones start
+on phones, music lives in the colors of its covers: the cover of an album is a card whose colors wash over the top
+of its page, the tracks of an album or a playlist are a calm list, the albums of the library carry their title and
+artist below the cover, the small player is tinted by the cover of the current track, and the now playing screen
+lies in a quiet color of that cover, with the cover glowing in front of it.
+The pages of albums and playlists are recognised by the placeholder icon of their cover; desktops and TVs keep
+their layout */
+
+/* the page of an album or a playlist: the backdrop of the artist, or the cover of a playlist blown up to a backdrop,
+stays out of the way, and the cover is a card above the title, whose colors wash over the top of the page.
+The wash is the small blurred placeholder that Jellyfin draws while the cover loads, enlarged; it stays behind
+the cover, so it costs nearly nothing and shows right away */
+.layout-mobile #itemDetailPage:has(.infoWrapper > .detailImageContainer .cardImageIcon:is(.album, .queue)) {
+    --albumCardSize: max(8em, min(100vw - 9em, 16.5em, 100vh - 28em));
+    background: none;
+    /* the wash is wider than the screen, so it is cut at the edges of the screen instead of scrolling sideways */
+    overflow-x: clip;
+}
+
+/* the !important overrides the backdrop that is set on the element itself */
+.layout-mobile
+    #itemDetailPage:has(.infoWrapper > .detailImageContainer .cardImageIcon:is(.album, .queue))
+    .itemBackdrop {
+    position: relative;
+    height: var(--detailCardTop);
+    background-image: none !important;
+    animation: none;
+}
+
+.layout-mobile
+    #itemDetailPage:has(.infoWrapper > .detailImageContainer .cardImageIcon:is(.album, .queue))
+    .itemBackdrop::before {
+    box-shadow: none;
+}
+
+.layout-mobile
+    #itemDetailPage:has(.infoWrapper > .detailImageContainer .cardImageIcon:is(.album, .queue))
+    .detailPageWrapperContainer {
+    margin-top: 0;
+}
+
+/* the card lies below the title, the details and the buttons, so the wash is behind the text */
+.layout-mobile
+    #itemDetailPage:has(.infoWrapper > .detailImageContainer .cardImageIcon:is(.album, .queue))
+    .detailRibbon {
+    isolation: isolate;
+    min-height: unset;
+}
+
+.layout-mobile
+    #itemDetailPage:has(.infoWrapper > .detailImageContainer .cardImageIcon:is(.album, .queue))
+    .infoWrapper
+    > .detailImageContainer {
+    position: relative;
+    z-index: -1;
+    height: auto;
+    margin: 0 auto 1.6em;
+}
+
+/* the !important overrides the width that Jellyfin gives the image of a detail page */
+.layout-mobile
+    #itemDetailPage:has(.infoWrapper > .detailImageContainer .cardImageIcon:is(.album, .queue))
+    .infoWrapper
+    > .detailImageContainer
+    .card {
+    width: var(--albumCardSize) !important;
+    max-width: none;
+    margin: 0;
+    filter: none;
+}
+
+/* the cover keeps its rounded corners itself, so the wash behind it can reach beyond the card;
+the !important overrides the theme, which clips every card to its corners */
+.layout-mobile
+    #itemDetailPage:has(.infoWrapper > .detailImageContainer .cardImageIcon:is(.album, .queue))
+    .infoWrapper
+    > .detailImageContainer
+    .cardScalable {
+    overflow: visible !important;
+    border-radius: var(--largeRadius);
+    box-shadow: var(--albumCardShadow, 0 1.75em 3em -1em hsla(0, 0%, 0%, 0.7));
+}
+
+.layout-mobile
+    #itemDetailPage:has(.infoWrapper > .detailImageContainer .cardImageIcon:is(.album, .queue))
+    .infoWrapper
+    > .detailImageContainer
+    .cardImageContainer {
+    border-radius: var(--largeRadius);
+    box-shadow: inset 0 0 0 var(--borderWidth) var(--fintageRingColor);
+}
+
+.layout-mobile
+    #itemDetailPage:has(.infoWrapper > .detailImageContainer .cardImageIcon:is(.album, .queue))
+    .infoWrapper
+    > .detailImageContainer
+    .blurhash-canvas {
+    z-index: -1;
+    opacity: var(--albumWashOpacity, 0.5);
+    transform: translateY(8%) scale(2.6, 2.35);
+    filter: blur(3em) saturate(2);
+}
+
+.layout-mobile
+    #itemDetailPage:has(.infoWrapper > .detailImageContainer .cardImageIcon:is(.album, .queue))
+    .nameContainer
+    h1 {
+    font-size: 1.6em;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.layout-mobile
+    #itemDetailPage:has(.infoWrapper > .detailImageContainer .cardImageIcon:is(.album, .queue))
+    .nameContainer
+    .musicParentName {
+    font-size: 1.05em;
+    font-weight: 500;
+    margin: 0.2em 0 0.15em;
+}
+
+.layout-mobile
+    #itemDetailPage:has(.infoWrapper > .detailImageContainer .cardImageIcon:is(.album, .queue))
+    .itemMiscInfo-primary {
+    font-size: 0.9em;
+}
+
+/* the tracks of an album or a playlist: one calm line per track on the page, instead of tall rows in a card.
+The number has a column of its own, so the titles line up also next to track 10; the length of each track shows,
+which Jellyfin hides on small screens, and the heart stands next to the menu instead of above it.
+The !important overrides the glass edge that the look gives the card of the tracks */
+.layout-mobile #childrenContent:has(.listItem[data-type="Audio"]) {
+    background: none;
+    border: 0 !important;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+}
+
+/* the !important overrides the padding that the theme gives every list item */
+.layout-mobile #childrenContent .listItem[data-type="Audio"] {
+    --trackTitleStart: 0em;
+    min-height: 3.4em;
+    margin: 0;
+    padding: 0 0 0 0.1em !important;
+    border-radius: var(--smallRadius);
+}
+
+.layout-mobile #childrenContent .listItem[data-type="Audio"]:has(> .listItem-indexnumberleft) {
+    --trackTitleStart: 2.85em;
+}
+
+.layout-mobile #childrenContent .listItem[data-type="Audio"]:has(> .listItemImage) {
+    --trackTitleStart: 4.25em;
+}
+
+/* a hairline between the tracks starts at the title, like in the booklet of a record */
+.layout-mobile #childrenContent .listItem[data-type="Audio"] + .listItem[data-type="Audio"] {
+    background: linear-gradient(var(--dividerColor), var(--dividerColor)) right top /
+        calc(100% - var(--trackTitleStart)) var(--borderWidth) no-repeat;
+}
+
+.layout-mobile #childrenContent .listItem[data-type="Audio"] .listItem-indexnumberleft {
+    flex-shrink: 0;
+    width: 1.75em;
+    margin-right: 1em;
+    text-align: right;
+    font-size: 0.95em;
+    font-variant-numeric: tabular-nums;
+    color: var(--dimTextColor);
+}
+
+.layout-mobile #childrenContent .listItem[data-type="Audio"] .listItemImage {
+    width: 3em;
+    height: 3em;
+    margin-right: 1em;
+    border-radius: var(--smallRadius);
+}
+
+.layout-mobile #childrenContent .listItem[data-type="Audio"] .listItemBody {
+    padding: 0.7em 0.5em 0.7em 0 !important;
+}
+
+/* the first line is the title, which Jellyfin marks as secondary in playlists, and the artists follow below it */
+.layout-mobile #childrenContent .listItem[data-type="Audio"] .listItemBodyText:first-child {
+    display: block;
+    font-size: 1em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--fullContrastColor);
+}
+
+.layout-mobile #childrenContent .listItem[data-type="Audio"] .listItemBodyText.secondary:not(:first-child) {
+    font-size: 0.85em;
+    padding-top: 0.15em;
+}
+
+.layout-mobile #childrenContent .listItem[data-type="Audio"] .listItemMediaInfo {
+    display: flex;
+    flex-shrink: 0;
+    margin: 0 0.25em 0 0;
+    font-size: 0.9em;
+    font-variant-numeric: tabular-nums;
+}
+
+.layout-mobile #childrenContent .listItem[data-type="Audio"] .listViewUserDataButtons {
+    flex-direction: row;
+    flex-shrink: 0;
+    font-size: small;
+}
+
+.layout-mobile #childrenContent .listItem[data-type="Audio"] .listItemButton {
+    padding: 0.55em;
+}
+
+.layout-mobile #childrenContent .listItem[data-type="Audio"] .listItemButton[data-isfavorite="false"] {
+    opacity: 0.35;
+}
+
+/* the discs of an album are small headings */
+.layout-mobile #childrenContent:has(.listItem[data-type="Audio"]) .listGroupHeader {
+    margin: 1.5em 0 0.4em;
+    padding-left: 0.2em;
+    font-size: 0.8em;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dimTextColor);
+}
+
+.layout-mobile #childrenContent:has(.listItem[data-type="Audio"]) .listGroupHeader-first {
+    margin-top: 0.25em;
+}
+
+/* the albums of the library carry their title and their artist below the cover, left aligned and in one line each;
+the year is on the page of the album. The !important overrides Jellyfin, which centers the text of these cards */
+.layout-mobile .vertical-wrap > .card[data-type="MusicAlbum"] :is(.cardText, .cardText > .textActionButton) {
+    text-align: start !important;
+}
+
+.layout-mobile .vertical-wrap > .card[data-type="MusicAlbum"] .cardText {
+    padding-inline: 0.1em;
+}
+
+.layout-mobile .vertical-wrap > .card[data-type="MusicAlbum"] .cardText-first {
+    margin-top: 0.3em;
+    font-weight: 600;
+    color: var(--fullContrastColor);
+}
+
+.layout-mobile .vertical-wrap > .card[data-type="MusicAlbum"] .cardText-secondary {
+    font-size: 0.88em;
+}
+
+.layout-mobile .vertical-wrap > .card[data-type="MusicAlbum"] .cardText-secondary + .cardText-secondary {
+    display: none;
+}
+
+/* the small player is tinted by the cover of the current track: the cover lies blurred across the whole bar,
+behind its text and its buttons */
+.layout-mobile .nowPlayingBar {
+    isolation: isolate;
+    overflow: hidden;
+}
+
+.layout-mobile .nowPlayingBar .nowPlayingBarInfoContainer {
+    overflow: visible;
+}
+
+.layout-mobile .nowPlayingBar .nowPlayingImage {
+    position: relative;
+    border-radius: var(--smallRadius);
+    box-shadow: inset 0 0 0 var(--borderWidth) var(--fintageRingColor);
+}
+
+.layout-mobile .nowPlayingBar .nowPlayingImage::before {
+    content: "";
+    position: absolute;
+    top: -2em;
+    bottom: -2em;
+    left: -2em;
+    width: 100vw;
+    z-index: -1;
+    background: inherit;
+    background-size: cover;
+    background-position: center;
+    opacity: var(--nowPlayingBarTint, 0.32);
+    filter: blur(1.5em) saturate(2);
+}
+
+/* the progress is a thin gold line along the top edge of the bar, without a knob;
+it can still be dragged, and grows a little while it is */
+.layout-mobile .nowPlayingBar .nowPlayingBarPositionContainer {
+    --thumb: 0.2em;
+    top: -0.5em;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.layout-mobile .nowPlayingBar .nowPlayingBarPositionContainer .mdl-slider-background-flex-container {
+    padding: 0;
+}
+
+.layout-mobile .nowPlayingBar .nowPlayingBarPositionContainer .mdl-slider-background-flex {
+    border-radius: 0;
+    background: var(--nowPlayingBarTrackColor, hsla(0, 0%, 100%, 0.15));
+}
+
+.layout-mobile .nowPlayingBar .nowPlayingBarPositionContainer .mdl-slider-background-lower {
+    border-radius: 0 var(--thumb) var(--thumb) 0;
+    background: var(--fintageGoldGradient);
+    box-shadow: 0 0 0.6em hsla(39, 52%, 67%, 0.55);
+}
+
+.layout-mobile .nowPlayingBar .nowPlayingBarPositionSlider::-webkit-slider-thumb {
+    opacity: 0;
+}
+
+/* the now playing screen lies in a quiet color of the current cover, which fades to the dark at the bottom, like
+the color of a record sleeve; the cover glows in front of it like the card of a movie.
+Jellyfin keeps the cover of the current track in the small player, which it hides on this screen: here, that
+cover fills the screen behind the page, so blurred that only its colors remain. The small player then lies below
+the page, the background of the page is left to the layer below it, and everything else of the player is hidden */
+.layout-mobile:has(#nowPlayingPage:not(.hide)) .backgroundContainer {
+    background: transparent;
+}
+
+/* the !important overrides Jellyfin and the look, which keep the bar of the player above everything, frosted */
+.layout-mobile:has(#nowPlayingPage:not(.hide)) .appfooter {
+    z-index: -1 !important;
+    contain: none;
+    background: transparent !important;
+    border: 0;
+    box-shadow: none;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    pointer-events: none;
+}
+
+/* the !important overrides the class that hides the small player */
+.layout-mobile:has(#nowPlayingPage:not(.hide)) .appfooter > .nowPlayingBar.hide {
+    display: block !important;
+    transform: none;
+    contain: none;
+    will-change: auto;
+    overflow: visible;
+    background: none;
+    border: 0;
+    box-shadow: none;
+}
+
+.layout-mobile:has(#nowPlayingPage:not(.hide))
+    .appfooter
+    > .nowPlayingBar
+    :is(.nowPlayingBarPositionContainer, .nowPlayingBarText, .nowPlayingBarCenter, .nowPlayingBarRight) {
+    visibility: hidden;
+}
+
+.layout-mobile:has(#nowPlayingPage:not(.hide)) .appfooter > .nowPlayingBar .nowPlayingImage::before {
+    content: none;
+}
+
+.layout-mobile:has(#nowPlayingPage:not(.hide)) .appfooter > .nowPlayingBar .nowPlayingImage {
+    position: fixed;
+    inset: -10vh -25vw;
+    width: auto;
+    height: auto;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background-size: cover;
+    opacity: var(--nowPlayingColorOpacity, 0.75);
+    filter: blur(5em) saturate(1.4) brightness(var(--nowPlayingColorBrightness, 0.6));
+}
+
+/* the color is strongest behind the cover and the title and fades to the dark below the controls;
+the page reaches the bottom of the screen also when it is held sideways, so the shade does not end above it */
+.layout-mobile #nowPlayingPage {
+    min-height: 100vh;
+    box-sizing: border-box;
+    background: var(
+        --nowPlayingShade,
+        linear-gradient(180deg, hsla(240, 8%, 4%, 0.05), hsla(240, 8%, 4%, 0.35) 55%, hsla(240, 8%, 4%, 0.85))
+    );
+}
+
+/* the big play button is a solid disc in both themes, like the play button of a detail page */
+.layout-mobile #nowPlayingPage .btnPlayPause {
+    --fill: 1;
+}
+
+/* the shade of the page replaces the one of its content, which ends with the content and drew a hard line
+across the screen when the phone is held sideways */
+.layout-mobile #nowPlayingPage .remoteControlContent {
+    background: none;
+}
+
+/* the app bar is transparent on this screen, so the color reaches the top of the screen */
+.layout-mobile .MuiAppBar-root:has(~ main #nowPlayingPage:not(.hide)) {
+    --appBarSeamlessBlur: none;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.layout-mobile .MuiAppBar-root:has(~ main #nowPlayingPage:not(.hide))::before {
+    content: none;
+}
+
+/* the layout of a phone held upright, where Jellyfin puts the cover above the controls: the cover is a large card
+with the glow of its colors. The cover is an image, which CSS cannot copy, so the glow is a frame around it that
+blurs and saturates what lies behind it, the edge of the cover, outwards, and leaves the cover itself free.
+The title, the bar and the controls line up with the edges of the cover */
+@media (orientation: portrait) and (max-width: 43em) {
+    .layout-mobile #nowPlayingPage {
+        --npCover: max(10em, min(100vw - 4.5em, 100vh - 29.5em, 30em));
+        --npGlowReach: 2.75em;
+        --npText: #fff;
+        --npTextDim: hsla(0, 0%, 100%, 0.62);
+        --npSurface: hsla(0, 0%, 100%, 0.1);
+    }
+
+    .layout-mobile #nowPlayingPage .nowPlayingInfoContainer {
+        justify-content: center;
+    }
+
+    .layout-mobile #nowPlayingPage .nowPlayingPageImageContainer {
+        position: relative;
+        flex: none;
+        width: var(--npCover);
+        height: var(--npCover);
+        margin: 0 auto 2em;
+        transition: transform 0.6s var(--fintageEase);
+    }
+
+    /* while the music is paused, the cover steps back a little, with its glow */
+    .layout-mobile #nowPlayingPage:has(.btnPlayPause .play_circle_filled) .nowPlayingPageImageContainer {
+        transform: scale(0.88);
+    }
+
+    .layout-mobile #nowPlayingPage .nowPlayingPageImage {
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        max-height: none;
+        border-radius: var(--largeRadius);
+        box-shadow:
+            0 0 0 var(--borderWidth) hsla(0, 0%, 100%, 0.08),
+            0 2em 3.5em -1em hsla(0, 0%, 0%, 0.6);
+    }
+
+    .layout-mobile #nowPlayingPage .nowPlayingPageImageContainer::after {
+        content: "";
+        position: absolute;
+        inset: calc(var(--npGlowReach) * -1);
+        pointer-events: none;
+        opacity: 0.8;
+        -webkit-backdrop-filter: blur(2.25em) saturate(1.6);
+        backdrop-filter: blur(2.25em) saturate(1.6);
+        /* the frame fades out towards its outer edge and leaves out the cover, with its rounded corners */
+        -webkit-mask:
+            linear-gradient(
+                to right,
+                transparent,
+                #000 var(--npGlowReach),
+                #000 calc(100% - var(--npGlowReach)),
+                transparent
+            ),
+            linear-gradient(
+                to bottom,
+                transparent,
+                #000 var(--npGlowReach),
+                #000 calc(100% - var(--npGlowReach)),
+                transparent
+            ),
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Crect width='100' height='100' rx='5' ry='5'/%3E%3C/svg%3E")
+                center / var(--npCover) var(--npCover) no-repeat;
+        -webkit-mask-composite: source-in, source-out;
+        mask:
+            linear-gradient(
+                to right,
+                transparent,
+                #000 var(--npGlowReach),
+                #000 calc(100% - var(--npGlowReach)),
+                transparent
+            ),
+            linear-gradient(
+                to bottom,
+                transparent,
+                #000 var(--npGlowReach),
+                #000 calc(100% - var(--npGlowReach)),
+                transparent
+            ),
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Crect width='100' height='100' rx='5' ry='5'/%3E%3C/svg%3E")
+                center / var(--npCover) var(--npCover) no-repeat;
+        mask-composite: intersect, subtract;
+    }
+
+    .layout-mobile #nowPlayingPage .nowPlayingInfoControls {
+        width: var(--npCover);
+        margin: 0 auto;
+    }
+
+    /* the title, with the artist and the album below it, on the left; the heart on the right in a round button.
+    Jellyfin keeps the background color of these buttons transparent with !important, so the fill is an image */
+    .layout-mobile #nowPlayingPage .infoContainer {
+        align-items: center;
+        gap: 1em;
+        margin-bottom: 1.1em;
+    }
+
+    .layout-mobile #nowPlayingPage .nowPlayingInfoContainerMedia {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-width: 0;
+        width: auto;
+        margin: 0;
+    }
+
+    .layout-mobile #nowPlayingPage .nowPlayingSongName {
+        margin: 0 0 0.2em;
+        font-size: 1.45em;
+        letter-spacing: -0.01em;
+        color: var(--npText);
+    }
+
+    .layout-mobile #nowPlayingPage :is(.nowPlayingSongName, .nowPlayingArtist, .nowPlayingAlbum) {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .layout-mobile #nowPlayingPage .nowPlayingArtist {
+        order: 1;
+        margin: 0;
+        font-size: 1.05em;
+        font-weight: 500;
+        color: var(--npText);
+        opacity: 0.88;
+    }
+
+    .layout-mobile #nowPlayingPage .nowPlayingAlbum {
+        order: 2;
+        margin: 0.15em 0 0;
+        font-size: 0.9em;
+        color: var(--npTextDim);
+    }
+
+    .layout-mobile #nowPlayingPage .nowPlayingPageUserDataButtonsTitle > button {
+        display: grid;
+        place-items: center;
+        width: 2.4em;
+        height: 2.4em;
+        padding: 0;
+        border-radius: 50%;
+        background-image: linear-gradient(var(--npSurface), var(--npSurface));
+        color: var(--npText);
+    }
+
+    /* the bar is thin, with a small knob, and the times stand below its ends */
+    .layout-mobile #nowPlayingPage .nowPlayingInfoControls .sliderContainer {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 0;
+    }
+
+    .layout-mobile #nowPlayingPage .nowPlayingPositionSliderContainer {
+        --thumb: 0.3em;
+        order: -1;
+        flex: 1 0 100%;
+        margin: 0 0 0.5em;
+    }
+
+    .layout-mobile #nowPlayingPage .nowPlayingPositionSliderContainer .mdl-slider-background-flex-container {
+        padding: 0;
+    }
+
+    .layout-mobile #nowPlayingPage .nowPlayingPositionSliderContainer .mdl-slider-background-upper,
+    .layout-mobile #nowPlayingPage .nowPlayingPositionSliderContainer .mdl-slider-background-flex {
+        background: var(--npSurface);
+    }
+
+    .layout-mobile #nowPlayingPage .nowPlayingPositionSliderContainer .mdl-slider-background-lower {
+        background: var(--npText);
+    }
+
+    .layout-mobile #nowPlayingPage .nowPlayingPositionSlider::-webkit-slider-thumb {
+        background: var(--npText);
+        width: 0.85em !important;
+        height: 0.85em !important;
+        border-radius: 50%;
+        transform: none;
+        box-shadow: 0 0.1em 0.4em hsla(0, 0%, 0%, 0.35);
+    }
+
+    .layout-mobile #nowPlayingPage :is(.positionTime, .runtime) {
+        font-size: 0.78em;
+        font-variant-numeric: tabular-nums;
+        color: var(--npTextDim);
+    }
+
+    /* the controls: shuffle and repeat at the ends, dim unless they are on, when they are gold with a dot below */
+    .layout-mobile #nowPlayingPage .nowPlayingButtonsContainer {
+        margin-top: 0.75em;
+    }
+
+    .layout-mobile #nowPlayingPage .nowPlayingInfoButtons {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .layout-mobile #nowPlayingPage .nowPlayingInfoButtons :is(.btnPreviousTrack, .btnNextTrack) {
+        font-size: 1.2em;
+        color: var(--npText);
+    }
+
+    .layout-mobile #nowPlayingPage .nowPlayingInfoButtons :is(.btnRepeat, .btnShuffleQueue) {
+        position: relative;
+        color: var(--npTextDim);
+    }
+
+    .layout-mobile #nowPlayingPage .nowPlayingInfoButtons :is(.btnRepeat, .btnShuffleQueue).buttonActive::after {
+        content: "";
+        position: absolute;
+        bottom: 0.1em;
+        left: calc(50% - 0.15em);
+        width: 0.3em;
+        height: 0.3em;
+        border-radius: 50%;
+        background: currentColor;
+    }
+
+    /* the buttons for the queue and the menu are round and of glass */
+    .layout-mobile #nowPlayingPage .playlistSectionButton {
+        padding: 0 calc(50% - var(--npCover) / 2);
+        box-sizing: border-box;
+    }
+
+    .layout-mobile #nowPlayingPage .playlistSectionButton > button {
+        display: grid;
+        place-items: center;
+        width: 2.5em;
+        height: 2.5em;
+        padding: 0;
+        border-radius: 50%;
+        background-image: linear-gradient(var(--npSurface), var(--npSurface));
+        color: var(--npText);
+    }
+}
+
+/* the queue: the cover and the controls make way while it is open, so the queue lies on the color alone.
+Its rows are compact like the tracks of an album, with their buttons side by side, and the current track is marked
+by a gold equalizer on a dark tile instead of the white one of Jellyfin; the !important overrides Jellyfin,
+which sets the image of the equalizer with it */
+.layout-mobile #nowPlayingPage:has(#playlist:not(.hide)) .nowPlayingInfoContainer {
+    visibility: hidden;
+}
+
+.layout-mobile #playlist .listItem[data-type="Audio"] {
+    min-height: 3.6em;
+    margin: 0 0.6em !important;
+    padding: 0.3em 0.4em !important;
+    border-radius: var(--largeRadius);
+}
+
+.layout-mobile #playlist .listItem[data-type="Audio"] .listViewDragHandle {
+    font-size: 1.2em;
+    opacity: 0.5;
+}
+
+.layout-mobile #playlist .listItem[data-type="Audio"] .listItemImage {
+    width: 3em;
+    height: 3em;
+    border-radius: var(--smallRadius);
+}
+
+.layout-mobile #playlist .listItem[data-type="Audio"] .listViewUserDataButtons {
+    flex-direction: row;
+    font-size: small;
+}
+
+.layout-mobile #playlist .listItem[data-type="Audio"] .listItemButton {
+    padding: 0.55em;
+}
+
+.layout-mobile #playlist .listItem[data-type="Audio"] .listItemButton[data-customaction="remove"] {
+    opacity: 0.55;
+}
+
+.layout-mobile #playlist .listItem[data-type="Audio"]:has(.playlistIndexIndicatorImage) {
+    box-shadow: inset 0 0 0 var(--borderWidth) var(--fintageGlassBorderColor);
+}
+
+.layout-mobile #playlist .playlistIndexIndicatorImage {
+    background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d7b87f'%3E%3Crect x='3' y='9' width='4' height='12' rx='1.5'%3E%3Canimate attributeName='height' values='12;5;16;8;12' dur='1.1s' repeatCount='indefinite'/%3E%3Canimate attributeName='y' values='9;16;5;13;9' dur='1.1s' repeatCount='indefinite'/%3E%3C/rect%3E%3Crect x='10' y='4' width='4' height='17' rx='1.5'%3E%3Canimate attributeName='height' values='17;7;12;15;17' dur='0.9s' repeatCount='indefinite'/%3E%3Canimate attributeName='y' values='4;14;9;6;4' dur='0.9s' repeatCount='indefinite'/%3E%3C/rect%3E%3Crect x='17' y='12' width='4' height='9' rx='1.5'%3E%3Canimate attributeName='height' values='9;15;6;12;9' dur='1.3s' repeatCount='indefinite'/%3E%3Canimate attributeName='y' values='12;6;15;9;12' dur='1.3s' repeatCount='indefinite'/%3E%3C/rect%3E%3C/svg%3E")
+            center / 50% no-repeat,
+        hsl(240, 6%, 10%) !important;
+    background-blend-mode: normal;
+}
+
+.layout-mobile #playlist .playlistIndexIndicatorImage.playlistIndexIndicatorPausedImage {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d7b87f'%3E%3Crect x='3' y='13' width='4' height='8' rx='1.5'/%3E%3Crect x='10' y='8' width='4' height='13' rx='1.5'/%3E%3Crect x='17' y='15' width='4' height='6' rx='1.5'/%3E%3C/svg%3E") !important;
+}
+
+/* in the light theme, the wash, the tint and the color of the now playing screen are pale versions of the cover
+behind dark text, in the sand of the page; the controls and the bar are espresso */
+:root[data-theme="light"].layout-mobile {
+    --albumCardShadow: 0 1.75em 3em -1em hsla(30, 25%, 20%, 0.4);
+    --albumWashOpacity: 0.35;
+    --nowPlayingBarTint: 0.22;
+    --nowPlayingBarTrackColor: hsla(30, 25%, 25%, 0.12);
+    --nowPlayingColorOpacity: 0.55;
+    --nowPlayingColorBrightness: 1.15;
+    --nowPlayingShade: linear-gradient(
+        180deg,
+        rgba(237, 232, 222, 0.2),
+        rgba(237, 232, 222, 0.5) 55%,
+        rgba(237, 232, 222, 0.9)
+    );
+}
+
+@media (orientation: portrait) and (max-width: 43em) {
+    :root[data-theme="light"].layout-mobile #nowPlayingPage {
+        --npText: var(--fullContrastColor);
+        --npTextDim: var(--dimTextColor);
+        --npSurface: hsla(30, 25%, 25%, 0.08);
+    }
+
+    :root[data-theme="light"].layout-mobile #nowPlayingPage .nowPlayingPageImage {
+        box-shadow:
+            0 0 0 var(--borderWidth) hsla(30, 25%, 25%, 0.1),
+            0 2em 3.5em -1em hsla(30, 25%, 20%, 0.45);
+    }
+}
+
+:root[data-theme="light"].layout-mobile #playlist .playlistIndexIndicatorImage {
+    background-color: var(--fintageEspresso) !important;
+}
+
+/* in the light theme, the icons of the app bar are dark above the pale wash of an album, like above the card of
+a movie, in the new layout and in the legacy one; the app bar comes before the page, so it looks for its cover */
+:root[data-theme="light"].layout-mobile
+    .MuiAppBar-colorTransparent:has(
+        ~ main #itemDetailPage:not(.hide) .infoWrapper > .detailImageContainer .cardImageIcon:is(.album, .queue)
+    )
+    .MuiButtonBase-root:not(:hover, .MuiButton-textPrimary),
+:root[data-theme="light"].layout-mobile
+    :where(.backgroundContainer):has(
+        ~ * #itemDetailPage:not(.hide) .infoWrapper > .detailImageContainer .cardImageIcon:is(.album, .queue)
+    )
+    ~ *
+    :is(.skinHeader-withBackground.semiTransparent, .skinHeader.headroom:has(.pageTitle:empty))
+    .headerButton:not(:hover) {
+    color: var(--textColor);
+    text-shadow: none;
+}
+
+:root[data-theme="light"].layout-mobile
+    .MuiAppBar-colorTransparent:has(
+        ~ main #itemDetailPage:not(.hide) .infoWrapper > .detailImageContainer .cardImageIcon:is(.album, .queue)
+    )
+    :not(.MuiButton-textPrimary, :hover)
+    > :has(> .MuiSvgIcon-root):not(:hover) {
+    filter: none;
+}
+/* music on phones end */
+
 .layout-mobile .cardImageIcon {
     font-size: 3.5em;
 }
