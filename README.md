@@ -25,7 +25,7 @@
 - on desktops, the card almost fills the screen, with the logo, the details and the buttons on a tinted, frosted area in its lower left corner and the plot below it; seasons and episodes carry the small logo of the series above their title
 - the episodes of a season as a clear list on every device, with 16:9 images and the first three lines of the plot
 - music on phones in the colors of its covers: albums and playlists show their cover as a card whose colors wash over the top of the page, their tracks as a calm list with the length of each track, and the albums of the library carry their title and artist below the cover
-- a now playing screen on phones in a quiet color of the current cover, with the cover glowing in front of it and stepping back while the music is paused, and a small player tinted by the cover, with a thin gold line for the progress
+- a now playing screen on phones in a quiet color of the current cover, with the cover glowing in front of it and stepping back while the music is paused, and a small player that floats above the page as a bar of glass, in which the cover glows softly, with a thin gold line for the progress
 - audio and subtitles as cards of their own below the plot, so the chosen tracks are clear at a glance
 - the directors, writers, studios and genres at the very end of the page of a movie, show, season or episode, like the credits at the end of a film
 - a compact sign-in card in front of the splash screen of the server, also on phones
