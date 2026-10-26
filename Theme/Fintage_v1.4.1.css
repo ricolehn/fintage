@@ -2882,8 +2882,8 @@ with room for the logo above the text. Wider windows always show the card, which
 /* music on phones start
 on phones, music lives in the colors of its covers: the cover of an album is a card whose colors wash over the top
 of its page, the tracks of an album or a playlist are a calm list, the albums of the library carry their title and
-artist below the cover, the small player is tinted by the cover of the current track, and the now playing screen
-lies in a quiet color of that cover, with the cover glowing in front of it.
+artist below the cover, the small player floats as a bar of glass in which the cover of the current track glows,
+and the now playing screen lies in a quiet color of that cover, with the cover glowing in front of it.
 The pages of albums and playlists are recognised by the placeholder icon of their cover; desktops and TVs keep
 their layout */
 
@@ -3138,46 +3138,121 @@ the year is on the page of the album. The !important overrides Jellyfin, which c
     display: none;
 }
 
-/* the small player is tinted by the cover of the current track: the cover lies blurred across the whole bar,
-behind its text and its buttons */
+/* the small player floats above the page as a bar of glass with rounded corners, a little away from the edges of
+the screen, like the cards of the look; above the bar for gestures of a phone, it keeps only the room of that bar
+below itself instead of adding its own. The !important overrides the frosted footer, which would otherwise lie
+behind the whole bottom of the screen */
+.layout-mobile .appfooter:has(> .nowPlayingBar) {
+    padding-bottom: 0;
+    background: transparent !important;
+    border-top: 0;
+    box-shadow: none;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+
 .layout-mobile .nowPlayingBar {
+    margin: 0 0.6em max(0.6em, env(safe-area-inset-bottom));
+    border: var(--fintageGlassBorder);
+    border-radius: var(--largerRadius);
+    background: var(--nowPlayingBarColor, hsla(240, 6%, 9%, 0.86));
+    -webkit-backdrop-filter: var(--fintageGlassBlur);
+    backdrop-filter: var(--fintageGlassBlur);
+    box-shadow:
+        var(--fintageGlassHighlight),
+        0 0.5em 1.5em -0.25em var(--nowPlayingBarShadowColor, hsla(0, 0%, 0%, 0.5)),
+        var(--fintageGlassShadow);
     isolation: isolate;
     overflow: hidden;
+}
+
+/* while the bar is shown, a page keeps a little more room at its end, so its last line clears the bar instead of
+touching it: the elements that keep the room in Jellyfin, and the area below the rows of a detail page that takes
+it over. The !important overrides Jellyfin, which keeps room for a bar along the edge of the screen; the :where
+keeps the detail pages from keeping it twice, since the look gives their rows no room when the area takes it over */
+.layout-mobile:has(.appfooter > .nowPlayingBar:not(.hide))
+    :where(.content-primary, .padded-bottom-page, .page, .pageWithAbsoluteTabs .pageTabContent) {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 6em) !important;
+}
+
+.layout-mobile:has(.appfooter > .nowPlayingBar:not(.hide)) #itemDetailPage .itemDetailsGroup {
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 6em);
+}
+
+/* the bar slides down far enough to leave the screen, room below it included, when the music stops */
+.layout-mobile .nowPlayingBar.nowPlayingBar-hidden {
+    transform: translate3d(0, calc(100% + max(0.6em, env(safe-area-inset-bottom))), 0);
 }
 
 .layout-mobile .nowPlayingBar .nowPlayingBarInfoContainer {
     overflow: visible;
 }
 
+/* the cover has the same room on all sides, and its corners follow the corners of the bar */
 .layout-mobile .nowPlayingBar .nowPlayingImage {
     position: relative;
-    border-radius: var(--smallRadius);
-    box-shadow: inset 0 0 0 var(--borderWidth) var(--fintageRingColor);
+    width: 2.9em;
+    height: 2.9em;
+    margin: 0 0 0 0.65em;
+    border-radius: 0.6em;
+    box-shadow:
+        inset 0 0 0 var(--borderWidth) var(--fintageRingColor),
+        0 0.3em 0.8em -0.3em hsla(0, 0%, 0%, 0.6);
 }
 
+/* the cover glows softly into the glass, like the card of a movie, behind its title */
 .layout-mobile .nowPlayingBar .nowPlayingImage::before {
     content: "";
     position: absolute;
-    top: -2em;
-    bottom: -2em;
-    left: -2em;
-    width: 100vw;
+    inset: 0;
     z-index: -1;
+    border-radius: inherit;
     background: inherit;
     background-size: cover;
-    background-position: center;
-    opacity: var(--nowPlayingBarTint, 0.32);
-    filter: blur(1.5em) saturate(2);
+    opacity: var(--nowPlayingBarGlow, 0.75);
+    transform: scale(1.9, 1.5);
+    filter: blur(1.25em) saturate(1.8);
 }
 
-/* the progress is a thin gold line along the top edge of the bar, without a knob;
-it can still be dragged, and grows a little while it is */
+.layout-mobile .nowPlayingBar .nowPlayingBarText {
+    margin: 0 0.75em 0 0.9em;
+    line-height: 1.4;
+}
+
+.layout-mobile .nowPlayingBar .nowPlayingBarText > :first-child {
+    color: var(--fullContrastColor);
+    font-weight: 600;
+}
+
+.layout-mobile .nowPlayingBar .nowPlayingBarSecondaryText {
+    font-size: 0.88em;
+}
+
+/* the play button leads the next button without outweighing the cover and the title, and both keep the room
+of the cover from the edge of the bar */
+.layout-mobile .nowPlayingBar .nowPlayingBarRight {
+    margin-right: 0;
+}
+
+/* both are solid in both themes, like the play button of a detail page */
+.layout-mobile .nowPlayingBar .nowPlayingBarRight .mediaButton {
+    --fill: 1;
+    padding: 0.4em;
+    font-size: 1.4em;
+}
+
+.layout-mobile .nowPlayingBar .nowPlayingBarRight .playPauseButton {
+    font-size: 1.6em;
+}
+
+/* the progress is a thin gold line that glows a little, between the cover and the lower edge of the bar and as
+wide as its content, without a knob; it can still be dragged, and grows a little while it is */
 .layout-mobile .nowPlayingBar .nowPlayingBarPositionContainer {
-    --thumb: 0.2em;
-    top: -0.5em;
-    left: 0;
-    right: 0;
-    z-index: 1;
+    --thumb: 0.16em;
+    top: auto;
+    bottom: -0.22em;
+    left: 0.65em;
+    right: 0.65em;
 }
 
 .layout-mobile .nowPlayingBar .nowPlayingBarPositionContainer .mdl-slider-background-flex-container {
@@ -3185,17 +3260,25 @@ it can still be dragged, and grows a little while it is */
 }
 
 .layout-mobile .nowPlayingBar .nowPlayingBarPositionContainer .mdl-slider-background-flex {
-    border-radius: 0;
-    background: var(--nowPlayingBarTrackColor, hsla(0, 0%, 100%, 0.15));
+    overflow: visible;
+    background: var(--nowPlayingBarTrackColor, hsla(0, 0%, 100%, 0.1));
+}
+
+.layout-mobile .nowPlayingBar .nowPlayingBarPositionContainer .mdl-slider-background-upper {
+    display: none;
 }
 
 .layout-mobile .nowPlayingBar .nowPlayingBarPositionContainer .mdl-slider-background-lower {
-    border-radius: 0 var(--thumb) var(--thumb) 0;
+    border-radius: 1em;
     background: var(--fintageGoldGradient);
-    box-shadow: 0 0 0.6em hsla(39, 52%, 67%, 0.55);
+    box-shadow: 0 0 0.5em hsla(39, 52%, 67%, 0.55);
 }
 
 .layout-mobile .nowPlayingBar .nowPlayingBarPositionSlider::-webkit-slider-thumb {
+    opacity: 0;
+}
+
+.layout-mobile .nowPlayingBar .nowPlayingBarPositionSlider::-moz-range-thumb {
     opacity: 0;
 }
 
@@ -3220,16 +3303,21 @@ the page, the background of the page is left to the layer below it, and everythi
     pointer-events: none;
 }
 
-/* the !important overrides the class that hides the small player */
+/* the !important overrides the class that hides the small player; the bar of glass of the player is undone here,
+since its blur would keep the cover inside it */
 .layout-mobile:has(#nowPlayingPage:not(.hide)) .appfooter > .nowPlayingBar.hide {
     display: block !important;
+    margin: 0;
     transform: none;
     contain: none;
     will-change: auto;
     overflow: visible;
     background: none;
     border: 0;
+    border-radius: 0;
     box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
 }
 
 .layout-mobile:has(#nowPlayingPage:not(.hide))
@@ -3586,12 +3674,14 @@ which sets the image of the equalizer with it */
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d7b87f'%3E%3Crect x='3' y='13' width='4' height='8' rx='1.5'/%3E%3Crect x='10' y='8' width='4' height='13' rx='1.5'/%3E%3Crect x='17' y='15' width='4' height='6' rx='1.5'/%3E%3C/svg%3E") !important;
 }
 
-/* in the light theme, the wash, the tint and the color of the now playing screen are pale versions of the cover
-behind dark text, in the sand of the page; the controls and the bar are espresso */
+/* in the light theme, the wash, the glow and the color of the now playing screen are pale versions of the cover
+behind dark text, in the sand of the page, and the small player is a bar of pale glass; the controls are espresso */
 :root[data-theme="light"].layout-mobile {
     --albumCardShadow: 0 1.75em 3em -1em hsla(30, 25%, 20%, 0.4);
     --albumWashOpacity: 0.35;
-    --nowPlayingBarTint: 0.22;
+    --nowPlayingBarColor: hsla(40, 40%, 97%, 0.88);
+    --nowPlayingBarShadowColor: hsla(30, 25%, 20%, 0.16);
+    --nowPlayingBarGlow: 0.5;
     --nowPlayingBarTrackColor: hsla(30, 25%, 25%, 0.12);
     --nowPlayingColorOpacity: 0.55;
     --nowPlayingColorBrightness: 1.15;
