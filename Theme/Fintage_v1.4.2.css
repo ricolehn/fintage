@@ -4821,12 +4821,21 @@ div[data-role="controlgroup"] a.ui-btn-active {
 
 /* on phones and TVs, the images of episodes are 16:9 like the episode images themselves, instead of about 4:3;
 they keep their height and get wider (the episode list on desktop sets its own size) */
-.layout-mobile .listItem[data-type="Episode"] .listItemImage-large,
-.layout-tv .listItem[data-type="Episode"] .listItemImage-large {
+.layout-mobile .listItem[data-type="Episode"] .listItemImage-large {
     flex-shrink: 0;
     box-sizing: border-box;
     width: auto !important;
     aspect-ratio: 16 / 9;
+}
+
+/* on TVs, the width is written out from the height that Jellyfin gives the images there, 20vw, instead of coming
+from aspect-ratio: the browsers of many TVs do not know aspect-ratio yet, e.g. those of LG TVs up to webOS 22 and of
+Samsung TVs up to Tizen 6.5, and with a width of auto the images of the episodes shrank to a thin strip there */
+.layout-tv .listItem[data-type="Episode"] .listItemImage-large {
+    flex-shrink: 0;
+    box-sizing: border-box;
+    width: calc(20vw * 16 / 9) !important;
+    height: 20vw !important;
 }
 
 /* episodes show the first three lines of their plot, also on phones; the full plot is on the page of the episode */
