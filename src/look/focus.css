@@ -1,0 +1,56 @@
+/* selection and focus start
+selected items get a quiet tint and a gold icon instead of a colored fill, and focus on TVs is a white fill */
+.Mui-selected,
+.navMenuOption-selected {
+    color: var(--fullContrastColor) !important;
+    background-color: var(--semiTransparentAccentColor) !important;
+}
+
+.navMenuOption-selected .navMenuOptionIcon,
+.Mui-selected > .MuiListItemIcon-root {
+    color: var(--accentColor);
+}
+
+.actionSheetMenuItem:has(.listItemIcon.check),
+#sort-popover .MuiMenuItem-root:has(> .MuiListItemIcon-root > .MuiSvgIcon-root),
+#selectview-popover .MuiMenuItem-root:has(> .MuiListItemIcon-root > .MuiSvgIcon-root) {
+    color: var(--fullContrastColor);
+    background-color: var(--semiTransparentAccentColor);
+}
+
+.actionSheetMenuItem:has(.listItemIcon.check) .listItemBodyText {
+    color: var(--fullContrastColor);
+}
+
+:root[data-theme="light"] .Mui-selected,
+:root[data-theme="light"] .navMenuOption-selected,
+:root[data-theme="light"] .actionSheetMenuItem:has(.listItemIcon.check),
+:root[data-theme="light"] #sort-popover .MuiMenuItem-root:has(> .MuiListItemIcon-root > .MuiSvgIcon-root),
+:root[data-theme="light"] #selectview-popover .MuiMenuItem-root:has(> .MuiListItemIcon-root > .MuiSvgIcon-root) {
+    background-color: hsla(30, 25%, 25%, 0.08) !important;
+}
+
+.emby-button.show-focus:focus,
+.paper-icon-button-light.show-focus:focus,
+.emby-tabs .emby-button.show-focus:focus {
+    color: var(--zeroContrastColor) !important;
+}
+
+.listItem:focus,
+.listItem:focus .listItemBodyText,
+.listItem:focus .secondary,
+.alphaPickerButton-tv:focus,
+.guide-channelHeaderCell:focus,
+.programCell:focus > .guideProgramName {
+    color: var(--zeroContrastColor);
+}
+
+.layout-tv .card:focus .cardScalable {
+    box-shadow: var(--fintageCardHoverShadow);
+}
+
+.layout-desktop .itemExternalLinks > a:hover,
+.itemExternalLinks > a:active {
+    color: var(--accentTextColor) !important;
+}
+/* selection and focus end */

@@ -1,0 +1,44 @@
+/* episode list start
+on desktop, the episodes of a season are a list like on phones: one episode per row, with the image on the left,
+the title, the details and the first lines of the plot next to it, and the buttons on the right */
+@supports (display: revert) {
+    .layout-desktop .vertical-list:has(.listItem-largeImage) {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+    }
+
+    .layout-desktop .listItem-largeImage {
+        margin-bottom: 0 !important;
+    }
+
+    .layout-desktop .listItem-largeImage > .listItem-content {
+        display: flex;
+        align-items: center;
+        gap: 1.25em;
+    }
+
+    .layout-desktop .listItem-largeImage .listItemImage-large {
+        flex-shrink: 0;
+        width: clamp(14em, 18vw, 20em);
+        height: auto;
+        aspect-ratio: 16 / 9;
+        margin-right: 0 !important;
+        box-sizing: border-box;
+    }
+
+    /* the lines of the plot stay short enough to read easily on wide screens */
+    .layout-desktop .listItem-largeImage .listItemBody {
+        flex: 1;
+        min-width: 0;
+        max-width: 60em;
+        padding: 0.25em 0;
+    }
+
+    .layout-desktop .listItem-largeImage .listViewUserDataButtons {
+        flex-direction: column;
+        margin-left: auto;
+        font-size: small;
+    }
+}
+/* episode list end */

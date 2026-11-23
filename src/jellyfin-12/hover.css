@@ -1,0 +1,32 @@
+@media (hover: hover) and (pointer: fine) {
+    .MuiFilledInput-root:hover:not(.Mui-focused, .Mui-disabled) {
+        border-color: var(--dimTextColor);
+    }
+
+    .MuiAppBar-root .MuiStack-root > .MuiButton-root:not(.MuiButton-textPrimary):hover {
+        color: var(--zeroContrastColor);
+        background-color: var(--hoverTabBackgroundColor);
+        text-shadow: none !important;
+    }
+
+    /* the app bar icon buttons and the library header buttons get the same hover effect as the legacy header buttons */
+    .MuiAppBar-root .MuiIconButton-root:hover,
+    .MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root > .MuiButton-root:hover,
+    .MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root .MuiButton-textPrimary:hover,
+    .MuiAppBar-root .MuiButtonGroup-text > .MuiButton-root:hover {
+        color: var(--zeroContrastColor) !important;
+        background-color: var(--hoverBackgroundColor) !important;
+        text-shadow: none !important;
+    }
+
+    .MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root .MuiButton-contained:not(.MuiButtonGroup-grouped):hover {
+        filter: brightness(1.1);
+    }
+
+    .MuiMenuItem-root:hover {
+        color: var(--hoverTextColor);
+        background-color: var(--activeBackgroundColor);
+    }
+}
+
+/* Jellyfin 12 modern layout support - end */

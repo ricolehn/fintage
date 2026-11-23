@@ -1,0 +1,168 @@
+/* cards start
+cards have no visible border at rest; a hairline ring inside the edge keeps bright posters crisp,
+and the transparent border is kept so the focus and hover borders of the theme still show */
+.cardScalable,
+.layout-mobile .cardScalable {
+    border-color: transparent !important;
+}
+
+.cardScalable {
+    border-radius: var(--fintageCardRadius);
+    background-clip: padding-box;
+    outline: var(--borderWidth) solid var(--fintageRingColor);
+    outline-offset: calc(-1 * var(--borderWidthDouble) - var(--borderWidth));
+    transition:
+        transform 0.5s var(--fintageEase),
+        box-shadow 0.5s var(--fintageEase),
+        border-color 0.3s var(--fintageEase);
+}
+
+.layout-desktop .visualCardBox {
+    border-width: var(--borderWidth) !important;
+}
+
+.visualCardBox .cardScalable {
+    border-width: 0 0 var(--borderWidth) 0 !important;
+    border-radius: 0 !important;
+    border-color: var(--fintageGlassBorderColor) !important;
+    outline: none;
+}
+
+.cardImageContainer {
+    transition: transform 0.8s var(--fintageEase);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .card-hoverable:hover .cardScalable {
+        transform: translateY(-0.3em) scale(1.02);
+        box-shadow: var(--fintageCardHoverShadow);
+    }
+
+    .card-hoverable:hover .cardImageContainer {
+        transform: scale(1.04);
+    }
+}
+
+.card-hoverable .cardScalable:active {
+    transition: transform 0.15s;
+    transform: translateY(-0.1em) scale(1);
+}
+
+/* the overlay shades the bottom of the card, so its buttons stay readable on bright images */
+.cardOverlayContainer {
+    background: linear-gradient(0deg, hsla(0, 0%, 0%, 0.5), transparent 45%);
+    transition: opacity 0.4s var(--fintageEase);
+}
+
+.card-hoverable:hover .cardOverlayContainer::after {
+    opacity: 1;
+}
+
+/* the play button on cards is white with a dark icon, on desktop and on phones */
+.cardOverlayContainer > .cardOverlayFab-primary,
+.listItemImageButton,
+.layout-mobile .cardOverlayButton-br:not([data-action="menu"]) > .cardOverlayButtonIcon {
+    color: var(--fintageInk) !important;
+    border: none;
+    box-shadow: 0 0.25em 0.75em hsla(0, 0%, 0%, 0.45);
+    transition:
+        transform 0.3s var(--fintageEase),
+        box-shadow 0.3s var(--fintageEase);
+}
+
+.cardOverlayContainer > .cardOverlayFab-primary:hover,
+.listItemImageButton:hover {
+    color: var(--fintageInk) !important;
+    background-color: #fff !important;
+    transform: scale(1.08);
+}
+
+/* the progress of resumable items is a thin gold line; the bar is too thin for a blur behind it to show,
+and a blur on every card made every animation on the page slower */
+.itemProgressBar:not(.backgroundProgress):not(.playbackProgress):not(.transcodingProgress) {
+    overflow: hidden;
+    height: 0.25em;
+    border-radius: 1em;
+    background-color: hsla(0, 0%, 100%, 0.25) !important;
+}
+
+.itemProgressBarForeground {
+    background-color: var(--cardResumeProgressColor);
+    opacity: 1;
+    border-radius: 1em;
+}
+
+/* this is the progress bar on cards in the libraries of Jellyfin 12;
+like the progress bar of the theme, it has no blur behind it, which would not show on so thin a line
+and on every card made every animation on the page slower */
+.itemLinearProgress.MuiLinearProgress-root {
+    height: 0.25em;
+    margin: 0 0.75em 0.75em;
+    border-radius: 1em;
+    background-color: hsla(0, 0%, 100%, 0.25);
+}
+
+.itemLinearProgress > .MuiLinearProgress-bar {
+    border-radius: 1em;
+    background-color: var(--fintageGold);
+}
+
+/* the indicators are a gold seal for played items and small glass badges for counts */
+.indicator {
+    border-radius: 100em;
+    border: none;
+    box-shadow: 0 0.12em 0.4em hsla(0, 0%, 0%, 0.35);
+}
+
+.playedIndicator {
+    background: var(--fintageGoldGradient);
+    border: none;
+    color: hsl(38, 35%, 8%);
+}
+
+.playedIndicator .indicatorIcon {
+    color: inherit;
+}
+
+.countIndicator,
+.fullSyncIndicator,
+.mediaSourceIndicator,
+.videoIndicator {
+    background: hsla(240, 5%, 6%, 0.6);
+    border: var(--borderWidth) solid hsla(0, 0%, 100%, 0.16);
+    backdrop-filter: var(--blurDefault);
+    color: #fff;
+    font-weight: 600;
+}
+
+.playstatebutton-icon-played {
+    color: var(--accentColor);
+}
+
+.cardBox:not(.visualCardBox) .cardPadder {
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.listItemImage {
+    margin-right: 0.75em !important;
+    border: var(--fintageGlassBorder);
+    border-radius: var(--fintageCardRadius);
+}
+
+/* Jellyfin keeps the painting of a card inside the card, which cut off its shadow and its lift on hover;
+the layout containment is kept, so the cards are laid out as before */
+.card:not(.show-animation) {
+    contain: layout style;
+}
+
+/* the rows that scroll sideways cut off everything below them, e.g. the shadow of the cards on phones;
+like Jellyfin does on TVs, they get room for it below the cards, and the negative margin keeps the page as it was */
+.padded-bottom-focusscale,
+.itemsContainer.scrollX,
+#itemDetailPage .padded-bottom-focusscale,
+#itemDetailPage .itemsContainer.scrollX {
+    padding-bottom: 1.5em;
+    margin-bottom: -1.5em;
+}
+/* cards end */

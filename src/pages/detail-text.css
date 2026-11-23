@@ -1,0 +1,158 @@
+.itemExternalLinks {
+    color: transparent;
+}
+
+.layout-mobile .itemExternalLinks > .button-link:hover:not(:active) {
+    color: var(--textColor) !important;
+}
+
+.layout-desktop .itemExternalLinks > a:hover,
+.itemExternalLinks > a:active {
+    background-color: var(--accentColor) !important;
+    color: #fff !important;
+}
+
+.layout-desktop .itemExternalLinks > a[href*="themoviedb.org"]:hover,
+.itemExternalLinks > a[href*="themoviedb.org"]:active {
+    background-color: #1ab7d8 !important;
+    color: #000 !important;
+}
+
+.layout-desktop .itemExternalLinks > a[href*="imdb.com"]:hover,
+.itemExternalLinks > a[href*="imdb.com"]:active {
+    background-color: #e2b616 !important;
+    color: #000 !important;
+}
+
+.layout-desktop .itemExternalLinks > a[href*="thetvdb.com"]:hover,
+.itemExternalLinks > a[href*="thetvdb.com"]:active {
+    background-color: #6cd591 !important;
+    color: #000 !important;
+}
+
+.layout-desktop .itemExternalLinks > a[href*="trakt.tv"]:hover,
+.itemExternalLinks > a[href*="trakt.tv"]:active {
+    background-color: #ab3aad !important;
+    color: #fff !important;
+}
+
+.layout-desktop .itemExternalLinks > a[href*="theaudiodb.com"]:hover,
+.itemExternalLinks > a[href*="theaudiodb.com"]:active {
+    background-color: #6399cc !important;
+    color: rgb(15, 22, 28) !important;
+}
+
+.layout-desktop .itemExternalLinks > a[href*="musicbrainz.org"]:hover,
+.itemExternalLinks > a[href*="musicbrainz.org"]:active {
+    background-color: #ba478f !important;
+    color: #fff !important;
+}
+
+/* Support for Jellyfin Enhanced (https://github.com/n00bcodr/Jellyfin-Enhanced) */
+.layout-desktop .itemExternalLinks > a[href*="letterboxd.com"]:hover,
+.itemExternalLinks > a[href*="letterboxd.com"]:active {
+    background-color: #14181c !important;
+    color: #fff !important;
+}
+
+.layout-desktop .itemExternalLinks > a[title*="Radarr"]:hover,
+.itemExternalLinks > a[title*="Radarr"]:active {
+    background-color: #ffc230 !important;
+    color: #000 !important;
+}
+
+.layout-desktop .itemExternalLinks > a[title*="Sonarr"]:hover,
+.itemExternalLinks > a[title*="Sonarr"]:active {
+    background-color: #07bae9 !important;
+    color: #000 !important;
+}
+
+.layout-desktop .itemExternalLinks > a[title*="Bazarr"]:hover,
+.itemExternalLinks > a[title*="Bazarr"]:active {
+    background-color: var(--textColor) !important;
+    color: #000 !important;
+}
+
+.itemTags,
+.itemTags > a {
+    display: none;
+    font-size: unset !important;
+    font-weight: 200;
+}
+
+.detail-clamp-text {
+    text-align: start;
+    color: var(--dimTextColor);
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.detail-clamp-text p {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+}
+
+.layout-mobile .detail-clamp-text {
+    -webkit-line-clamp: 4;
+}
+
+.layout-tv .detail-clamp-text {
+    -webkit-line-clamp: 10;
+    transition: none;
+}
+
+.overview-expand.emby-button {
+    padding: 0;
+    margin-top: 1.4em;
+    margin-bottom: 1.4em;
+    color: transparent;
+}
+
+.overview-expand.emby-button::after {
+    content: "keyboard_arrow_down";
+    font-family:
+        var(--iconPack),
+        Material Icons;
+    font-feature-settings: "liga";
+    background: var(--selectorBackgroundColor);
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+    align-content: center;
+    line-height: 1.6ch;
+    transition: transform 0.5s;
+    color: var(--textColor);
+}
+
+.overview.detail-clamp-text ~ .overview-controls .overview-expand::after {
+    transform: rotateZ(0deg);
+}
+
+.overview:not(.detail-clamp-text) ~ .overview-controls .overview-expand::after {
+    transform: rotateZ(180deg);
+}
+
+.overview-controls {
+    height: 0;
+}
+
+.detailSectionContent:has(.itemExternalLinks.hide) .overview-controls {
+    height: 1em;
+}
+
+/* with a remote, the arrow shows the focus with its fill, since its link has no height and its label stays hidden */
+.overview-expand.emby-button.show-focus:focus {
+    color: transparent !important;
+}
+
+.overview-expand.emby-button.show-focus:focus::after {
+    color: var(--zeroContrastColor);
+    background: var(--highlightOutlineColor);
+}
+
+/* on TVs, the link of the arrow spans the width of the plot, while the arrow stays at the end of the line:
+the remote moves down to what lies below the buttons, which skipped the arrow alone at the end of the line */
+.layout-tv .overview-expand.emby-button {
+    flex-grow: 1;
+    justify-content: flex-end;
+}

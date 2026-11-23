@@ -1,0 +1,248 @@
+.cardImageIcon {
+    color: var(--borderColor);
+}
+
+.cardPadder .cardImageIcon {
+    color: var(--selectorBackgroundColorAlpha);
+}
+
+.card:focus .cardBox.visualCardBox,
+.card:focus .cardBox:not(.visualCardBox) .cardScalable {
+    border-color: var(--fullContrastColor) !important;
+}
+
+.mdl-radio__focus-circle,
+.mdl-radio.show-focus .mdl-radio__button:focus + .mdl-radio__circles .mdl-radio__outer-circle,
+.mdl-radio.show-focus .mdl-radio__button:focus + .mdl-radio__circles .mdl-radio__inner-circle {
+    background: var(--accentColor);
+    color: var(--accentColor);
+}
+
+.emby-button {
+    gap: 1ch;
+}
+
+.emby-button.show-focus:focus,
+.paper-icon-button-light.show-focus:focus,
+.emby-tabs .emby-button.show-focus:focus {
+    background-color: var(--highlightOutlineColor) !important;
+}
+
+.emby-tabs .emby-button.show-focus:focus {
+    outline: none !important;
+}
+
+[dir="ltr"] .itemsContainer > .card > .cardBox {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cardBox-bottompadded {
+    margin-bottom: 0.5em !important;
+}
+
+@media (max-width: 50em) {
+    .cardBox-bottompadded {
+        margin-bottom: 0.25em !important;
+    }
+}
+
+.vertical-wrap:not(.centered),
+.vertical-wrap.padded-right-withalphapicker,
+.padded-right-withalphapicker > .vertical-wrap {
+    justify-content: flex-start !important;
+}
+
+#episodesTab > .vertical-wrap,
+#studiosTab > .vertical-wrap,
+#channelsTab > .vertical-wrap,
+#recordingsTab > .vertical-wrap,
+#genresTab > .vertical-wrap {
+    justify-content: center !important;
+}
+
+.layout-mobile .indicator {
+    font-size: 70%;
+}
+
+.cardScalable {
+    border: var(--darkerBorderColor) solid var(--borderWidthDouble) !important;
+    overflow: hidden !important;
+    box-shadow: var(--cardShadow);
+    transition: transform 125ms;
+}
+
+@supports (aspect-ratio: 1 / 1) {
+    #castCollapsible .cardScalable,
+    #guestCastContent .cardScalable {
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+    }
+}
+
+#castCollapsible .cardContent.cardImageContainer,
+#guestCastContent .cardContent.cardImageContainer {
+    background-position-y: 33%;
+}
+
+.layout-mobile .cardScalable {
+    border: var(--defaultBorder) !important;
+}
+
+.visualCardBox,
+.paperList {
+    background-color: var(--headerColor) !important;
+    border-radius: var(--largeRadius) !important;
+    overflow: hidden;
+    border: var(--fintageGlassBorder) !important;
+    box-shadow: unset !important;
+    box-shadow: var(--fintageGlassHighlight) !important;
+}
+
+.cardImageContainer {
+    transition: transform 0.375s;
+}
+
+.card.squareCard[data-type="TvChannel"] .cardImageContainer.cardContent {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.cardImageContainer > .cardDefaultText {
+    font-size: 2em;
+    padding-top: 1.5em;
+    color: transparent;
+    white-space: pre;
+}
+
+.cardImageContainer > .cardDefaultText::before {
+    content: "?\A";
+    color: var(--borderColor);
+}
+
+.card-hoverable:hover .cardScalable,
+.card-hoverable:hover .visualCardBox {
+    border-color: var(--cardHoverBorderColor) !important;
+}
+
+.card-hoverable:hover .visualCardBox .cardScalable {
+    border-color: var(--darkerBorderColor) !important;
+}
+
+.card-hoverable:hover .cardImageContainer {
+    transform: scale(1.025);
+}
+
+.card-hoverable .itemSelectionPanel {
+    transition: transform 0.125s;
+}
+
+.card-hoverable:hover .cardScalable,
+.card-hoverable:hover .itemSelectionPanel {
+    transform: scale(1.02);
+}
+
+.cardScalable:has(.cardOverlayButton-hover:hover) > .cardImageContainer {
+    transform: scale(1);
+}
+
+.cardOverlayContainer {
+    transition: 0.5s;
+}
+
+/* this is the soft sheen of the cards, which fades in on hover; it keeps following --cardHoverEffect,
+so it can still be turned off */
+.cardOverlayContainer::after {
+    content: var(--cardHoverEffect);
+    transition: 0.65s;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--hoverGradientV);
+    transform: none !important;
+    opacity: 0;
+    transition: opacity 0.6s var(--fintageEase);
+}
+
+.backdropCard.card-hoverable .cardOverlayContainer::after,
+.overflowBackdropCard.card-hoverable .cardOverlayContainer::after {
+    background: var(--hoverGradientH);
+}
+
+.cardOverlayContainer > .cardOverlayFab-primary {
+    margin-left: unset;
+    margin-top: unset;
+    top: unset;
+    left: calc(var(--overlayPlayButtonPosition) - 1.5em);
+    bottom: calc(var(--overlayPlayButtonPosition) - 1.5em);
+}
+
+.cardOverlayContainer > .cardOverlayFab-primary,
+.listItemImageButton,
+.layout-mobile .cardOverlayButton-br:not([data-action="menu"]) > .cardOverlayButtonIcon {
+    background-color: var(--btnMiniPlayColor) !important;
+    color: #fff !important;
+    border-color: var(--btnMiniPlayBorderColor);
+    font-size: 75%;
+    z-index: 2;
+}
+
+.cardOverlayContainer > .cardOverlayFab-primary:hover,
+.listItemImageButton:hover {
+    color: #fff;
+}
+
+[dir="ltr"] .layout-desktop .cardOverlayButton-br,
+.layout-desktop .cardOverlayButton-br {
+    bottom: 1.2em;
+    right: 0.7em;
+    z-index: 1;
+    font-size: 0.8em;
+}
+
+.layout-desktop .cardOverlayButton-br > button {
+    color: #fff;
+    display: var(--extraCardButtonsVisibility);
+    text-shadow: var(--iconShadow);
+}
+
+.cardOverlayButton-br .cardOverlayButton-hover[data-action="menu"],
+.layout-desktop .listItemButton[data-action="menu"] {
+    display: var(--menuButtonVisibility);
+}
+
+.layout-mobile .cardOverlayButton {
+    padding: 1em;
+    font-size: 60%;
+}
+
+.layout-mobile .cardOverlayButton-br,
+[dir="ltr"] .layout-mobile .cardOverlayButton-br {
+    display: var(--miniOverlayButtonVisibility);
+}
+
+.layout-mobile .portraitCard .cardOverlayButton-br:not([data-action="menu"]),
+.layout-mobile .backdropCard .cardOverlayButton-br:not([data-action="menu"]) {
+    display: none;
+}
+
+.layout-mobile .cardOverlayButton-br[data-action="menu"] > .cardOverlayButtonIcon {
+    background-color: transparent !important;
+    border: none;
+    text-shadow: var(--iconShadow);
+    color: #fff;
+}
+
+.cardOverlayContainer:has(> button:hover) {
+    backdrop-filter: var(--blurDefault);
+}
+
+.listViewUserDataButtons {
+    font-size: small;
+}
+
+.layout-mobile .listViewUserDataButtons {
+    flex-direction: column;
+    font-size: x-small;
+}

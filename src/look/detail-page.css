@@ -1,0 +1,37 @@
+/* detail page start */
+.itemMiscInfo {
+    align-items: flex-end !important;
+    justify-content: center;
+    color: var(--dimTextColor);
+}
+
+.itemMiscInfo .mediaInfoItem {
+    font-variant-numeric: tabular-nums;
+}
+
+/* the audio and the subtitles are glass cards with a gold icon */
+:root[data-theme="light"] .trackSelections .selectAudioContainer,
+:root[data-theme="light"] .trackSelections .selectSubtitlesContainer {
+    --trackCardBackground: hsla(40, 45%, 97%, 0.65);
+}
+
+.trackSelections .selectAudioContainer > .detailTrackSelect,
+.trackSelections .selectSubtitlesContainer > .detailTrackSelect {
+    border-radius: var(--largeRadius);
+}
+
+.trackSelections .selectAudioContainer > .selectLabel::before,
+.trackSelections .selectSubtitlesContainer > .selectLabel::before {
+    background: var(--accentColor);
+    -webkit-mask: var(--trackIcon) center / contain no-repeat;
+    mask: var(--trackIcon) center / contain no-repeat;
+    filter: none;
+}
+
+/* the cast portraits get a ring like the other cards */
+#castCollapsible .cardScalable,
+#guestCastContent .cardScalable {
+    background: var(--cardBackgroundGradient);
+    background-clip: padding-box;
+}
+/* detail page end */

@@ -1,0 +1,272 @@
+/* library header start
+this is the second row of the app bar while browsing a library */
+
+/* with the seamless app bar style, the app bar covers the whole library header and fades out
+just below it, so the buttons stay readable while the library is scrolled */
+.MuiAppBar-root:has(> .MuiToolbar-root + .MuiToolbar-root) {
+    --headerBackground: linear-gradient(180deg, var(--lighterGradientPoint), var(--lighterGradientPointAlpha));
+    --headerBlurMask: linear-gradient(180deg, #fff calc(100% - 1.25em), transparent);
+}
+
+/* this extends the blur below the app bar and tints the faded area below it; the mask of the blur
+fades the tint out, and like the blur, it is turned off by the other app bar styles */
+.MuiAppBar-root:has(> .MuiToolbar-root + .MuiToolbar-root)::after {
+    bottom: -1.25em;
+    background: linear-gradient(180deg, transparent calc(100% - 1.25em), var(--lighterGradientPointAlpha) 0);
+}
+
+/* this keeps the library from starting under the faded area */
+.MuiAppBar-root:has(> .MuiToolbar-root + .MuiToolbar-root) + [aria-hidden="true"] {
+    margin-bottom: 1.25em;
+}
+
+/* this moves the alphabet picker below the faded area */
+.alphaPicker-fixed-right.MuiBox-root {
+    margin-top: 1.25em;
+}
+
+/* the view selector, the buttons and the item count share one row, also on phones, so the header takes up
+less space while scrolling; when the row is full, the name in the view selector is shortened.
+The row is a grid of two lines, so that the page buttons can sit above the item count at its end */
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) repeat(4, auto);
+    grid-template-areas:
+        "title new filters reset arrows"
+        "title new filters reset count";
+    align-content: center;
+    align-items: center;
+}
+
+/* the boxes around the buttons and the item count give way, so that these take their own places in the grid */
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root > :is(.MuiStack-root, .MuiBox-root:has(> .MuiChip-root)) {
+    display: contents;
+}
+
+/* library view selector, e.g. Movies, Suggestions or Genres */
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root > .MuiButton-root {
+    grid-area: title;
+    justify-self: start;
+    min-width: 0;
+    max-width: 100%;
+    padding: 0.1em 0.5em 0.1em 0.75em;
+    border-radius: var(--largeRadius);
+    color: var(--fullContrastColor);
+}
+
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root > .MuiButton-root .MuiTypography-h2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root > .MuiButton-root .MuiButton-endIcon {
+    margin-inline-start: 0.25em;
+}
+
+.layout-mobile .MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root .MuiTypography-h2 {
+    font-size: 1.35rem;
+}
+
+/* new collection and new playlist buttons; the play all, shuffle and queue buttons next to them
+are hidden to keep the row short */
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root > .MuiStack-root > .MuiBox-root {
+    grid-area: new;
+}
+
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root .MuiButtonGroup-contained {
+    display: none;
+}
+
+/* filter, sort and view buttons */
+.MuiAppBar-root
+    > .MuiToolbar-root
+    + .MuiToolbar-root
+    > .MuiStack-root
+    > .MuiButtonGroup-text:not(:has([data-testid="NavigateNextIcon"])) {
+    grid-area: filters;
+}
+
+/* reset filters button, right after them */
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root .MuiButton-textPrimary {
+    grid-area: reset;
+    margin-inline-start: 0.5em;
+    padding: 0.2em 0.9em;
+    border-radius: 3em;
+    color: var(--textColor);
+    background-color: var(--darkerGradientPointAlpha);
+    border: var(--defaultBorder);
+}
+
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root .MuiButton-textPrimary .MuiSvgIcon-root {
+    color: var(--accentHoverColor);
+}
+
+/* on small screens, Jellyfin makes the other buttons small and shows only their icons; the reset filters button
+then shows only its icon too, in their size and shape, and its text is hidden but still read by screen readers */
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root:has(.MuiButton-sizeSmall) .MuiButton-textPrimary {
+    justify-content: flex-start;
+    width: 2.5em;
+    min-width: 0;
+    height: 2.5em;
+    padding: 0;
+    overflow: hidden;
+    font-size: 0.8125rem;
+    white-space: nowrap;
+}
+
+.MuiAppBar-root
+    > .MuiToolbar-root
+    + .MuiToolbar-root:has(.MuiButton-sizeSmall)
+    .MuiButton-textPrimary
+    .MuiButton-startIcon {
+    flex-shrink: 0;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+}
+
+/* filter, sort, view and page buttons, styled like the round icon buttons of the legacy layout */
+.MuiAppBar-root .MuiButtonGroup-text {
+    gap: 0.25em;
+}
+
+.MuiAppBar-root .MuiButtonGroup-text > .MuiButton-root {
+    height: 2.5em;
+    color: var(--textColor);
+    border: none !important;
+    border-radius: 3em !important;
+}
+
+/* this makes the buttons that only show an icon perfectly round */
+.MuiAppBar-root .MuiButtonGroup-root > .MuiButton-root:not(:has(> .MuiButton-startIcon)) {
+    width: 2.5em;
+    min-width: 0;
+    padding: 0;
+}
+
+.MuiAppBar-root .MuiButtonGroup-root > .MuiButton-root.Mui-disabled {
+    color: var(--dimTextColor) !important;
+    opacity: 0.5;
+}
+
+.MuiAppBar-root .MuiBadge-dot {
+    background-color: var(--accentHoverColor);
+}
+
+/* the page buttons, small and right above the item count at the end of the row, so that both together
+take little room and the name of the library stays readable on phones */
+.MuiAppBar-root
+    > .MuiToolbar-root
+    + .MuiToolbar-root
+    > .MuiStack-root
+    > .MuiButtonGroup-text:has([data-testid="NavigateNextIcon"]) {
+    grid-area: arrows;
+    justify-self: center;
+    align-self: end;
+    gap: 0.1rem;
+    margin: 0;
+    margin-inline-start: 0.75em;
+}
+
+/* while the count is not there yet, the page buttons stay in the middle of the row */
+.MuiAppBar-root
+    > .MuiToolbar-root
+    + .MuiToolbar-root:not(:has(.MuiChip-root))
+    > .MuiStack-root
+    > .MuiButtonGroup-text:has([data-testid="NavigateNextIcon"]) {
+    grid-row: 1 / 3;
+    align-self: center;
+}
+
+.MuiAppBar-root
+    > .MuiToolbar-root
+    + .MuiToolbar-root
+    > .MuiStack-root
+    > .MuiButtonGroup-text:has([data-testid="NavigateNextIcon"])
+    > .MuiButton-root {
+    width: 1.6rem;
+    height: 1.3rem;
+}
+
+/* the small page buttons can also be tapped a little above them, where the row is empty */
+.MuiAppBar-root
+    > .MuiToolbar-root
+    + .MuiToolbar-root
+    > .MuiStack-root
+    > .MuiButtonGroup-text:has([data-testid="NavigateNextIcon"])
+    > .MuiButton-root::after {
+    content: "";
+    position: absolute;
+    inset: -0.5rem 0 0;
+}
+
+.MuiAppBar-root
+    > .MuiToolbar-root
+    + .MuiToolbar-root
+    > .MuiStack-root
+    > .MuiButtonGroup-text:has([data-testid="NavigateNextIcon"])
+    .MuiSvgIcon-root {
+    font-size: 1.15rem;
+}
+
+/* item count, at the end of the row; below the page buttons it is small text, and on its own a small pill */
+.MuiAppBar-root .MuiChip-root {
+    height: 1.75em;
+    background-color: var(--darkerGradientPointAlpha);
+    border: var(--defaultBorder);
+    color: var(--dimTextColor);
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.MuiAppBar-root .MuiChip-label {
+    padding-inline: 0.75em;
+}
+
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root .MuiChip-root {
+    grid-area: count;
+    grid-row: 1 / 3;
+    justify-self: center;
+    margin-inline-start: 0.75em;
+}
+
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root:has([data-testid="NavigateNextIcon"]) .MuiChip-root {
+    grid-row: count;
+    align-self: start;
+    height: auto;
+    background: none;
+    border: none;
+    letter-spacing: 0.02em;
+}
+
+/* on small screens, where every bit of the row counts, the count below the page buttons is a little smaller still */
+.MuiAppBar-root
+    > .MuiToolbar-root
+    + .MuiToolbar-root:has(.MuiButton-sizeSmall):has([data-testid="NavigateNextIcon"])
+    .MuiChip-root {
+    font-size: 0.68rem;
+}
+
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root:has([data-testid="NavigateNextIcon"]) .MuiChip-label {
+    padding: 0;
+}
+
+/* new collection and new playlist buttons */
+.MuiAppBar-root > .MuiToolbar-root + .MuiToolbar-root .MuiButton-contained:not(.MuiButtonGroup-grouped) {
+    height: 2.5em;
+    border-radius: 3em !important;
+    box-shadow: none;
+}
+
+.MuiAppBar-root
+    > .MuiToolbar-root
+    + .MuiToolbar-root
+    .MuiButton-contained:not(.MuiButtonGroup-grouped):not(:has(> .MuiButton-startIcon)) {
+    width: 2.5em;
+    min-width: 0;
+    padding: 0;
+}
+
+/* library header end */

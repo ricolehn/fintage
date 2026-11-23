@@ -7,10 +7,11 @@
         "css-declaration-sorter": "^7.4.0",
         "cssnano": "^8.0.1",
         "postcss": "^8.5.15",
-        "postcss-cli": "^11.0.1"
+        "postcss-cli": "^11.0.1",
+        "postcss-import": "^16.2.0",
+        "postcss-selector-parser": "^7.2.1"
     },
     "scripts": {
-        "build": "node build.js",
-        "new-version": "node build.js new"
+        "build": "node build.js"
     }
 }

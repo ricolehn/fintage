@@ -1,0 +1,247 @@
+/* this is the header visible in home and libraries; it uses the frosted style by default */
+/* var(--frosted, --seamless) */
+/* its background is painted by the layer below, which paint containment would cut off */
+.skinHeader-blurred:not(.osdHeader):not(.semiTransparent) {
+    contain: layout style;
+    background: none;
+    border: var(--appBarBorder, none);
+    border-width: 0 0 var(--borderWidth) 0;
+    box-shadow: var(--appBarShadow, none);
+}
+
+/* this layer paints the header; its blur reaches 3em below the header and is cut back to it,
+so content right at the bottom edge gets blurred as well */
+.skinHeader-blurred:not(.osdHeader):not(.semiTransparent)::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: -3em;
+    left: 0;
+    right: 0;
+    background: var(--appBarColor, var(--headerBackground));
+    background-repeat: no-repeat;
+    background-size: 100% calc(100% - 3em);
+    backdrop-filter: var(--appBarBlurStrength, none) var(--appBarBlurFill,);
+    -webkit-mask: linear-gradient(#000 calc(100% - 3em), transparent 0);
+    mask: linear-gradient(#000 calc(100% - 3em), transparent 0);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.skinHeader-blurred:not(.osdHeader):not(.semiTransparent)::after {
+    content: var(--appBarSeamlessBlur, "");
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    backdrop-filter: var(--blurLargest);
+    -webkit-mask: var(--headerBlurMask);
+    mask: var(--headerBlurMask);
+    z-index: -1;
+}
+
+.layout-mobile .skinHeader-blurred:not(.osdHeader),
+.layout-mobile .withSectionTabs .headerTop {
+    padding: 0;
+}
+
+.sectionTabs {
+    display: inline-grid;
+    height: var(--appBarHeight);
+    padding-bottom: var(--appBarTabsPadding, 1.5em);
+}
+
+.layout-mobile .sectionTabs {
+    align-content: center;
+}
+
+/* this is the transparent header, visible in main media page */
+.skinHeader-withBackground.semiTransparent {
+    --headerBackground: none;
+    backdrop-filter: none;
+    background-color: transparent;
+    border: none;
+}
+
+/* this keeps the header transparent on pages without a title, like the main media page on phones */
+.skinHeader.headroom:not(.osdHeader, .noHomeButtonHeader):has(.pageTitle:empty)::before,
+.skinHeader.headroom:not(.osdHeader, .noHomeButtonHeader):has(.pageTitle:empty)::after,
+.skinHeader.headroom:not(.osdHeader, .noHomeButtonHeader):has(.pageTitle:empty) {
+    --headerBackground: none;
+    backdrop-filter: none;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.skinHeader-withBackground.semiTransparent .headerButton:not(:hover),
+.skinHeader.headroom:not(.osdHeader, .noHomeButtonHeader):has(.pageTitle:empty) .headerButton:not(:hover) {
+    text-shadow: var(--iconShadow);
+    color: #fff;
+}
+
+/* this keeps the header elements aligned when its height is modified */
+.headerTop {
+    -webkit-align-items: center;
+    align-items: center;
+    /* this removes different padding set on different layouts in various media queries */
+    padding: 0;
+    height: var(--appBarHeight);
+}
+
+.osdHeader .headerTop {
+    max-height: var(--appBarHeight);
+}
+
+.layout-desktop .headerTop {
+    padding: 0 1em;
+}
+
+.layout-tv .headerTop {
+    padding: 0 0.5em;
+}
+
+/* this prevents the section tabs from hiding all the way up on phones (not-tablets)*/
+.headroom--unpinned {
+    -webkit-transform: translateY(calc(-1 * var(--appBarHeight) - var(--borderWidth)));
+    transform: translateY(calc(-1 * var(--appBarHeight) - var(--borderWidth)));
+}
+
+.noHomeButtonHeader .emby-tab-button[data-index="1"]::before {
+    content: "favorite";
+}
+
+.noHomeButtonHeader .emby-tab-button[data-index="0"]::before {
+    content: "home";
+}
+
+.noHomeButtonHeader .emby-tab-button::before {
+    --fill: 0;
+    font-family:
+        var(--iconPack),
+        Material Icons;
+    font-feature-settings: "liga";
+    font-size: 1.2em;
+    font-variation-settings:
+        "FILL" var(--fill),
+        "wght" var(--wght),
+        "GRAD" var(--grad),
+        "opsz" var(--opsz);
+    transition: font-variation-settings 0.25s;
+}
+
+/* on TVs, Jellyfin gives the tabs a little more than half of the header, and the tabs of a library of shows
+reached into the buttons on the right of the header; they are a little smaller there now, so they fit,
+and if a library has even more tabs, they scroll instead of covering the buttons */
+.layout-tv .sectionTabs .emby-tabs.smoothScrollX {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+}
+
+.layout-tv .sectionTabs .emby-tab-button {
+    margin: 0.25em 0.2em;
+    padding: 0 0.75em;
+    font-size: 90%;
+}
+
+.sectionTabs .emby-tab-button {
+    display: inline-flex;
+    margin: 0.25em 0.5em;
+    padding: 0 1.25em;
+    height: 2.5em;
+    color: var(--textColor);
+    background-color: var(--darkerGradientPointAlpha);
+}
+
+.sectionTabs .emby-tab-button-active {
+    margin: 0.25em 0.5em;
+    color: var(--zeroContrastColor);
+    background-color: var(--btnPlayColor);
+}
+
+/* this increases page top padding when section tabs are expanded */
+.libraryPage:not(.noSecondaryNavPage) {
+    padding-top: calc(var(--appBarHeight) * 2 + 0.5em) !important;
+}
+
+@media (min-width: 75em) {
+    .sectionTabs {
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-align-self: center;
+        align-self: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        /* this collapses the section tabs expanded earlier than the default 100em max-width */
+        margin-top: calc(-1 * var(--appBarHeight));
+        position: relative;
+        width: auto;
+    }
+
+    /* this reduces page top padding when section tabs are collapsed */
+    .libraryPage:not(.noSecondaryNavPage) {
+        padding-top: calc(var(--appBarHeight) + 0.5em) !important;
+    }
+
+    /* this fixes the header like on desktop on larger tablet screens */
+    .headroom--unpinned {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+}
+
+@media (min-width: 100em) {
+    /* this reduces top padding when section tabs are collapsed on TVs */
+    .layout-tv .libraryPage:not(.noSecondaryNavPage) {
+        padding-top: calc(var(--appBarHeight) + 0.5em) !important;
+    }
+}
+
+@media (max-width: 100em) {
+    /* this makes the font size consistent */
+    .sectionTabs {
+        font-size: 100%;
+    }
+
+    /* this keeps the section tabs expanded on TVs under 100em width */
+    .layout-tv .sectionTabs {
+        margin-top: unset;
+    }
+
+    /* this increases page top padding when section tabs are expanded on TVs*/
+    .layout-tv .libraryPage:not(.noSecondaryNavPage) {
+        padding-top: calc(var(--appBarHeight) * 2 + 0.5em) !important;
+    }
+}
+
+@media (max-width: 75em) {
+    /* these margins are applied only on phones, not tablets*/
+    .layout-mobile .sectionTabs .emby-tab-button:first-child {
+        margin-left: var(--sidePadding);
+    }
+
+    .layout-mobile .sectionTabs .emby-tab-button:last-child {
+        margin-right: var(--sidePadding);
+    }
+}
+
+.layout-tv .headerLeft {
+    overflow: unset;
+    margin: 0em 0.6em;
+}
+
+.skinHeader {
+    /* this is for testing a fix for iOS  */
+    padding-top: max(env(safe-area-inset-top), var(--safe-area-inset-top)) !important;
+    color: var(--textColor);
+}
+
+.nowPlayingPage {
+    background: linear-gradient(var(--darkerGradientPointAlpha), transparent);
+}
+
+.remoteControlContent {
+    padding: 0 var(--sidePadding) !important;
+    background: linear-gradient(transparent, var(--darkerGradientPointAlpha) 20em);
+}

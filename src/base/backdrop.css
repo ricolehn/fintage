@@ -1,0 +1,120 @@
+.layout-mobile .cardImageIcon {
+    font-size: 3.5em;
+}
+
+.homeLibraryButton {
+    width: min(45%, 12rem);
+    min-width: 15%;
+    margin: 0 !important;
+}
+
+@media (max-width: 50em) {
+    .homeLibraryButton {
+        width: 47.6% !important;
+    }
+}
+
+@media (orientation: portrait) and (max-width: 40em) {
+    [data-type="Movie"] .listItemImage,
+    [data-type="Series"] .listItemImage {
+        display: unset;
+    }
+
+    .dashboardActionsContainer {
+        font-size: min(3.6vw, 98%);
+    }
+}
+
+@media (orientation: portrait) {
+    /* hides sync button on home screen on phones only in portrait mode */
+    .layout-mobile .skinHeader.noHomeButtonHeader .headerSyncButton {
+        display: none;
+    }
+
+    .layout-mobile .btnPlay.detailButton:not(.play-button) {
+        flex: 0 0 100%;
+        margin-right: 0 !important;
+    }
+}
+
+h2 {
+    font-size: 1.25em;
+}
+
+h1,
+h2 {
+    font-weight: 600;
+}
+
+html,
+.nowPlayingPlaylist,
+.nowPlayingContextMenu,
+.backgroundContainer:not(.withBackdrop),
+.backgroundContainer:not(.backgroundContainer-transparent),
+.backdropContainer {
+    background: var(--backgroundGradient);
+}
+
+.backdropImage {
+    background-position-y: clamp(0%, calc(var(--backdropTrimFromTop) * 5), 100%);
+}
+
+.backdropImage::after,
+.backdropImage::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: inherit;
+}
+
+.backdropImage::after {
+    z-index: 0;
+    height: 80vh;
+    -webkit-mask: linear-gradient(180deg, rgba(0, 0, 0, 1) 75%, transparent);
+    mask: linear-gradient(180deg, rgba(0, 0, 0, 1) 75%, transparent);
+}
+
+.layout-desktop .backdropImage::after {
+    transition: opacity 0.25s;
+}
+
+.backdropImage::before {
+    transform: scale(1.1);
+    filter: var(--blurLargest);
+}
+
+.layout-mobile .withSectionTabs .backgroundContainer.withBackdrop {
+    opacity: 0.9;
+}
+
+.layout-mobile .backgroundContainer.withBackdrop {
+    opacity: 1;
+}
+
+.layout-desktop .withSectionTabs .backdropImage::after {
+    opacity: 0;
+}
+
+.layout-mobile .withSectionTabs .backdropImage::after {
+    display: none;
+}
+
+@keyframes animScaleUp {
+    from {
+        transform: translateY(-2.5%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+
+.backdropImageFadeIn {
+    transform-origin: bottom center;
+    animation: animScaleUp 0.5s ease-out forwards;
+}

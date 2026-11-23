@@ -1,0 +1,94 @@
+.emby-select-iconbutton {
+    background-color: var(--selectorBackgroundColor);
+    border: var(--defaultLighterBorder);
+    margin-inline-start: 1em;
+}
+
+.subtitleappearance-preview {
+    border-radius: var(--smallRadius);
+}
+
+.infoBanner {
+    display: flex;
+    place-content: center;
+    background-color: var(--headerColor) !important;
+    border-radius: var(--largeRadius) !important;
+    /* the look gives it a glass border; browsers without :has() skip that rule and keep this one */
+    border: var(--defaultBorder) !important;
+}
+
+fieldset {
+    border-radius: var(--smallRadius);
+    border: var(--defaultBorder);
+}
+
+table:not(.MuiTable-root.MuiTable-stickyHeader) {
+    /* the look replaces this color, but the line keeps the minifier from merging the rule for fieldset above
+    into this one, which older browsers skip, since they only know :not() with a single class */
+    border-color: var(--borderColor) !important;
+    border-radius: var(--smallRadius);
+    border-spacing: 1px;
+    border: var(--defaultBorder);
+    background: var(--tableBodyColor);
+    border-collapse: separate;
+    overflow: hidden;
+}
+
+.detailTableHeaderCell {
+    vertical-align: middle;
+}
+
+#serverActivityPage .MuiPaper-elevation2 {
+    border: var(--defaultBorder) !important;
+    box-shadow: unset !important;
+}
+
+#serverActivityPage .MuiPaper-elevation2,
+#serverActivityPage .MuiPaper-elevation2 > .MuiBox-root,
+#serverActivityPage .MuiTableRow-root.MuiTableRow-head {
+    background-color: var(--tableBodyColor);
+}
+
+.detailTableBodyRow-shaded:nth-child(odd),
+#serverActivityPage .MuiTableBody-root .MuiTableRow-root:nth-child(odd) {
+    background: var(--darkerGradientPointAlpha) !important;
+}
+
+.detailTableBodyRow-shaded:nth-child(even),
+#serverActivityPage .MuiTableBody-root .MuiTableRow-root:nth-child(even) {
+    background: var(--lighterGradientPointAlpha) !important;
+}
+
+.MuiList-root.MuiMenu-list {
+    background-color: var(--drawerColor);
+    padding: 0.375em;
+}
+
+ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
+    /* Don't change these units. They are rem because that is standard for MUI */
+    gap: 0.5rem;
+}
+
+.playerStats,
+.iconOsd {
+    background-color: rgba(69, 69, 69, 0.69);
+}
+
+.playerStats-stats {
+    max-height: 50vh;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    padding: 1em !important;
+}
+
+#scenesContent .cardScalable:active {
+    border-color: var(--dimTextColor) !important;
+}
+
+.progressring-spiner {
+    border-color: var(--accentColor);
+}
+
+.skinHeader.focuscontainer-x.skinHeader-withBackground.skinHeader-blurred.semiTransparent.noHeaderRight {
+    display: none;
+}

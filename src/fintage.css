@@ -1,0 +1,76 @@
+/*! Fintage Theme v{{version}} for Jellyfin by ricolehn, based on ElegantFin by lscambo13 */
+
+/* Fintage is a changed version of ElegantFin v26.09.05 by lscambo13 (https://github.com/lscambo13/ElegantFin),
+changed by ricolehn since 2026-10-17; both are free software under the GNU General Public License v2.0 */
+
+/* The theme in the order in which the browser reads it. The order matters: of two rules that are equally specific,
+the later one wins, so every file can build on the ones above it.
+- settings: the fonts, the options that users can change and the names for the kinds of pages
+- base: the layout of every part of Jellyfin, which comes from ElegantFin
+- pages: the designs of Fintage for whole pages, like the card of a movie or the music on phones
+- jellyfin-12: the new layout of Jellyfin 12
+- look: the colors, surfaces and motion of Fintage, which lie on top of everything above
+npm run build joins the files into Theme/Fintage-latest-minified.css */
+
+/* Inter Font Family */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+@import "settings/fonts.css"; /* the rounded Material Symbols icons */
+@import "settings/options.css"; /* the options that users can change in their custom CSS */
+@import "settings/page-types.css"; /* names for the checks that tell what a page shows */
+@import "base/global.css"; /* variables for layouts and themes, the icons and the version in the settings */
+@import "base/cards.css"; /* cards, their borders, hover and overlay buttons */
+@import "base/episode-list.css"; /* the episodes of a season as a list on desktops */
+@import "base/card-grid.css"; /* how many cards fit next to each other */
+@import "pages/detail-page.css"; /* the page of an item: layout, logo, title and the rows below */
+@import "pages/episode.css"; /* the page of an episode */
+@import "pages/season.css"; /* the page of a season */
+@import "pages/phone-card.css"; /* the card of a movie, show, collection, season or episode on phones */
+@import "pages/desktop-card.css"; /* the card of a movie, show, collection, season or episode on desktops */
+@import "pages/music-phones.css"; /* music on phones: albums, playlists, the small player and the now playing screen */
+@import "base/backdrop.css"; /* library buttons, headings and the backdrop behind the pages */
+@import "base/lyrics.css"; /* lyrics */
+@import "base/progress-and-sliders.css"; /* progress bars and sliders, including the one of the player */
+@import "base/controls.css"; /* labels, link buttons, the drawer and the controls of the player */
+@import "pages/detail-text.css"; /* links, tags and the plot of an item */
+@import "base/dialogs.css"; /* card footers, messages and dialogs */
+@import "base/selection.css"; /* the selection bar and checkboxes */
+@import "base/card-indicators.css"; /* the indicators on cards */
+@import "base/buttons.css"; /* buttons */
+@import "base/lists.css"; /* lists, action sheets and the navigation menu */
+@import "pages/audio-subtitles.css"; /* audio and subtitles as cards below the plot */
+@import "pages/credits.css"; /* the details of an item and the credits at the end of its page */
+@import "base/sections.css"; /* sections, the alphabet picker and the settings menu */
+@import "pages/upcoming.css"; /* the Upcoming tab of TV shows as a timeline */
+@import "base/section-titles.css"; /* the titles above rows of cards */
+@import "base/playback.css"; /* toasts, the next episode dialog and the skip button */
+@import "base/hover.css"; /* hover and press effects */
+@import "base/forms.css"; /* text fields, selects and the search field */
+@import "pages/titles.css"; /* the title, subtitle and original title of an item */
+@import "pages/live-tv-guide.css"; /* the live TV guide */
+@import "base/tables-and-menus.css"; /* tables, menus, player stats and the loading spinner */
+@import "pages/login.css"; /* the login page */
+@import "pages/now-playing.css"; /* the times of the player and the now playing screen and bar */
+@import "base/tabs-and-osd.css"; /* tabs and the bars of the player */
+@import "base/header.css"; /* the header of the legacy layouts and the section tabs */
+@import "jellyfin-12/app-bar.css"; /* the app bar of the layout of Jellyfin 12 */
+@import "jellyfin-12/library-header.css"; /* the library header of Jellyfin 12 */
+@import "jellyfin-12/library.css"; /* section titles, the alphabet picker, menus and form fields of Jellyfin 12 */
+@import "jellyfin-12/rounded-icons.css"; /* the rounded icons of Jellyfin 12 */
+@import "jellyfin-12/hover.css"; /* hover effects of Jellyfin 12 */
+@import "base/tv-performance.css"; /* less work for low-end TVs */
+@import "integrations/media-bar.css"; /* basic styling for the Media Bar plugin */
+@import "look/tokens.css"; /* the colors, surfaces and shadows of the look */
+@import "look/scrollbars.css"; /* the text selection and the scrollbars */
+@import "look/typography.css"; /* typography */
+@import "look/backdrop.css"; /* the backdrop */
+@import "look/cards.css"; /* cards */
+@import "look/glass.css"; /* glass surfaces */
+@import "look/app-bar.css"; /* the app bar */
+@import "look/buttons.css"; /* buttons */
+@import "look/focus.css"; /* selection and focus */
+@import "look/forms.css"; /* forms */
+@import "look/downloads.css"; /* the search results for subtitles, lyrics and images */
+@import "look/detail-page.css"; /* the page of an item */
+@import "look/login.css"; /* the login page */
+@import "look/motion.css"; /* less motion for those who ask for it */

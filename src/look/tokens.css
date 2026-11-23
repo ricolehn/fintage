@@ -1,0 +1,307 @@
+/* the look of Fintage start
+on top of the ElegantFin base above:
+- a deep, almost black base with a faint film grain instead of the slate blue
+- glass panels with hairline edges and soft layered shadows instead of solid borders
+- white play buttons and a restrained champagne accent for progress, selection and focus
+- slower, smoother motion: cards lift and catch a soft sheen instead of the shine sweep
+it only changes colors, surfaces and motion, so every option of the theme keeps working;
+the plain values of the base that this look replaces with variables stay in the base,
+since browsers without CSS variables, like those of older TVs, still use them */
+
+:root {
+    /* new variables of this look */
+    --fintageEase: cubic-bezier(0.22, 1, 0.36, 1);
+    --fintageCardRadius: 0.75em;
+    /* the gold is used as is on images, e.g. for progress bars and the played seal, in both themes */
+    --fintageGold: hsl(39, 52%, 67%);
+    --fintageGoldGradient: linear-gradient(180deg, hsl(40, 62%, 76%), hsl(37, 46%, 61%));
+    /* the color of text on an accent fill */
+    --accentTextColor: hsl(38, 35%, 8%);
+    --fintageInk: rgb(11, 11, 13);
+    --fintageGlassColor: hsla(240, 5%, 9%, 0.62);
+    --fintageGlassBorderColor: hsla(0, 0%, 100%, 0.08);
+    --fintageGlassBorder: var(--borderWidth) solid var(--fintageGlassBorderColor);
+    --fintageGlassHighlight: inset 0 var(--borderWidth) 0 hsla(0, 0%, 100%, 0.06);
+    --fintageGlassShadow: 0 1.5em 4em -1em hsla(0, 0%, 0%, 0.7);
+    --fintageGlassBlur: blur(24px) saturate(1.5);
+    --fintageRingColor: hsla(0, 0%, 100%, 0.09);
+    --fintageCardHoverShadow: 0 0.15em 0.3em hsla(0, 0%, 0%, 0.3), 0 1.5em 2.5em -0.75em hsla(0, 0%, 0%, 0.85);
+    --fintageButtonShadow: 0 0.35em 1.25em -0.35em hsla(0, 0%, 0%, 0.6);
+    --fintageFocusRing: 0 0 0 0.2em hsla(0, 0%, 100%, 0.14);
+    --fintageScrollbarColor: hsla(0, 0%, 100%, 0.16);
+    /* these darken the edges of the backdrop and fade it into the page */
+    --fintageVignetteColor: rgba(11, 11, 13, 0.65);
+    --fintageBackdropFadeColor: rgba(11, 11, 13, 0.2);
+    /* the grain is a tile of fractal noise, white at 5% opacity; it is base64 encoded, so the minifier keeps its filter:
+    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg> */
+    --fintageGrain: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48ZmlsdGVyIGlkPSJnIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC44NSIgbnVtT2N0YXZlcz0iMiIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjxmZUNvbG9yTWF0cml4IHZhbHVlcz0iMCAwIDAgMCAxIDAgMCAwIDAgMSAwIDAgMCAwIDEgMCAwIDAgMC4wNSAwIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI2cpIi8+PC9zdmc+");
+
+    /* base theme colors: near black with the slightest warmth */
+    --darkerGradientPoint: var(--fintageInk);
+    --darkerGradientPointAlpha: rgba(11, 11, 13, 0.85);
+    --lighterGradientPoint: rgb(22, 22, 25);
+    --lighterGradientPointAlpha: rgba(22, 22, 25, 0.85);
+    --gradientPointAlpha: rgba(22, 22, 25, 0.3);
+    --headerColor: rgba(24, 24, 27, 0.72);
+    /* the frosted app bar is half transparent with a faint milky haze on top */
+    --frostedHeaderColor:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015)), rgba(11, 11, 13, 0.55);
+    /* this fills the edges of the screen where Chromium fades the blur out, see --appBarBlurFill */
+    --headerFillColor: rgb(16, 16, 18);
+    /* the solid app bar is fully opaque, so page content never shows through it */
+    --solidHeaderColor: linear-gradient(180deg, rgb(23, 23, 26), rgb(16, 16, 18));
+    /* the app bar border is opaque, so page content never shows through it */
+    --headerBorderColor: rgb(33, 33, 37);
+    --headerShadowColor: hsla(0, 0%, 0%, 0.5);
+    --drawerColor: rgba(20, 20, 23, 0.82);
+
+    --borderColor: hsl(240, 4%, 19%);
+    --darkerBorderColor: hsl(240, 4%, 12%);
+    --lighterBorderColor: hsla(0, 0%, 100%, 0.12);
+
+    --selectorBackgroundColor: hsl(240, 4%, 13%);
+    --selectorBackgroundColorAlpha: hsla(240, 4%, 13%, 0.5);
+
+    --textColor: rgb(236, 235, 232);
+    --dimTextColor: rgb(163, 162, 157);
+    --fullContrastColor: #fff;
+    --zeroContrastColor: #000;
+    --svgIconFilter: none;
+
+    --accentColor: var(--fintageGold);
+    --accentHoverColor: hsl(40, 62%, 76%);
+    --semiTransparentAccentColor: hsla(0, 0%, 100%, 0.1);
+
+    --btnPlayColor: rgb(244, 243, 239);
+    --btnPlayBorderColor: rgb(244, 243, 239);
+
+    --btnMiniPlayColor: rgba(244, 243, 239, 0.96);
+    --btnMiniPlayBorderColor: transparent;
+
+    --btnDeleteColor: hsl(0, 50%, 36%);
+    --btnDeleteBorderColor: hsl(0, 50%, 48%);
+    --btnSubmitColor: var(--fintageGoldGradient);
+    --btnSubmitBorderColor: hsl(40, 62%, 78%);
+    --checkboxCheckedBgColor: var(--accentColor);
+    /* focus on TVs and in forms is a white fill or ring, like on tvOS */
+    --highlightOutlineColor: rgb(244, 243, 239);
+
+    --hoverBackgroundColor: rgb(244, 243, 239);
+    --hoverTabBackgroundColor: rgba(244, 243, 239, 0.92);
+    --hoverTextColor: #fff;
+    --activeBackgroundColor: hsla(0, 0%, 100%, 0.08);
+    --activeTextColor: #fff;
+
+    --cardHoverBorderColor: hsla(0, 0%, 100%, 0.45);
+    --cardResumeProgressColor: var(--fintageGold);
+    --multiSelectOverlayColor: rgba(0, 0, 0, 0.75);
+
+    --dividerColor: hsla(0, 0%, 100%, 0.06);
+    --textareaBackgroundColor: var(--selectorBackgroundColor);
+
+    --tableBodyColor: rgb(20, 20, 22);
+
+    --osdSeekBarPlayedColor: var(--fintageGold);
+    --osdSeekBarBufferedColorAlpha: hsla(0, 0%, 100%, 0.22);
+    --osdSeekBarThumbColor: #fff;
+
+    /* textures */
+    --backgroundGradient:
+        var(--fintageGrain) 0 0 / 12.5em 12.5em,
+        radial-gradient(130% 70% at 50% -10%, rgb(27, 27, 31), transparent 70%), var(--darkerGradientPoint);
+    --cardBackgroundGradient: linear-gradient(0deg, rgb(17, 17, 19), rgb(28, 28, 31));
+    --headerColorGradient: linear-gradient(180deg, rgba(11, 11, 13, 0.95) 30%, 55%, transparent 90%);
+    --headerColorGradientAlt: linear-gradient(180deg, rgba(11, 11, 13, 1), 70%, transparent);
+    --cardFooterGradient: linear-gradient(0deg, hsla(0, 0%, 0%, 0.85), 40%, transparent);
+    --backgroundAlphaOverlay: linear-gradient(180deg, var(--darkerGradientPointAlpha) 80%, transparent);
+    --headerBlurMask: linear-gradient(180deg, #fff 50%, 85%, transparent);
+    --topOSDGradient: linear-gradient(180deg, hsla(0, 0%, 0%, 0.8), 45%, hsla(0, 0%, 0%, 0));
+    --bottomOSDGradient: linear-gradient(0deg, hsla(0, 0%, 0%, 0.8), 45%, hsla(0, 0%, 0%, 0));
+
+    /* on phones, the backdrop of a detail page keeps its full brightness at the top and fades out to the page
+    on an eased curve, as far down as before, but without a visible end */
+    --itemBackdropMask: linear-gradient(
+        180deg,
+        #000 25%,
+        rgba(0, 0, 0, 0.998) 30%,
+        rgba(0, 0, 0, 0.988) 35%,
+        rgba(0, 0, 0, 0.965) 40%,
+        rgba(0, 0, 0, 0.926) 45%,
+        rgba(0, 0, 0, 0.871) 50%,
+        rgba(0, 0, 0, 0.798) 55%,
+        rgba(0, 0, 0, 0.711) 60%,
+        rgba(0, 0, 0, 0.61) 65%,
+        rgba(0, 0, 0, 0.5) 70%,
+        rgba(0, 0, 0, 0.386) 75%,
+        rgba(0, 0, 0, 0.273) 80%,
+        rgba(0, 0, 0, 0.169) 85%,
+        rgba(0, 0, 0, 0.082) 90%,
+        rgba(0, 0, 0, 0.023) 95%,
+        transparent
+    );
+
+    /* the shine sweep becomes a soft sheen that fades in, see the cards below */
+    --hoverGradientV: linear-gradient(150deg, hsla(0, 0%, 100%, 0.16), hsla(0, 0%, 100%, 0.04) 35%, transparent 60%);
+    --hoverGradientH: var(--hoverGradientV);
+
+    --shadow: 0 0.06em 0.15em hsla(0, 0%, 0%, 0.45);
+    --cardShadow: 0 0.06em 0.12em hsla(0, 0%, 0%, 0.3), 0 0.6em 1.25em -0.5em hsla(0, 0%, 0%, 0.65);
+    --iconShadow: 0px 0px 2px hsla(0, 0%, 0%, 0.8), 1px 1px 0px hsla(0, 0%, 0%, 0.5);
+
+    /* the clear logo gets a soft shadow, so it stands off the backdrop */
+    --clearLogoFilter: drop-shadow(0 0.1em 0.75em hsla(0, 0%, 0%, 0.45));
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* the light theme is warm sand with dark warm grey text instead of near white and near black;
+the dark fills, e.g. the play button, the selected tab and the focus on TVs, are a soft espresso brown */
+:root[data-theme="light"] {
+    --fintageEspresso: rgb(82, 65, 50);
+    /* the grain is the tile of the dark theme with dark brown noise at 6% opacity, like paper:
+    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0.3 0 0 0 0 0.22 0 0 0 0 0.14 0 0 0 0.06 0"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg> */
+    --fintageGrain: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48ZmlsdGVyIGlkPSJnIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC44NSIgbnVtT2N0YXZlcz0iMiIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjxmZUNvbG9yTWF0cml4IHZhbHVlcz0iMCAwIDAgMCAwLjMgMCAwIDAgMCAwLjIyIDAgMCAwIDAgMC4xNCAwIDAgMCAwLjA2IDAiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjZykiLz48L3N2Zz4=");
+    --fintageGlassColor: hsla(40, 40%, 96%, 0.72);
+    --fintageGlassBorderColor: hsla(30, 25%, 25%, 0.1);
+    --fintageGlassHighlight: inset 0 var(--borderWidth) 0 hsla(40, 60%, 99%, 0.7);
+    --fintageGlassShadow: 0 1.5em 4em -1em hsla(30, 25%, 25%, 0.2);
+    --fintageRingColor: hsla(30, 25%, 25%, 0.1);
+    --fintageCardHoverShadow: 0 0.15em 0.3em hsla(30, 25%, 25%, 0.1), 0 1.5em 2.5em -0.75em hsla(30, 25%, 25%, 0.3);
+    --fintageButtonShadow: 0 0.35em 1.25em -0.35em hsla(30, 25%, 25%, 0.35);
+    --fintageFocusRing: 0 0 0 0.2em hsla(36, 45%, 37%, 0.22);
+    --fintageScrollbarColor: hsla(30, 25%, 25%, 0.22);
+    --fintageVignetteColor: rgba(237, 232, 222, 0.5);
+    --fintageBackdropFadeColor: rgba(237, 232, 222, 0.15);
+    --accentTextColor: rgb(252, 249, 243);
+
+    --darkerGradientPoint: rgb(237, 232, 222);
+    --darkerGradientPointAlpha: rgba(237, 232, 222, 0.85);
+    --lighterGradientPoint: rgb(245, 241, 233);
+    --lighterGradientPointAlpha: rgba(245, 241, 233, 0.85);
+    --gradientPointAlpha: rgba(245, 241, 233, 0.3);
+
+    --headerColor: rgba(245, 241, 233, 0.75);
+    --frostedHeaderColor:
+        linear-gradient(180deg, rgba(250, 247, 241, 0.55), rgba(250, 247, 241, 0.3)), rgba(237, 232, 222, 0.5);
+    --headerFillColor: rgb(240, 235, 226);
+    --solidHeaderColor: linear-gradient(180deg, rgb(245, 241, 233), rgb(233, 227, 216));
+    --headerBorderColor: rgb(218, 210, 196);
+    --headerShadowColor: hsla(30, 25%, 25%, 0.12);
+    --drawerColor: rgba(243, 238, 229, 0.88);
+
+    --borderColor: rgb(212, 203, 188);
+    --darkerBorderColor: rgb(224, 217, 204);
+    --lighterBorderColor: hsla(30, 25%, 25%, 0.14);
+
+    --selectorBackgroundColor: rgb(248, 245, 239);
+    --selectorBackgroundColorAlpha: hsla(30, 25%, 25%, 0.05);
+
+    --textColor: rgb(51, 45, 38);
+    --dimTextColor: rgb(110, 101, 89);
+    --fullContrastColor: rgb(38, 33, 27);
+    --zeroContrastColor: rgb(250, 247, 241);
+    --svgIconFilter: invert(1);
+
+    --accentColor: hsl(36, 45%, 37%);
+    --accentHoverColor: hsl(36, 48%, 43%);
+
+    --btnPlayColor: var(--fintageEspresso);
+    --btnPlayBorderColor: var(--fintageEspresso);
+
+    --btnMiniPlayColor: rgba(248, 245, 239, 0.96);
+    --btnMiniPlayBorderColor: transparent;
+
+    --btnDeleteColor: hsl(4, 50%, 42%);
+    --btnDeleteBorderColor: hsl(4, 50%, 36%);
+    --btnSubmitColor: linear-gradient(180deg, hsl(36, 45%, 44%), hsl(36, 45%, 36%));
+    --btnSubmitBorderColor: hsl(36, 45%, 33%);
+
+    --checkboxCheckedBgColor: var(--accentColor);
+    --highlightOutlineColor: var(--fintageEspresso);
+
+    --hoverBackgroundColor: var(--fintageEspresso);
+    --hoverTabBackgroundColor: var(--fintageEspresso);
+    --hoverTextColor: var(--textColor);
+
+    --activeBackgroundColor: hsla(30, 25%, 25%, 0.08);
+    --activeTextColor: var(--textColor);
+
+    --cardHoverBorderColor: hsla(30, 25%, 25%, 0.32);
+    --cardResumeProgressColor: var(--fintageGold);
+    --multiSelectOverlayColor: rgba(237, 232, 222, 0.8);
+
+    --dividerColor: hsla(30, 25%, 25%, 0.08);
+    --textareaBackgroundColor: rgb(248, 245, 239);
+
+    --tableBodyColor: rgb(245, 241, 233);
+
+    --osdSeekBarPlayedColor: var(--fintageGold);
+    --osdSeekBarThumbColor: #fff;
+
+    --backgroundGradient:
+        var(--fintageGrain) 0 0 / 12.5em 12.5em,
+        radial-gradient(130% 70% at 50% -10%, rgb(246, 242, 235), transparent 70%), var(--darkerGradientPoint);
+    --cardBackgroundGradient: linear-gradient(0deg, rgb(229, 223, 211), rgb(240, 235, 226));
+
+    --headerColorGradient: linear-gradient(180deg, rgba(245, 241, 233, 0.95) 30%, 55%, transparent 90%);
+    --headerColorGradientAlt: linear-gradient(180deg, rgba(245, 241, 233, 0.95), 70%, transparent);
+
+    --cardFooterGradient: linear-gradient(0deg, hsla(0, 0%, 0%, 0.75), 40%, transparent);
+
+    --shadow: 0 0.06em 0.15em hsla(0, 0%, 0%, 0);
+    --cardShadow: 0 0.06em 0.12em hsla(30, 25%, 25%, 0.08), 0 0.6em 1.25em -0.5em hsla(30, 25%, 25%, 0.26);
+
+    /* logos keep their own colors; the shadow is a little firmer than in the dark theme,
+    so white logos still stand off a light backdrop */
+    --clearLogoFilter: drop-shadow(0 0 0.04em hsla(30, 30%, 10%, 0.35))
+        drop-shadow(0 0.1em 0.75em hsla(30, 30%, 10%, 0.35));
+}
+
+/* this maps the MUI color palette of Jellyfin 12 to the colors of this look;
+the Channel variables need plain rgb values because MUI uses them to create transparent colors */
+:root[data-theme] {
+    --jf-palette-primary-main: var(--accentColor);
+    --jf-palette-primary-mainChannel: 215 184 127;
+    --jf-palette-primary-light: var(--accentHoverColor);
+    --jf-palette-primary-lightChannel: 233 207 156;
+    --jf-palette-primary-dark: hsl(37, 46%, 56%);
+    --jf-palette-primary-darkChannel: 199 162 100;
+    --jf-palette-primary-contrastText: var(--accentTextColor);
+    --jf-palette-primary-contrastTextChannel: 27 22 13;
+    --jf-palette-secondary-main: var(--highlightOutlineColor);
+    --jf-palette-secondary-mainChannel: 244 243 239;
+    --jf-palette-secondary-contrastText: var(--fintageInk);
+    --jf-palette-secondary-contrastTextChannel: 11 11 13;
+    --jf-palette-background-default: var(--darkerGradientPoint);
+    --jf-palette-background-defaultChannel: 11 11 13;
+    --jf-palette-background-paper: var(--lighterGradientPoint);
+    --jf-palette-background-paperChannel: 22 22 25;
+    --jf-palette-text-primary: var(--textColor);
+    --jf-palette-text-primaryChannel: 236 235 232;
+    --jf-palette-text-secondary: var(--dimTextColor);
+    --jf-palette-text-secondaryChannel: 163 162 157;
+    --jf-palette-divider: var(--darkerBorderColor);
+    --jf-palette-AppBar-defaultBg: var(--headerColor);
+    --jf-palette-FilledInput-bg: var(--selectorBackgroundColor);
+    --jf-palette-FilledInput-hoverBg: var(--selectorBackgroundColor);
+    --jf-palette-SnackbarContent-bg: var(--headerColor);
+    --jf-palette-SnackbarContent-color: var(--textColor);
+    --jf-palette-Tooltip-bg: var(--selectorBackgroundColor);
+}
+
+:root[data-theme="light"] {
+    --jf-palette-primary-mainChannel: 137 103 52;
+    --jf-palette-primary-lightChannel: 162 120 57;
+    --jf-palette-primary-dark: hsl(36, 45%, 32%);
+    --jf-palette-primary-darkChannel: 118 89 45;
+    --jf-palette-primary-contrastTextChannel: 252 249 243;
+    --jf-palette-secondary-mainChannel: 82 65 50;
+    --jf-palette-secondary-contrastText: var(--zeroContrastColor);
+    --jf-palette-secondary-contrastTextChannel: 250 247 241;
+    --jf-palette-background-defaultChannel: 237 232 222;
+    --jf-palette-background-paperChannel: 245 241 233;
+    --jf-palette-text-primaryChannel: 51 45 38;
+    --jf-palette-text-secondaryChannel: 110 101 89;
+}

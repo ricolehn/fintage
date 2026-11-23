@@ -1,0 +1,173 @@
+.emby-button.block,
+.button-alt,
+.raised,
+.raised:focus,
+.manageRecordingButton,
+.dashboardActionsContainer > .emby-button {
+    color: var(--fullContrastColor);
+    border-radius: var(--smallRadius);
+    background: var(--lighterGradientPoint);
+    border: var(--defaultBorder);
+    transition: all 0.125s;
+}
+
+.editItemMetadataForm > .metadataFormFields div:has(.formDialogFooterItem) {
+    display: flex;
+    justify-content: center;
+}
+
+.btnBrowse > .folder {
+    margin-inline-end: 0.5em;
+}
+
+.fab {
+    color: var(--fullContrastColor);
+    background: var(--lighterGradientPoint);
+    border: var(--defaultBorder);
+}
+
+.fab:focus {
+    background: var(--lighterGradientPoint) !important;
+    filter: brightness(1.2);
+}
+
+.raised:active,
+.fab:active,
+.emby-button:active {
+    filter: brightness(1.05) !important;
+    transform: scale(0.98);
+}
+
+.detailButton {
+    border: var(--defaultLighterBorder);
+    padding: 0.5em 0.5em !important;
+}
+
+.cardScalable .material-icons.check::before {
+    transform: scale(1.25);
+}
+
+.detailButton:not(.btnPlay) {
+    color: var(--textColor);
+    backdrop-filter: none;
+    margin: 0.5em !important;
+    border-radius: 50%;
+    padding: 0.6em !important;
+}
+
+.layout-desktop .detailButton:not(.btnPlay):hover {
+    color: var(--zeroContrastColor);
+    background: var(--hoverBackgroundColor);
+}
+
+.detailButton:active {
+    color: #fff;
+    background: var(--activeBackgroundColor);
+}
+
+.btnPlay.detailButton {
+    background-color: var(--btnPlayColor);
+    color: var(--zeroContrastColor);
+    border-radius: 3em;
+    border-color: var(--btnPlayBorderColor);
+    height: 3em;
+    min-width: 10em;
+    margin-right: 0.5em !important;
+    flex-direction: row;
+    font-weight: 600;
+    letter-spacing: 0.005em;
+    box-shadow: var(--fintageButtonShadow);
+    transition:
+        transform 0.3s var(--fintageEase),
+        filter 0.3s var(--fintageEase);
+}
+
+.mainDetailButtons > .btnPlay::after {
+    content: attr(title);
+    padding-right: 1ch;
+}
+
+.btnPlay > .detailButton-content::after {
+    padding: 0 1ch;
+    place-content: center;
+}
+
+.btnPlay > .detailButton-content {
+    align-items: unset;
+    display: flex;
+    flex-direction: unset;
+    align-content: unset;
+    justify-content: flex-start;
+}
+
+.mainDetailButtons:has(.detailButton[data-type="Book"]) .btnPlay[title="Play"]::after {
+    content: "Read";
+}
+
+.mainDetailButtons:has(.detailButton[data-type="Book"]) .btnPlay .material-icons.play_arrow::before {
+    content: "book";
+    padding-inline-end: 1ch;
+}
+
+.mainDetailButtons {
+    justify-content: center;
+    margin: 0;
+}
+
+.layout-mobile [dir="ltr"] .mainDetailButtons {
+    flex-wrap: wrap;
+    padding: 0 1.25em;
+}
+
+@media (min-width: 100em) {
+    .mainDetailButtons {
+        font-size: unset;
+        margin: 0;
+    }
+}
+
+.localnav > .emby-button {
+    background: var(--lighterGradientPoint) !important;
+    color: var(--fullContrastColor);
+    padding: 0.8em 0.8em;
+}
+
+div[data-role="controlgroup"] a.ui-btn-active {
+    background: var(--selectorBackgroundColor) !important;
+    color: var(--fullContrastColor) !important;
+}
+
+.guide-date-tab-button.emby-tab-button-active,
+.guide-date-tab-button:focus {
+    color: var(--fullContrastColor);
+}
+
+#btnDeleteImage,
+.button-delete,
+.btnRevoke,
+#btnShutdown {
+    background: var(--btnDeleteColor) !important;
+    border: solid var(--btnDeleteBorderColor) var(--borderWidth);
+    color: #fff !important;
+}
+
+.button-submit,
+.upNextContainer .btnStartNow,
+.MuiButton-colorPrimary:not(.MuiButton-text) {
+    color: #fff !important;
+}
+
+.userPreferencesPage .button-submit {
+    position: sticky !important;
+    bottom: calc(1em + max(env(safe-area-inset-bottom), var(--safe-area-inset-bottom, 1px)));
+    box-shadow: 0 0.75em 2em 2em var(--darkerGradientPoint);
+    z-index: 2 !important;
+}
+
+.collapseContent,
+.formDialogFooter:not(.formDialogFooter-clear),
+.formDialogHeader:not(.formDialogHeader-clear) {
+    background-color: var(--headerColor);
+    backdrop-filter: var(--blurDefault);
+    color: var(--textColor);
+}

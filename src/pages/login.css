@@ -1,0 +1,50 @@
+#loginPage .padded-left.padded-right.padded-bottom-page {
+    background: rgba(30, 40, 54, 0.7);
+}
+
+.manualLoginForm .sectionTitle,
+.visualLoginForm > h1 {
+    display: none;
+}
+
+#loginPage .padded-left.padded-right.padded-bottom-page:has(.visualLoginForm:not(.hide)) {
+    width: 40em;
+}
+
+/* three users side by side, also on phones */
+#divUsers .squareCard {
+    width: 30% !important;
+}
+
+/* the title stands above the card of the form, without taking room in it */
+.manualLoginForm::before,
+.visualLoginForm::before {
+    content: var(--loginPageText);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: calc(100% + var(--loginCardPadding, 2rem) + 0.9rem);
+    font-size: 1.875em;
+    /* browsers that only know the weights in steps of 100 keep 800 */
+    font-weight: 800;
+    color: var(--fullContrastColor);
+    text-align: center;
+    font-weight: 650;
+    letter-spacing: -0.03em;
+}
+
+.manualLoginForm,
+.visualLoginForm {
+    position: relative;
+}
+
+#quickConnectPreferencesPage .padded-left.padded-right.padded-bottom-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#txtLoginDisclaimer {
+    resize: none;
+}

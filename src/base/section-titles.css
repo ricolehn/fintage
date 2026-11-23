@@ -1,0 +1,44 @@
+.sectionTitleTextButton {
+    padding: 0 0.5em;
+}
+
+.sectionTitleTextButton:hover {
+    background: transparent !important;
+}
+
+.sectionTitleTextButton:active {
+    color: var(--fullContrastColor) !important;
+}
+
+.sectionTitleContainer-cards {
+    padding-top: 0;
+    padding-bottom: 0.2em;
+}
+
+.sectionTitleTextButton > * {
+    text-align: left;
+    /* the !important are needed for proper alignment on phones */
+    padding: 0.3em 0 !important;
+    margin: 0 0 !important;
+    /* this prevents long library names from breaking into another line */
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 88vw;
+}
+
+.dashboardSection .sectionTitleTextButton > .material-icons,
+.sectionTitleTextButton > .material-icons,
+.dashboardSection .sectionTitleTextButton > .material-icons.material-icons {
+    font-size: unset;
+}
+
+.sectionTitleTextButton > .chevron_right {
+    --fill: 0;
+    --opsz: 48;
+    font-size: 1.5rem;
+}
+
+.sectionTitleTextButton > .chevron_right::before {
+    content: "arrow_circle_right";
+}

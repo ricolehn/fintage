@@ -1,0 +1,75 @@
+/* The pages of Jellyfin carry no class that tells what they show, so the theme recognises them by what is on them.
+Each name below stands for one such check, and npm run build writes the check in the place of the name, as if it were
+written there. A name goes right after the element it is about, like #itemDetailPage:--episode, and more checks can
+follow it, like #itemDetailPage:--season:has(.detailLogo:not(.hide)). These checks are the only place that knows how
+Jellyfin marks its pages, so a change of Jellyfin needs a change here, not in every rule. */
+
+/* the page of an episode: its title starts with a link to its season */
+@custom-selector :--episode :has(.itemName [data-type="Season"]);
+
+/* the page of an episode with a landscape image of its own, which Jellyfin shows instead of the poster */
+@custom-selector :--episode-with-image :has(.itemName [data-type="Season"]):has(.detailImageContainer > .backdropCard);
+
+/* the page of an episode without an image of its own */
+@custom-selector :--episode-without-image
+    :has(.itemName [data-type="Season"]):not(:has(.detailImageContainer > .backdropCard));
+
+/* the page of a season: the name of its series stands above its title, and the title links to no season */
+@custom-selector :--season :has(.parentName [data-type="Series"]):not(:has(.itemName [data-type="Season"]));
+
+/* the page of a movie, a show or a collection: the placeholder of its poster has the icon of one of them, and the page
+has no subtitle like an episode, no artist like an album and no landscape or square image like a video or a song */
+@custom-selector :--movie-show-or-collection
+    :has(.detailImageContainer .cardImageIcon:is(.movie, .tv, .video_library, .folder)):not(
+        :has(.subtitle, .musicParentName, .detailImageContainer :is(.backdropCard, .squareCard))
+    );
+
+/* the pages that show their image as a card on desktops: movies, shows, collections, seasons and episodes */
+@custom-selector :--card-page :is(:--movie-show-or-collection, :--season, :--episode);
+
+/* the pages that show their image as a card on phones; episodes with an image of their own show it in a card
+of their own, see the page of an episode */
+@custom-selector :--phone-card-page :is(:--movie-show-or-collection, :--season, :--episode-without-image);
+
+/* the page of an album or a playlist */
+@custom-selector :--album-or-playlist :has(.infoWrapper > .detailImageContainer .cardImageIcon:is(.album, .queue));
+
+/* The backdrop, the background and the app bar come before the page in the document, so they look for the page
+after themselves; Jellyfin keeps the pages it showed before, hidden, so only the page that is not hidden counts */
+
+/* before a page that shows a card on desktops: a movie, a show or a collection, a season or an episode */
+@custom-selector :--before-card-page
+    :is(
+        :has(
+            ~ * #itemDetailPage:not(.hide) .detailImageContainer .cardImageIcon:is(.movie, .tv, .video_library, .folder)
+        ):not(
+            :has(
+                ~ *
+                    #itemDetailPage:not(.hide)
+                    :is(.subtitle, .musicParentName, .detailImageContainer :is(.backdropCard, .squareCard))
+            )
+        ),
+        :has(~ * #itemDetailPage:not(.hide) .parentName [data-type="Series"])
+    );
+
+/* before the page of an item, of any kind */
+@custom-selector :--before-item-page :has(~ main #itemDetailPage:not(.hide));
+
+/* before a page whose poster has the placeholder icon of a movie, a show or a collection */
+@custom-selector :--before-poster-page
+    :has(
+        ~ main #itemDetailPage:not(.hide) .detailImageContainer .cardImageIcon:is(.movie, .tv, .video_library, .folder)
+    );
+
+/* before the page of an album or a playlist */
+@custom-selector :--before-album-or-playlist-page
+    :has(~ main #itemDetailPage:not(.hide) .infoWrapper > .detailImageContainer .cardImageIcon:is(.album, .queue));
+
+/* before a page that stands on its own without the app bar, like the login page */
+@custom-selector :--before-standalone-page :has(~ main .standalonePage:not(.hide));
+
+/* for the root element: the now playing screen of the music is shown */
+@custom-selector :--now-playing-shown :has(#nowPlayingPage:not(.hide));
+
+/* before the now playing screen of the music */
+@custom-selector :--before-now-playing-page :has(~ main #nowPlayingPage:not(.hide));

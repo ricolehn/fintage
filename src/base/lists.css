@@ -1,0 +1,286 @@
+.paperList {
+    padding: 0.4em;
+}
+
+.serverInfo {
+    padding: 1em;
+}
+
+.serverInfo > :nth-child(1n) {
+    -webkit-flex: 1 0 30%;
+    flex: 1 0 30%;
+}
+
+.serverInfo > :nth-child(2n) {
+    -webkit-flex: 1 0 50%;
+    flex: 1 0 50%;
+    text-align: end;
+}
+
+.listItemIcon:not(.listItemIcon-transparent) {
+    background-color: var(--lighterGradientPoint) !important;
+    color: var(--textColor);
+}
+
+.listItemIcon.notification_important {
+    background-color: var(--btnDeleteColor) !important;
+    border: solid var(--btnDeleteBorderColor) var(--borderWidth);
+}
+
+.listItemIcon.notifications:not(.listItemIcon-transparent),
+.listItemIcon.schedule:not(.listItemIcon-transparent),
+.listItemIcon.person:not(.listItemIcon-transparent),
+.listItemIcon.live_tv:not(.listItemIcon-transparent) {
+    background-color: var(--darkerGradientPoint) !important;
+    border: var(--defaultBorder);
+}
+
+.readOnlyContent {
+    flex-direction: column !important;
+}
+
+.MuiDrawer-paper {
+    background: var(--drawerColor);
+    padding: 0.25em;
+}
+
+[dir="ltr"] .listItem:not(.actionSheetMenuItem, .childrenItemsContainer .listItem, .activityLogListWidget .listItem) {
+    padding: 0.375em !important;
+}
+
+[dir="ltr"]
+    .listItem:not(.actionSheetMenuItem, .childrenItemsContainer .listItem, .activityLogListWidget .listItem):not(
+        :last-child
+    ) {
+    margin-bottom: 0.5em;
+}
+
+[dir="ltr"] .listItem:not(.actionSheetMenuItem)[data-type="Episode"] {
+    padding: 0.375em;
+    margin-bottom: 0.5em;
+}
+
+.layout-mobile #songsTab .listItem[data-type="Audio"],
+.layout-mobile #playlist .listItem[data-type="Audio"] {
+    margin: auto 1em;
+}
+
+.listItem[data-type="Audio"]:has(.playlistIndexIndicatorImage) .listItemBodyText {
+    color: var(--fullContrastColor);
+    font-weight: 600;
+}
+
+.listItem[data-type="Audio"]:has(.playlistIndexIndicatorImage):not(:hover) {
+    background-color: rgba(255, 255, 255, 0.07);
+}
+
+.listItem-largeImage .listItemBodyText:not(.secondary) {
+    font-size: 1.17em;
+    font-weight: 600;
+    color: var(--textColor);
+}
+
+.listItemBodyText.secondary {
+    color: var(--dimTextColor);
+}
+
+.listItemBody > .listItemBodyText:not(.secondary) {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: inherit;
+}
+
+.listItem-overview {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.listItem-bottomoverview,
+[dir="ltr"] .listItem:not(.actionSheetMenuItem)[data-type="Episode"] .listItem-overview p {
+    margin-top: 0.75em;
+    margin-bottom: 0em;
+}
+
+/* on phones, the images of episodes are 16:9 like the episode images themselves, instead of about 4:3;
+they keep their height and get wider (the episode lists on desktops and TVs set their own size) */
+.layout-mobile .listItem[data-type="Episode"] .listItemImage-large {
+    flex-shrink: 0;
+    box-sizing: border-box;
+    width: auto !important;
+    aspect-ratio: 16 / 9;
+}
+
+/* on TVs, the images of episodes are 16:9 as well and as wide as on desktops, 18vw, without the upper limit there,
+since a TV is watched from further away: at the height of 20vw that Jellyfin gives them on TVs, not even three
+episodes fit on the screen, at this size about five do, and the plot has more room next to the image.
+both sizes are written out instead of coming from aspect-ratio: the browsers of many TVs do not know aspect-ratio yet,
+e.g. those of LG TVs up to webOS 22 and of Samsung TVs up to Tizen 6.5, and with a width of auto the images shrank
+to a thin strip there */
+.layout-tv .listItem[data-type="Episode"] .listItemImage-large {
+    flex-shrink: 0;
+    box-sizing: border-box;
+    width: 18vw !important;
+    height: calc(18vw * 9 / 16) !important;
+}
+
+/* episodes show the first three lines of their plot, also on phones; the full plot is on the page of the episode */
+.listItem[data-type="Episode"] .listItem-overview,
+.listItem[data-type="Episode"] .listItem-bottomoverview {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.listItem[data-type="Episode"] .listItem-bottomoverview p {
+    margin: 0;
+}
+
+/* on desktop, a click anywhere on an episode of a season opens the page of the episode, as it does on phones;
+the image, which already opens the page, is stretched over the whole row of the episode, which cuts it off at its edges;
+the text of the episode is contained, so it gets painted above the image unless the image is raised,
+and the buttons, which come after the image, stay above it */
+.layout-desktop
+    #childrenContent
+    .listItem-largeImage[data-type="Episode"][data-action="none"]
+    .listItemImage[data-action="link"]::after {
+    content: "";
+    position: absolute;
+    top: -100vh;
+    bottom: -100vh;
+    left: -100vw;
+    right: -100vw;
+}
+
+.layout-desktop #childrenContent .listItem-largeImage[data-type="Episode"][data-action="none"] .listItemImage,
+.layout-desktop #childrenContent .listItem-largeImage[data-type="Episode"][data-action="none"] .listItemImageButton,
+.layout-desktop
+    #childrenContent
+    .listItem-largeImage[data-type="Episode"][data-action="none"]
+    .listViewUserDataButtons
+    > .listItemButton {
+    position: relative;
+    z-index: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .layout-desktop #childrenContent .listItem-largeImage[data-type="Episode"][data-action="none"]:hover {
+        background-color: var(--dividerColor);
+    }
+}
+
+.listItem,
+.navMenuOption {
+    border-radius: 0.7em;
+}
+
+.listItem:hover,
+.navMenuOption:hover {
+    background: unset;
+    border-radius: 0.7em;
+}
+
+.listItem:focus {
+    background: var(--highlightOutlineColor);
+}
+
+.listItem:active,
+.navMenuOption:active {
+    background: var(--activeBackgroundColor);
+    color: #fff;
+}
+
+.listItem-border {
+    border-color: transparent !important;
+}
+
+.listItem-border.emby-button.show-focus:focus {
+    border-radius: var(--smallRadius);
+}
+
+.MuiListItem-root > a,
+.MuiList-root > a,
+.MuiListItem-root > div {
+    border: solid transparent var(--borderWidth);
+    border-radius: 0.7em;
+}
+
+.Mui-selected {
+    color: #fff;
+}
+
+.actionsheetDivider {
+    height: 2px;
+    background: var(--dividerColor);
+}
+
+.actionsheet-xlargeFont {
+    line-height: normal;
+}
+
+.actionSheetContent {
+    padding: 0.4em !important;
+}
+
+.actionSheetContent > h1 {
+    font-size: unset;
+}
+
+[dir="ltr"] .actionsheetMenuItemIcon {
+    margin: 0 0.2em 0 0.45em !important;
+}
+
+.actionSheetMenuItem:has(.listItemIcon.check) .listItemIcon.check {
+    display: none;
+}
+
+.actionSheetMenuItem:has(.listItemIcon.check[style*="hidden"]) {
+    background-color: transparent;
+}
+
+.actionSheetMenuItem:has(.listItemIcon.check[style*="hidden"]) .listItemBodyText {
+    color: var(--fullContrastColor);
+    background-color: transparent;
+}
+
+.actionSheetMenuItem:has(.listItemIcon.check[style*="hidden"]):active {
+    background-color: var(--semiTransparentAccentColor);
+}
+
+.navMenuOption {
+    border-radius: var(--smallRadius) !important;
+    margin: 0em 1em !important;
+}
+
+[dir="ltr"] .navMenuOption {
+    padding: 0.75em 1em !important;
+    margin-bottom: unset;
+}
+
+#myPreferencesMenuPage .listItemIcon {
+    margin-left: 0.5em;
+    margin-right: 0.25em;
+}
+
+#itemDetailPage .detailSection {
+    display: grid;
+    row-gap: 1em;
+    column-gap: 3em;
+    max-width: unset !important;
+    grid-template-columns: 1.3fr 0.7fr 1fr 1fr;
+    margin-bottom: 1.5em;
+}
+
+/* Support .tmdb-review-swipe-container for Jellyfin Enhanced 
+ (https://github.com/n00bcodr/Jellyfin-Enhanced) */
+.tmdb-review-swipe-container {
+    max-width: 93vw;
+}
+
+.detailPageContent {
+    gap: 1em;
+}

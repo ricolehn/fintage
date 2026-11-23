@@ -1,0 +1,47 @@
+/* forms start */
+.emby-select-withcolor,
+.emby-select,
+.emby-input,
+.emby-textarea,
+.emby-select-iconbutton,
+.MuiFilledInput-root {
+    border-color: var(--lighterBorderColor);
+    border-radius: 0.6em !important;
+    transition:
+        border-color 0.2s var(--fintageEase),
+        box-shadow 0.2s var(--fintageEase);
+}
+
+.emby-select-withcolor:focus,
+.emby-input:focus,
+.emby-textarea:focus,
+.MuiFilledInput-root.Mui-focused {
+    outline: none !important;
+    box-shadow: var(--fintageFocusRing);
+}
+
+.checkboxOutline:not(.multiSelectCheckboxOutline) {
+    transition: all 0.125s;
+    background-color: var(--selectorBackgroundColor);
+    border: var(--borderWidthDouble) solid var(--lighterBorderColor);
+}
+
+.emby-checkbox:checked + span + .checkboxOutline:not(.multiSelectCheckboxOutline) {
+    background: var(--checkboxCheckedBgColor);
+    border: var(--defaultLighterBorder);
+    border-color: transparent;
+}
+
+.emby-checkbox:checked + span + .checkboxOutline:not(.multiSelectCheckboxOutline) .checkboxIcon {
+    color: var(--accentTextColor);
+}
+
+/* the focus of a checkbox is a soft ring, like the focus of the other fields */
+@supports (display: revert) {
+    .emby-checkbox:focus + span + .checkboxOutline:not(.multiSelectCheckboxOutline) {
+        border-color: var(--lighterBorderColor) !important;
+        outline: none;
+        box-shadow: var(--fintageFocusRing);
+    }
+}
+/* forms end */

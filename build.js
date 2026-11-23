@@ -1,29 +1,55 @@
-// npm run build: builds the minified files that the imports load from the readable files of the version in package.json,
-// and the file with all optional scripts that the loader of option 15 loads
-// npm run new-version -- 1.0.1: copies the readable files of the current version to a new version, which then gets the changes
+// npm run build: builds the files that the imports load from the files in src/,
+// and the file with all optional scripts that the loader of option 15 loads.
+// The version comes from package.json; to start a new one, change it there, e.g. npm version 1.5.1 --no-git-tag-version
 const fs = require("fs");
 const postcss = require("postcss");
+const postcssImport = require("postcss-import");
 const { plugins } = require("./postcss.config.js");
 
 process.chdir(__dirname);
 const pkg = JSON.parse(fs.readFileSync("package.json", "utf8"));
-const theme = "Theme/";
 const addOns = "Theme/assets/add-ons/";
 
 // the optional scripts, in the order in which the loader of option 15 runs them
 const scripts = ["full-resolution-episode-images", "short-track-names", "episode-titles"];
 
-// the readable files of a version and the minified files they are built into
-const files = (version) => [
-    [`${theme}Fintage_v${version}.css`, `${theme}Fintage-latest-minified.css`],
-    [`${addOns}custom-media-covers-v${version}.css`, `${addOns}custom-media-covers-latest-min.css`],
-    [`${addOns}media-bar-plugin-support-v${version}.css`, `${addOns}media-bar-plugin-support-latest-min.css`],
+// the names of src/settings/page-types.css: the build writes the check of each name in its place, as if it were
+// written there, so the built file is the same as if every rule spelled out its checks
+const pageTypes = {
+    postcssPlugin: "fintage-page-types",
+    Once(root) {
+        const checks = {};
+        root.walkAtRules("custom-selector", (rule) => {
+            const [, name, check] = rule.params.match(/^(:--[\w-]+)\s+([\s\S]+)$/);
+            checks[name] = check.replace(/\s+/g, " ").trim();
+            rule.remove();
+        });
+        const expand = (selector, seen = []) =>
+            selector.replace(/:--[\w-]+/g, (name) => {
+                if (!(name in checks)) throw new Error(`unknown page type ${name}`);
+                if (seen.includes(name)) throw new Error(`the page type ${name} uses itself`);
+                return expand(checks[name], [...seen, name]);
+            });
+        root.walkRules((rule) => {
+            if (rule.selector.includes(":--")) rule.selector = expand(rule.selector);
+        });
+    },
+};
+
+// the source of each file that the imports load
+const files = [
+    ["src/fintage.css", "Theme/Fintage-latest-minified.css"],
+    ["src/add-ons/custom-media-covers.css", `${addOns}custom-media-covers-latest-min.css`],
+    ["src/add-ons/media-bar-plugin-support.css", `${addOns}media-bar-plugin-support-latest-min.css`],
 ];
 
 async function build() {
-    for (const [from, to] of files(pkg.version)) {
-        const result = await postcss(plugins).process(fs.readFileSync(from, "utf8"), { from, to });
-        fs.writeFileSync(to, result.css);
+    for (const [from, to] of files) {
+        const result = await postcss([postcssImport(), pageTypes, ...plugins]).process(fs.readFileSync(from, "utf8"), {
+            from,
+            to,
+        });
+        fs.writeFileSync(to, result.css.split("{{version}}").join(pkg.version));
         console.log(`${from} -> ${to}`);
     }
     bundle();
@@ -51,18 +77,4 @@ function bundle() {
     console.log(`${scripts.map((name) => name + ".js").join(", ")} -> ${to}`);
 }
 
-// the version is in the name of each file, in its header and in the footer of the settings
-function newVersion(version) {
-    if (!/^\d+\.\d+\.\d+$/.test(version || "")) throw new Error("usage: npm run new-version -- 1.0.1");
-    const current = files(pkg.version);
-    files(version).forEach(([to], i) => {
-        const [from] = current[i];
-        fs.writeFileSync(to, fs.readFileSync(from, "utf8").split(`v${pkg.version}`).join(`v${version}`));
-        console.log(`${from} -> ${to}`);
-    });
-    pkg.version = version;
-    fs.writeFileSync("package.json", JSON.stringify(pkg, null, 4) + "\n");
-}
-
-if (process.argv[2] === "new") newVersion(process.argv[3]);
-else build();
+build();

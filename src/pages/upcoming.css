@@ -1,0 +1,204 @@
+/* upcoming episodes start
+the release days are a timeline: a thin line runs down the page with a dot for every day, and the nearest day has a gold dot;
+on wide screens the day stands next to its episodes and on phones above them, and the episodes are a list
+with the image next to the titles, in as many columns as fit; on TVs the episodes of a day stay in a row that scrolls sideways */
+:is(#upcomingItems, #tvshowsPage > .padded-bottom-page) > .verticalSection {
+    --upcomingDayWidth: 12em;
+    --upcomingImageWidth: 11em;
+    --upcomingDotSize: 0.8em;
+    --upcomingDotTop: 0.41em;
+    --upcomingLineWidth: 0.1em;
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--upcomingDayWidth) minmax(0, 1fr);
+    column-gap: 1.5em;
+    align-items: start;
+    margin: 0 var(--sidePadding);
+    padding: 0 0 2.25em;
+    padding-inline-start: 2em;
+}
+
+:is(#upcomingItems, #tvshowsPage > .padded-bottom-page) > .verticalSection:first-child {
+    margin-top: 1em;
+}
+
+/* the line; it starts at the dot of the first day and fades out after the last one */
+:is(#upcomingItems, #tvshowsPage > .padded-bottom-page) > .verticalSection::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc((var(--upcomingDotSize) - var(--upcomingLineWidth)) / 2);
+    inset-inline-start: calc((var(--upcomingDotSize) - var(--upcomingLineWidth)) / 2);
+    width: var(--upcomingLineWidth);
+    background: var(--lighterBorderColor);
+}
+
+:is(#upcomingItems, #tvshowsPage > .padded-bottom-page) > .verticalSection:first-child::before {
+    top: calc(var(--upcomingDotTop) + var(--upcomingDotSize) / 2);
+}
+
+:is(#upcomingItems, #tvshowsPage > .padded-bottom-page) > .verticalSection:last-child::before {
+    background: linear-gradient(var(--lighterBorderColor), transparent);
+}
+
+/* the dot of a day, on the line next to the first line of the day */
+:is(#upcomingItems, #tvshowsPage > .padded-bottom-page) > .verticalSection::after {
+    content: "";
+    position: absolute;
+    top: var(--upcomingDotTop);
+    left: 0;
+    inset-inline-start: 0;
+    width: var(--upcomingDotSize);
+    height: var(--upcomingDotSize);
+    box-sizing: border-box;
+    border: var(--borderWidthDouble) solid var(--dimTextColor);
+    border-radius: 50%;
+    background: var(--darkerGradientPoint);
+}
+
+:is(#upcomingItems, #tvshowsPage > .padded-bottom-page) > .verticalSection:first-child::after {
+    border-color: var(--accentColor);
+    background: var(--accentColor);
+    box-shadow: 0 0 0 0.3em var(--fintageRingColor);
+}
+
+/* the day; the !important overrides the size of the section titles */
+:is(#upcomingItems, #tvshowsPage > .padded-bottom-page)
+    > .verticalSection
+    > :is(.sectionTitle, .sectionTitleContainer) {
+    margin: 0;
+    padding: 0;
+}
+
+:is(#upcomingItems, #tvshowsPage > .padded-bottom-page) > .verticalSection .sectionTitle {
+    margin: 0;
+    font-size: 1.2em !important;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+/* the episodes fill the space next to the day; Jellyfin centers the rows of cards with auto margins
+and the theme pads them, which the !important overrides */
+:is(#upcomingItems, #tvshowsPage > .padded-bottom-page) > .verticalSection > .itemsContainer {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* the list of episodes does not scroll, so it needs no room below for the shadows of the cards */
+:is(#upcomingItems, #tvshowsPage > .padded-bottom-page) > .verticalSection > .itemsContainer:not(.itemsContainer-tv) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 24em), 1fr));
+    gap: 1em 2em;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    overflow: visible;
+    white-space: normal;
+}
+
+/* the gap the theme adds after the last card of a row on phones is not needed in a list */
+:is(#upcomingItems, #tvshowsPage > .padded-bottom-page) > .verticalSection > .itemsContainer::after {
+    content: none;
+}
+
+/* the !important overrides the width the theme gives to cards */
+:is(#upcomingItems, #tvshowsPage > .padded-bottom-page)
+    > .verticalSection
+    > .itemsContainer:not(.itemsContainer-tv)
+    > .card {
+    width: auto !important;
+    margin: 0;
+    padding: 0;
+}
+
+:is(#upcomingItems, #tvshowsPage > .padded-bottom-page)
+    > .verticalSection
+    > .itemsContainer:not(.itemsContainer-tv)
+    > .card
+    > .cardBox {
+    display: grid;
+    grid-template-columns: var(--upcomingImageWidth) minmax(0, 1fr);
+    grid-template-rows: 1fr auto auto 1fr;
+    column-gap: 1em;
+    margin: 0 !important;
+}
+
+:is(#upcomingItems, #tvshowsPage > .padded-bottom-page)
+    > .verticalSection
+    > .itemsContainer:not(.itemsContainer-tv)
+    > .card
+    > .cardBox
+    > .cardScalable {
+    grid-area: 1 / 1 / 5 / 2;
+}
+
+:is(#upcomingItems, #tvshowsPage > .padded-bottom-page)
+    > .verticalSection
+    > .itemsContainer:not(.itemsContainer-tv)
+    > .card
+    > .cardBox
+    > .cardText-first {
+    grid-area: 2 / 2;
+    margin: 0;
+}
+
+/* the title of the episode may take two lines */
+:is(#upcomingItems, #tvshowsPage > .padded-bottom-page)
+    > .verticalSection
+    > .itemsContainer:not(.itemsContainer-tv)
+    > .card
+    > .cardBox
+    > .cardText-secondary {
+    grid-area: 3 / 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    white-space: normal;
+}
+
+/* the !important overrides the centered text of Jellyfin */
+:is(#upcomingItems, #tvshowsPage > .padded-bottom-page) > .verticalSection .cardText {
+    text-align: start !important;
+}
+
+:is(#upcomingItems, #tvshowsPage > .padded-bottom-page) > .verticalSection .cardText-secondary {
+    color: var(--dimTextColor);
+}
+
+/* in narrow windows and on phones, the day stands above its episodes */
+@media (max-width: 50em) {
+    :is(#upcomingItems, #tvshowsPage > .padded-bottom-page) > .verticalSection {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 0.75em;
+    }
+}
+
+.layout-mobile :is(#upcomingItems, #tvshowsPage > .padded-bottom-page) > .verticalSection {
+    --upcomingImageWidth: 40%;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0.75em;
+    padding-bottom: 1.75em;
+    padding-inline-start: 1.6em;
+}
+
+.layout-mobile :is(#upcomingItems, #tvshowsPage > .padded-bottom-page) > .verticalSection > .itemsContainer {
+    gap: 0.75em 1.5em;
+}
+
+.layout-mobile
+    :is(#upcomingItems, #tvshowsPage > .padded-bottom-page)
+    > .verticalSection
+    > .itemsContainer
+    > .card
+    > .cardBox {
+    column-gap: 0.9em;
+}
+
+/* on TVs, four cards of a day fit next to the day */
+.layout-tv :is(#upcomingItems, #tvshowsPage > .padded-bottom-page) > .verticalSection > .itemsContainer > .card {
+    --cardCount: 4;
+    --effectiveWidth: calc(100vw - var(--sidePadding) * 2 - var(--upcomingDayWidth) - 3.5em);
+}
+/* upcoming episodes end */

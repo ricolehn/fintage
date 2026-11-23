@@ -1,0 +1,11 @@
+/* less motion for those who ask for it */
+@media (prefers-reduced-motion: reduce) {
+    .card-hoverable:hover .cardScalable,
+    .card-hoverable:hover .cardImageContainer,
+    .btnPlay.detailButton:hover,
+    .layout-desktop .detailButton:not(.btnPlay):hover,
+    .detailButton:not(.btnPlay):active {
+        transform: none;
+    }
+}
+/* the look of Fintage end */

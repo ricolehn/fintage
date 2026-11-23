@@ -1,0 +1,16 @@
+/* app bar start */
+.MuiAppBar-root .MuiStack-root > .MuiButton-root,
+.sectionTabs .emby-tab-button {
+    border-radius: 2em;
+    font-weight: 500;
+    letter-spacing: 0.005em;
+    transition:
+        color 0.25s var(--fintageEase),
+        background-color 0.25s var(--fintageEase);
+}
+
+.MuiAppBar-root .MuiStack-root > .MuiButton-textPrimary,
+.sectionTabs .emby-tab-button-active {
+    box-shadow: var(--fintageButtonShadow);
+}
+/* app bar end */

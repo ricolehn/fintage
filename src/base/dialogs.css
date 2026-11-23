@@ -1,0 +1,84 @@
+#seriesAirTime {
+    margin-top: 0.5em;
+}
+
+.innerCardFooter,
+.chapterCardImageContainer {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.innerCardFooter,
+.chapterThumbTextContainer {
+    background: var(--cardFooterGradient);
+    text-shadow: var(--iconShadow);
+    padding: 0em 2em 2em 2em;
+    align-content: end;
+    display: grid;
+    height: 100%;
+}
+
+.chapterCardImageContainer {
+    background-size: 135%;
+}
+
+.chapterCardImageContainer + .innerCardFooter {
+    padding: 0em 1em 1em 1em;
+    height: auto;
+}
+
+.layout-mobile .innerCardFooter {
+    padding: 5em 1em 1.25em 1em;
+}
+
+.layout-mobile .chapterCardImageContainer + .innerCardFooter {
+    padding: 0em 0.5em 0.5em 0.5em;
+}
+
+.centerMessage {
+    width: unset;
+}
+
+.noItemsMessage {
+    width: 90%;
+}
+
+.dialog {
+    background-color: var(--drawerColor);
+    min-width: 11em;
+}
+
+[dir="ltr"] .emby-collapsible-button {
+    padding-left: 1em;
+}
+
+@media (max-width: 80em), (max-height: 45em) {
+    .dialog.dialog-fixedSize,
+    .dialog.dialog-fullscreen-lowres {
+        border-radius: unset !important;
+        border: unset;
+    }
+}
+
+.subtitleEditor-dropZone,
+.imageEditor-dropZone,
+.lyricsEditor-dropZone {
+    border-radius: var(--largeRadius);
+}
+
+.formDialogHeaderTitle {
+    margin-inline-start: 0 !important;
+    margin-inline-end: 0 !important;
+    text-align: center;
+    padding: 0 0.5em !important;
+}
+
+.formDialogFooter:not(.formDialogFooter-clear.formDialogFooter-flex) > .formDialogFooterItem {
+    -webkit-flex-basis: 6em;
+    flex-basis: 6em;
+}
+
+.collapseContent {
+    background-color: unset !important;
+    backdrop-filter: unset !important;
+}

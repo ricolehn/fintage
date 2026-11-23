@@ -1,0 +1,52 @@
+#dialogToc {
+    background-color: rgba(0, 0, 0, 0.5);
+    max-height: unset;
+    max-width: unset;
+}
+
+#dialogToc .toc li {
+    font-size: unset;
+    font-weight: 600;
+    list-style-type: circle;
+    margin-bottom: 0.5em;
+    font-family: "Math", serif;
+}
+
+.MuiTabs-indicator {
+    display: none;
+}
+
+.MuiTabs-root > .MuiTabs-scroller {
+    align-content: center;
+}
+
+.MuiTabs-flexContainer > .MuiButtonBase-root {
+    border-radius: var(--largeRadius);
+    min-height: 40px;
+    min-width: 72px;
+}
+
+.MuiTabs-flexContainer > .MuiButtonBase-root.Mui-selected {
+    background-color: transparent !important;
+}
+
+.MuiButtonBase-root.MuiIconButton-root:hover {
+    color: var(--fullContrastColor);
+    background-color: transparent;
+}
+
+#viewPanel .ui-panel-inner {
+    margin-top: 4em;
+}
+
+.videoOsdBottom.videoOsdBottom-maincontrols {
+    background: var(--bottomOSDGradient);
+}
+
+.skinHeader-withBackground.osdHeader {
+    background: var(--topOSDGradient);
+}
+
+.headroom {
+    transition: transform 0.5s;
+}

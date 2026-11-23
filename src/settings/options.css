@@ -1,0 +1,139 @@
+:root {
+    --elegantFinFooterText: "Fintage v{{version}}"; /* npm run build fills in the version from package.json */
+
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 425;
+    font-style: normal;
+    -webkit-tap-highlight-color: transparent !important;
+
+    /* Material Symbols font-variation-settings */
+    --fill: 1;
+    --wght: 400;
+    --grad: 0;
+    --opsz: 30;
+
+    color-scheme: dark;
+    color: var(--textColor);
+
+    /* standard component sizes */
+    --largerRadius: 1.25em;
+    --largeRadius: 1em;
+    --smallRadius: 0.5em;
+    --smallerRadius: 0.375em;
+    --borderWidth: 0.06em;
+    --borderWidthDouble: 0.12em;
+
+    --defaultBorder: var(--borderWidth) solid var(--borderColor);
+    --defaultLighterBorder: var(--borderWidth) solid var(--lighterBorderColor);
+
+    --sidePadding: 3.3%;
+    --itemColumnGap: 1em;
+
+    --appBarHeight: 5em;
+
+    --blurSmallest: blur(2px);
+    --blurDefault: blur(5px);
+    --blurLarge: blur(10px);
+    --blurLargest: blur(20px);
+
+    /* use --headerColorGradient if the above is enabled [default]; 
+       use --headerColorGradientAlt otherwise */
+    --headerBackground: var(--headerColorGradient);
+
+    /* fill out YOUR-JELLYFIN-SERVER-ADDRESS with a relevant host address;
+       url("<YOUR-JELLYFIN-SERVER-ADDRESS>/Branding/Splashscreen?format=webp&foregroundLayer=1&quality=33&width=3840&height=2160&blur=2"); */
+    --loginPageBgUrl: url("");
+    --loginPageText: "Sign in to continue";
+
+    /* use 2.8em keep the overlay play button at bottom-left corner [default];
+       use 50% to place it at the center of a card */
+    --overlayPlayButtonPosition: 2.8em;
+
+    /* use 'Material Symbols Rounded' for the new icons (~5mb) [default]; 
+       use 'Material Symbols Rounded Minimal' to reduce bandwidth usage (~115kb) (may break compatibility with plugins); */
+    /* use 'Material Icons' to revert to stock Jellyfin icons */
+    --iconPack: "Material Symbols Rounded";
+
+    /* none: hides the watched and mark favorite buttons on hover [default];
+       block: makes them visible */
+    --extraCardButtonsVisibility: none;
+
+    /* block: makes the three-dot menu button visible [default];
+       none: hides the three-dot menu button on hover */
+    --menuButtonVisibility: block;
+
+    /* block: keeps the original (foreign) title visible if it is available [default];
+       none: always hides the original title of Movie/TV */
+    --itemOriginalTitleVisibility: block;
+
+    /* none: hides the media library card labels [default]; 
+       block: makes them visible */
+    --libraryLabelVisibility: none;
+
+    /* block: shows the Movie/TV clear logo if it is available [default]; 
+       none: makes the clear logo always hidden */
+    --clearLogoVisibility: block;
+
+    /* none: dynamically hides the main title of Movie/TV if its logo is available [default]; 
+       block: makes the title always visible */
+    --itemTitleVisibility: none;
+
+    /* block: shows the music artist clear logo if it is available [default];
+       none: makes the music artist clear logo always hidden */
+    --artistClearLogoVisibility: block;
+
+    /* none: makes the music artist title always hidden [default];
+       block: shows the text-based music artist title */
+    --artistTitleVisibility: none;
+
+    /* unset: makes the artist background dim for better clear logo visibility on desktops [default]; 
+       none: makes the music artist page background fully visible */
+    --artistPageBackground: unset;
+
+    /* block: shows the mini play or three-dot button on cards only on mobile [default]; 
+       none: makes them always hidden only on mobile */
+    --miniOverlayButtonVisibility: block;
+
+    /* none: keeps the media 'Ends at...' time indicator always hidden on phones [default];
+       block: shows the time when the media will end */
+    --endsAtVisibility: block;
+
+    /* block: keeps the critics tomato rating visible [default];
+       none: hides the critics tomato rating on phones */
+    --criticsRatingVisibility: none;
+
+    /* use "" to enable the card hover effect [default]; 
+       use none (without quotes) to disable it */
+    --cardHoverEffect: "";
+
+    /* this is the frosted app bar style [default]: content glows through it like through milk glass,
+       and the bar keeps a clean bottom edge */
+    --appBarSeamlessBlur: none;
+    --appBarBlurStrength: blur(24px) saturate(1.6);
+    --appBarColor: var(--frostedHeaderColor);
+    --appBarBorder: var(--borderWidth) solid var(--headerBorderColor);
+    --appBarShadow: 0 0.5em 1.5em -0.75em var(--headerShadowColor);
+    --appBarTabsPadding: 0;
+
+    /* use none for --appBarBlurStrength and var(--solidHeaderColor) for --appBarColor to get a fully opaque app bar */
+
+    /* set all six variables above to initial to use the seamless app bar style, which fades out at the bottom */
+
+    /* use the block below for a fully transparent app bar style */
+    /*
+    --appBarSeamlessBlur: none;
+    --appBarBlurStrength: none;
+    --appBarColor: transparent;
+    --appBarBorder: none;
+    --appBarShadow: none;
+    */
+
+    /* use 10% to crop the top 10% of a backdrop image on a 16:9 screen (recommended) [default]; 
+       use a figure between 0% and 20% according to your liking */
+    --backdropTrimFromTop: 10%;
+
+    /* use 1 to keep the size 'Continue Watching' cards normal [default]; 
+       use numbers greater than 1.0 to increase their size (example: 1.25) */
+    --resumeCardScale: 1;
+}

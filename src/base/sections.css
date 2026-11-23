@@ -1,0 +1,166 @@
+.detailSection > .nextUpSection {
+    order: 5;
+    grid-column: 1;
+}
+
+.detailSection > #listChildrenCollapsible {
+    order: 6;
+    grid-column: 2 / -1;
+}
+
+.detailSectionContent {
+    order: 1;
+    grid-column: 1 / -1;
+}
+
+.nextUpSection.hide ~ #listChildrenCollapsible {
+    grid-column: 1 / -1;
+}
+
+.layout-mobile .trackSelections,
+.layout-mobile .detailSectionContent,
+.layout-mobile .nextUpSection,
+.layout-mobile .detailSection > #listChildrenCollapsible,
+.layout-tv .trackSelections,
+.layout-tv .detailSectionContent,
+.layout-tv .nextUpSection,
+.layout-tv .detailSection > #listChildrenCollapsible,
+.collectionItems,
+.programGuideSection,
+/* Support .series-episodes-section for KefinTweaks (https://github.com/ranaldsgift/KefinTweaks) */
+.series-episodes-section,
+.series-episodes-section ~ #listChildrenCollapsible {
+    grid-column: 1 / -1;
+}
+
+.series-episodes-section {
+    order: 4;
+}
+
+.collectionItems {
+    order: 2;
+}
+
+.programGuideSection:not(.hide) {
+    order: -1;
+    margin-top: 2em;
+}
+
+.layout-desktop .programGuide {
+    padding-right: var(--sidePadding);
+}
+
+.collectionItems .sectionTitleContainer.padded-left {
+    padding-left: 0.375em;
+}
+
+.collectionItemsContainer.padded-left {
+    padding-left: 0;
+}
+
+.sliderBubble {
+    border-radius: var(--largeRadius);
+    border: var(--defaultBorder);
+    overflow: hidden;
+    z-index: 3;
+}
+
+.alphaPickerButton {
+    font-family: monospace;
+    margin: 0.15em;
+    color: var(--dimTextColor);
+}
+
+.alphaPickerButton-selected {
+    background-color: var(--btnPlayColor);
+    color: var(--zeroContrastColor) !important;
+}
+
+.alphaPicker-vertical {
+    height: 70%;
+}
+
+.layout-mobile .alphaPicker-vertical {
+    right: 0 !important;
+}
+
+.alphaPicker {
+    justify-content: center;
+}
+
+.alphaPickerButton-tv {
+    transition: transform 0.2s;
+}
+
+.alphaPickerButton-tv:focus {
+    background-color: var(--highlightOutlineColor);
+    transform: scale(1.75);
+}
+
+.padded-right {
+    padding-right: var(--sidePadding) !important;
+}
+
+[dir="ltr"] .detailPageContent,
+.content-primary {
+    padding-left: var(--sidePadding) !important;
+    padding-right: var(--sidePadding) !important;
+}
+
+/* this prevents double padding on Jellyfin pre-10.11.0 */
+[dir="ltr"] .detailPageContent > .detailPagePrimaryContent {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* this removes right padding from cast page sections to place cards evenly*/
+#itemDetailPage .verticalSection .itemsContainer.padded-right {
+    padding-right: 0 !important;
+}
+
+.vertical-list > .listGroupHeader {
+    padding-left: 0.5ch;
+}
+
+.listPaging > span {
+    padding: 0 0.5em;
+}
+
+.layout-mobile #myPreferencesMenuPage {
+    padding-top: var(--appBarHeight) !important;
+}
+
+.headerUserButton {
+    width: 2em;
+    height: 2em;
+    margin-inline-end: 1em;
+    border: var(--defaultBorder);
+}
+
+.MuiAvatar-circular {
+    width: 1.5em;
+    height: 1.5em;
+    border: var(--defaultBorder);
+}
+
+.dashboardDocument .content-primary {
+    padding-top: 4.25rem;
+}
+
+.editorNode {
+    display: flex;
+    align-items: center;
+}
+
+.metadataSidebarIcon {
+    color: #6c7bab;
+}
+
+.jstree-default .jstree-wholerow-clicked {
+    background: var(--selectorBackgroundColor) !important;
+}
+
+.verticalSection:not(:empty) {
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}

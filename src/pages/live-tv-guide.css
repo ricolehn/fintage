@@ -1,0 +1,61 @@
+.channelPrograms,
+.programCell {
+    border-color: transparent;
+    /* this disables the 'color coded backgrounds' */
+    background-color: transparent !important;
+    border-radius: var(--smallRadius);
+    height: 4.42em;
+}
+
+.guideProgramName {
+    background-color: rgba(255, 255, 255, 0.05);
+    height: calc(100% - 0.7em);
+    margin: 0.35em 0 0.35em 0.7em;
+    border-radius: var(--smallerRadius);
+}
+
+.guide-programNameCaret {
+    display: none;
+}
+
+.programCell-active .guideProgramName {
+    background-color: var(--semiTransparentAccentColor);
+}
+
+.guideVerticalScroller {
+    padding: 0;
+}
+
+.layout-mobile .guideChannelImage {
+    background-position: center;
+    width: calc(100% - var(--sidePadding));
+    right: 0;
+}
+
+.guide-channelHeaderCell {
+    background-color: var(--semiTransparentAccentColor);
+    margin: 0.35em 0.7em 0.7em 0.7em;
+    width: auto;
+    height: calc(4.42em - 0.7em);
+    border-radius: var(--smallRadius);
+}
+
+.guideChannelNumber {
+    font-size: 1em;
+}
+
+#guideTab {
+    padding-top: 3em !important;
+}
+
+.guide-channelHeaderCell:focus {
+    background-color: var(--highlightOutlineColor) !important;
+}
+
+.programCell:focus {
+    background-color: transparent !important;
+}
+
+.programCell:focus > .guideProgramName {
+    background-color: var(--highlightOutlineColor);
+}

@@ -1,0 +1,105 @@
+/* Chromium, which Jellyfin Media Player is built on, fades the blur out towards the edges of the screen,
+so sharp text shows through a translucent app bar there; these drop shadows fill the faded edges with the bar color.
+Each drop shadow is drawn again on every frame while the page scrolls; three fill the edges as well as four did,
+so a fourth one would only cost time. Safari would drop a blur with several drop shadows altogether,
+so Safari and Firefox keep the plain blur */
+@supports not ((-webkit-backdrop-filter: none) or (-moz-appearance: none)) {
+    :root {
+        --appBarBlurFill: drop-shadow(0 0 0 var(--headerFillColor)) drop-shadow(0 0 0 var(--headerFillColor))
+            drop-shadow(0 0 0 var(--headerFillColor));
+    }
+}
+
+:root[data-theme="light"] {
+    color-scheme: light;
+
+    /* Material Symbols font-variation-settings */
+    --fill: 0;
+}
+
+:root.layout-mobile {
+    --headerColorGradient: var(--headerColorGradientAlt);
+    --blurLargest: blur(12px);
+    --headerBlurMask: linear-gradient(180deg, #fff 60%, 90%, transparent);
+    --itemColumnGap: 0.4em;
+}
+
+body {
+    --primaryItemPageNegativeSpace: 14vh;
+    --secondaryItemPageNegativeSpace: 60vh;
+    --clearLogoBottomSpace: 11em;
+}
+
+select {
+    text-overflow: ellipsis;
+}
+
+.layout-desktop > body:has(> audio[src]) {
+    --primaryItemPageNegativeSpace: calc(14vh + 5em);
+    --secondaryItemPageNegativeSpace: calc(60vh + 5em);
+}
+
+.layout-mobile > body {
+    --secondaryItemPageNegativeSpace: 45vh;
+}
+
+.material-icons {
+    font-family:
+        var(--iconPack),
+        Material Icons !important;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    vertical-align: middle;
+    text-rendering: geometricPrecision;
+    font-feature-settings: "liga";
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-variation-settings:
+        "FILL" var(--fill),
+        "wght" var(--wght),
+        "GRAD" var(--grad),
+        "opsz" var(--opsz);
+    transition: font-variation-settings 0.25s;
+}
+
+.material-icons.info_outline::before {
+    content: "\e88e";
+}
+
+.detailButton-icon {
+    --fill: 0;
+}
+
+.ratingbutton-icon-withrating,
+.starIcon,
+.cardOverlayButtonIcon,
+.indicatorIcon,
+.cardImageIcon {
+    --fill: 1;
+}
+
+.dashboardFooter {
+    font-family: "Noto Sans", serif;
+    transition: transform 50ms;
+}
+
+/* the version in the footer of the settings */
+#myPreferencesMenuPage > div::after,
+.dashboardFooter::after {
+    content: var(--elegantFinFooterText);
+    font-size: 0.8em;
+    display: inline-grid;
+    width: 100%;
+    width: -webkit-fill-available;
+    justify-content: center;
+    font-weight: 600;
+    color: var(--dimTextColor);
+    opacity: 0.7;
+}

@@ -1,0 +1,64 @@
+.toast {
+    border-radius: var(--smallRadius);
+}
+
+.upNextContainer {
+    border-radius: var(--largeRadius);
+}
+
+[dir="ltr"] .upNextContainer {
+    margin: 2em;
+    box-sizing: border-box;
+    max-width: 80vw;
+}
+
+.upNextDialog-title {
+    white-space: pre-wrap;
+    width: unset;
+}
+
+.upNextDialog-buttons {
+    width: unset;
+    flex-wrap: wrap;
+}
+
+.upNextContainer .upNextDialog-countdownText {
+    color: var(--fullContrastColor);
+}
+
+.skip-button-container {
+    bottom: 9rem;
+}
+
+.skip-button {
+    background-color: var(--textColor);
+    box-shadow: var(--shadow);
+    margin-right: var(--sidePadding);
+    border-radius: 3em;
+    color: var(--zeroContrastColor);
+}
+
+/* this allows the skip button get focused correctly on TVs using remote navigation; needs 10.10.7*/
+.layout-tv .skip-button {
+    margin-right: auto;
+    margin-left: var(--sidePadding);
+}
+
+.skip-button:hover {
+    background-color: var(--fullContrastColor);
+}
+
+.skip-button:active {
+    background-color: rgba(245, 245, 245, 0.7);
+    box-shadow: none;
+}
+
+.toast,
+.upNextContainer {
+    color: var(--textColor);
+    background: var(--headerColor) !important;
+}
+
+.activeSession {
+    width: 98% !important;
+}
