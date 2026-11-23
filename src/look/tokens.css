@@ -5,8 +5,8 @@ on top of the ElegantFin base above:
 - white play buttons and a restrained champagne accent for progress, selection and focus
 - slower, smoother motion: cards lift and catch a soft sheen instead of the shine sweep
 it only changes colors, surfaces and motion, so every option of the theme keeps working;
-the plain values of the base that this look replaces with variables stay in the base,
-since browsers without CSS variables, like those of older TVs, still use them */
+a value of the base that this look replaces stays in the base only where the rule of the look uses :has(), :is(),
+:where() or :not() with more than one class: browsers of older TVs skip such a rule as a whole and keep the base */
 
 :root {
     /* new variables of this look */

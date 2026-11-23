@@ -14,6 +14,13 @@ that adds JavaScript to the web client, e.g. JavaScript Injector. */
     if (active.has("short-track-names")) return;
     active.add("short-track-names");
 
+    // the loader of option 15 brings one watcher for all its scripts; on its own, the script watches the page itself
+    const watch =
+        window.fintageWatch ||
+        function (callback, options) {
+            new MutationObserver(callback).observe(document.body, options);
+        };
+
     const selector = "#itemDetailPage:not(.hide) .trackSelections :is(.selectAudio, .selectSubtitles)";
 
     const audioCodecs = {
@@ -242,7 +249,7 @@ that adds JavaScript to the web client, e.g. JavaScript Injector. */
     function start() {
         // this shows in the browser console whether the script is loaded
         console.info("Fintage: short track names are active");
-        new MutationObserver(scan).observe(document.body, { childList: true, subtree: true });
+        watch(scan, { childList: true, subtree: true });
         scan();
     }
 

@@ -33,7 +33,8 @@
 - a straight TV layout for series, seasons and episodes
 - the Upcoming tab of TV shows as a timeline of release days, with the episodes of each day as a compact list
 - smoother scrolling and animations, especially on older devices
-- optional scripts for episode backdrops in full resolution, short track names like `German · EAC3` and episode titles in two lines, all with one paste that keeps them up to date
+- a light load: the fonts come with the theme, and the rounded icons from a small file of about 120 KB instead of the 5 MB of all icons
+- optional scripts for episode backdrops in full resolution, short track names like `German · EAC3` and episode titles in two lines, all with one paste that keeps them up to date, and with them a faster version of the theme
 
 <hr>
 
@@ -261,16 +262,15 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
 </details>
 
 <details>
-  <summary><i>12. Background and title of the login page (Jellyfin before 10.11)</i></summary>
+  <summary><i>12. Title of the login page</i></summary>
 
-> - Since Jellyfin 10.11, the login page shows the splash screen by itself. On older versions, tick `Enable the splash screen` below the Custom CSS code box in the Dashboard and add:
+> - The title above the form is `Sign in to continue`. To change it:
 >   ```css
 >   :root {
->       --loginPageBgUrl: url("<YOUR-JELLYFIN-SERVER-ADDRESS>/Branding/Splashscreen?format=webp&foregroundLayer=1&quality=33&width=3840&height=2160&blur=2");
+>       --loginPageText: "Your text";
 >   }
 >   ```
-> - Replace `<YOUR-JELLYFIN-SERVER-ADDRESS>` with the address of your server, with `http` or `https`, for example `http://192.168.0.1:8096`. The blur and the size can be changed in the link.
-> - To change the title above the form, `Sign in to continue`, add `--loginPageText: "Your text";` to the same block.
+> - The login page shows the splash screen of the server behind the form by itself.
 
 </details>
 
@@ -308,6 +308,7 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
 > - Each device fetches the scripts again once a day. jsDelivr, which delivers them, can keep an older version for up to 12 hours.
 > - The loader runs whatever is on the main branch of this repository, on every device that opens Jellyfin. To stay on a version you have looked at, replace `@main` in it with a release, like `@v1.1.1`.
 > - If you added single scripts of options 16 to 18 before, remove them: older copies of them would run a second time next to the loader.
+> - With the loader, you can also use the faster version of the theme, see option 19.
 
 </details>
 
@@ -338,6 +339,19 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
 > - This script splits the title into a smaller, slightly darker line with the season and the number, like `Season 2 · Episode 4`, and the name of the episode below it. It uses the word for "Episode" from the language of Jellyfin, like `Staffel 2 · Folge 4` in German.
 > - It is part of the loader of option 15. To use it on its own instead, paste the content of [episode-titles.js](Theme/assets/add-ons/episode-titles.js) into JavaScript Injector, set up as in option 15, and reload the web page once without the cache.
 > - The browser console (<kbd>F12</kbd>) then shows `Fintage: episode titles are active`.
+
+</details>
+
+<details>
+  <summary><i>19. The faster version of the theme (optional JavaScript)</i></summary>
+
+> - Jellyfin does not tell its pages apart by a class, so the theme recognises the page of a movie, a season or an episode by what is on it, and the browser checks this again for every element it styles. With the loader of option 15, a small script answers these questions once whenever the page changes, and the faster version of the theme only reads the answers.
+> - It looks exactly like the normal version, and the browser has about two thirds less work on the pages of movies, shows, seasons, episodes and albums: on a phone, about 0.2 instead of 0.6 seconds of styling per page, on a desktop about 40 instead of 110 milliseconds.
+> - To use it, set up the loader of option 15, and replace the import of the theme with this one:
+>   ```css
+>   @import url("https://cdn.jsdelivr.net/gh/ricolehn/fintage@main/Theme/Fintage-js-latest-minified.css");
+>   ```
+> - The browser console (<kbd>F12</kbd>) then also shows `Fintage: page state is active`. Without this script, e.g. when `page-state` is named in `window.fintageScriptsOff`, the pages of movies, shows, seasons, episodes and albums of the faster version lose their card, so leave it on.
 
 </details>
 
@@ -446,8 +460,10 @@ The screenshots show Fintage v1.4.1 on Jellyfin 12.3 with the optional scripts o
 | File | What it is |
 | --- | --- |
 | `Theme/Fintage-latest-minified.css` | the newest version of Fintage, minified; this is what the import loads |
+| `Theme/Fintage-js-latest-minified.css` | the faster version for the optional scripts, see option 19 |
 | `src/` | the readable source of Fintage and its add-ons, in files by topic; `src/fintage.css` lists them in order |
-| `Theme/assets/add-ons/` | the add-ons (`*-latest-min.css` to import) and the optional scripts (`fintage-scripts.js` is the loader, `fintage-scripts-latest.js` the file it loads) |
+| `Theme/assets/add-ons/` | the add-ons (`*-latest-min.css` to import) and the optional scripts (`fintage-scripts.js` is the loader, `fintage-scripts-latest.js` the file it loads, `page-state.js` the script of the faster version, built from the theme) |
+| `Theme/assets/fonts/` | the fonts of the theme, Inter and the rounded icons, with their licenses |
 | `Theme/ElegantFin-theme-v*.css` and the dated add-ons | the releases of ElegantFin up to v26.09.05, which Fintage is based on |
 
 <hr>
@@ -507,7 +523,7 @@ The screenshots show Fintage v1.4.1 on Jellyfin 12.3 with the optional scripts o
 
 ### 🆗 Tested on
 
-- Jellyfin 12.2 in the `Auto`, `Desktop (Legacy)`, `Mobile (Legacy)` and `TV` display modes, with the Dark and the Light theme, in Chromium-based browsers
+- Jellyfin 12.2 and 12.4 in the `Auto`, `Desktop (Legacy)`, `Mobile (Legacy)` and `TV` display modes, with the Dark and the Light theme, in Chromium-based browsers
 
 <hr>
 

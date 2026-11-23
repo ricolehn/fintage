@@ -203,10 +203,9 @@ The block of the title and the buttons is a layer of its own, so the card stays 
     z-index: -1;
 }
 
-/* the image keeps its rounded corners itself, so the glow behind it can reach beyond the card;
-the !important overrides the theme, which clips every card to its corners */
+/* the image keeps its rounded corners itself, so the glow behind it can reach beyond the card */
 .layout-mobile #itemDetailPage:--episode .detailImageContainer .backdropCard .cardScalable {
-    overflow: visible !important;
+    overflow: visible;
     border-radius: var(--largeRadius);
     box-shadow: var(--detailCardShadow);
 }

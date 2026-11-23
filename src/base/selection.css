@@ -129,10 +129,6 @@ now they fill like the other round icon buttons: while pressed, under the mouse 
     font-weight: 900;
 }
 
-.checkboxOutline:not(.multiSelectCheckboxOutline) {
-    background-color: #fff;
-}
-
 .emby-checkbox:focus:not(:checked) + span + .checkboxOutline {
     border-color: var(--highlightOutlineColor) !important;
     outline: none;

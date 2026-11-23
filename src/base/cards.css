@@ -67,9 +67,8 @@
 
 .cardScalable {
     border: var(--darkerBorderColor) solid var(--borderWidthDouble) !important;
-    overflow: hidden !important;
+    overflow: hidden;
     box-shadow: var(--cardShadow);
-    transition: transform 125ms;
 }
 
 @supports (aspect-ratio: 1 / 1) {
@@ -95,12 +94,7 @@
     border-radius: var(--largeRadius) !important;
     overflow: hidden;
     border: var(--fintageGlassBorder) !important;
-    box-shadow: unset !important;
     box-shadow: var(--fintageGlassHighlight) !important;
-}
-
-.cardImageContainer {
-    transition: transform 0.375s;
 }
 
 .card.squareCard[data-type="TvChannel"] .cardImageContainer.cardContent {
@@ -145,15 +139,10 @@
     transform: scale(1);
 }
 
-.cardOverlayContainer {
-    transition: 0.5s;
-}
-
 /* this is the soft sheen of the cards, which fades in on hover; it keeps following --cardHoverEffect,
 so it can still be turned off */
 .cardOverlayContainer::after {
     content: var(--cardHoverEffect);
-    transition: 0.65s;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -182,15 +171,9 @@ so it can still be turned off */
 .listItemImageButton,
 .layout-mobile .cardOverlayButton-br:not([data-action="menu"]) > .cardOverlayButtonIcon {
     background-color: var(--btnMiniPlayColor) !important;
-    color: #fff !important;
     border-color: var(--btnMiniPlayBorderColor);
     font-size: 75%;
     z-index: 2;
-}
-
-.cardOverlayContainer > .cardOverlayFab-primary:hover,
-.listItemImageButton:hover {
-    color: #fff;
 }
 
 [dir="ltr"] .layout-desktop .cardOverlayButton-br,

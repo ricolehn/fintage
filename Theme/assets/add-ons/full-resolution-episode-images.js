@@ -13,6 +13,13 @@ that adds JavaScript to the web client, e.g. JavaScript Injector. */
     if (active.has("full-resolution-episode-images")) return;
     active.add("full-resolution-episode-images");
 
+    // the loader of option 15 brings one watcher for all its scripts; on its own, the script watches the page itself
+    const watch =
+        window.fintageWatch ||
+        function (callback, options) {
+            new MutationObserver(callback).observe(document.body, options);
+        };
+
     const selector = "#itemDetailPage:not(.hide) .detailImageContainer > .backdropCard .cardImageContainer";
     const maxWidth = Math.min(Math.round(screen.width * (window.devicePixelRatio || 1)), 3840);
 
@@ -55,7 +62,7 @@ that adds JavaScript to the web client, e.g. JavaScript Injector. */
     function start() {
         // this shows in the browser console whether the script is loaded
         console.info("Fintage: full resolution episode images are active");
-        new MutationObserver(scan).observe(document.body, {
+        watch(scan, {
             childList: true,
             subtree: true,
             attributes: true,

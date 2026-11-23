@@ -40,5 +40,5 @@
 }
 
 .sectionTitleTextButton > .chevron_right::before {
-    content: "arrow_circle_right";
+    content: "\eaaa"; /* arrow_circle_right */
 }

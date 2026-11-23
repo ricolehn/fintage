@@ -69,11 +69,6 @@ ul.MuiList-root.MuiMenu-list.MuiList-dense > div:first-child {
     gap: 0.5rem;
 }
 
-.playerStats,
-.iconOsd {
-    background-color: rgba(69, 69, 69, 0.69);
-}
-
 .playerStats-stats {
     max-height: 50vh;
     flex-wrap: wrap;

@@ -12,10 +12,7 @@ the later one wins, so every file can build on the ones above it.
 - look: the colors, surfaces and motion of Fintage, which lie on top of everything above
 npm run build joins the files into Theme/Fintage-latest-minified.css */
 
-/* Inter Font Family */
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-
-@import "settings/fonts.css"; /* the rounded Material Symbols icons */
+@import "settings/fonts.css"; /* Inter and the rounded Material Symbols icons, from the files next to the theme */
 @import "settings/options.css"; /* the options that users can change in their custom CSS */
 @import "settings/page-types.css"; /* names for the checks that tell what a page shows */
 @import "base/global.css"; /* variables for layouts and themes, the icons and the version in the settings */

@@ -105,7 +105,7 @@
 }
 
 .mainDetailButtons:has(.detailButton[data-type="Book"]) .btnPlay .material-icons.play_arrow::before {
-    content: "book";
+    content: "\e865"; /* book */
     padding-inline-end: 1ch;
 }
 
@@ -148,12 +148,6 @@ div[data-role="controlgroup"] a.ui-btn-active {
 #btnShutdown {
     background: var(--btnDeleteColor) !important;
     border: solid var(--btnDeleteBorderColor) var(--borderWidth);
-    color: #fff !important;
-}
-
-.button-submit,
-.upNextContainer .btnStartNow,
-.MuiButton-colorPrimary:not(.MuiButton-text) {
     color: #fff !important;
 }
 
