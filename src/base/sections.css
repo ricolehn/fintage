@@ -107,12 +107,6 @@
     padding-right: var(--sidePadding) !important;
 }
 
-/* this prevents double padding on Jellyfin pre-10.11.0 */
-[dir="ltr"] .detailPageContent > .detailPagePrimaryContent {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-}
-
 /* this removes right padding from cast page sections to place cards evenly*/
 #itemDetailPage .verticalSection .itemsContainer.padded-right {
     padding-right: 0 !important;

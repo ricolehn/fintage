@@ -54,10 +54,9 @@ the cover, so it costs nearly nothing and shows right away */
     filter: none;
 }
 
-/* the cover keeps its rounded corners itself, so the wash behind it can reach beyond the card;
-the !important overrides the theme, which clips every card to its corners */
+/* the cover keeps its rounded corners itself, so the wash behind it can reach beyond the card */
 .layout-mobile #itemDetailPage:--album-or-playlist .infoWrapper > .detailImageContainer .cardScalable {
-    overflow: visible !important;
+    overflow: visible;
     border-radius: var(--largeRadius);
     box-shadow: var(--albumCardShadow, 0 1.75em 3em -1em hsla(0, 0%, 0%, 0.7));
 }

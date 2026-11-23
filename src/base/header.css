@@ -109,11 +109,11 @@ so content right at the bottom edge gets blurred as well */
 }
 
 .noHomeButtonHeader .emby-tab-button[data-index="1"]::before {
-    content: "favorite";
+    content: "\e87d"; /* favorite */
 }
 
 .noHomeButtonHeader .emby-tab-button[data-index="0"]::before {
-    content: "home";
+    content: "\e88a"; /* home */
 }
 
 .noHomeButtonHeader .emby-tab-button::before {

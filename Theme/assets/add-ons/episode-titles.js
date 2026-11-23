@@ -13,6 +13,13 @@ that adds JavaScript to the web client, e.g. JavaScript Injector. */
     if (active.has("episode-titles")) return;
     active.add("episode-titles");
 
+    // the loader of option 15 brings one watcher for all its scripts; on its own, the script watches the page itself
+    const watch =
+        window.fintageWatch ||
+        function (callback, options) {
+            new MutationObserver(callback).observe(document.body, options);
+        };
+
     const selector = '#itemDetailPage .itemName > bdi:has(> a[data-type="Season"])';
 
     // the word Jellyfin itself uses for "Episode" in each language, where it is not "Episode"
@@ -124,7 +131,7 @@ that adds JavaScript to the web client, e.g. JavaScript Injector. */
     function start() {
         // this shows in the browser console whether the script is loaded
         console.info("Fintage: episode titles are active");
-        new MutationObserver(scan).observe(document.body, { childList: true, subtree: true });
+        watch(scan, { childList: true, subtree: true });
         scan();
     }
 

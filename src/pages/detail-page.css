@@ -16,18 +16,15 @@
 
 .detailPagePrimaryContainer {
     align-content: space-between;
-    align-items: stretch;
     justify-content: end;
     flex-direction: column;
     /* center content on desktop */
     align-items: center;
-    /* this aligns the plot to left on 10.11.0 */
+    /* this aligns the plot to the left, since 10.11 */
     text-align: left;
 }
 
-/* this disables block padding on pre-10.11.0 */
-.layout-mobile .detailPagePrimaryContainer.detailRibbon,
-/* this disables block padding on 10.11.0 */
+/* this disables block padding, since 10.11 */
 .layout-mobile .detailPagePrimaryContainer > .detailRibbon {
     padding: 0 var(--sidePadding);
 }
@@ -40,11 +37,9 @@
     background-color: transparent;
 }
 
-/* this removes the extra large left padding on 10.11.0 */
+/* this removes the extra large left padding, since 10.11 */
 .detailPagePrimaryContainer > .detailPagePrimaryContent,
-[dir="ltr"] .detailPagePrimaryContainer > .detailRibbon,
-/* this removes the extra large left padding on pre-10.11.0 */
-[dir="ltr"] .detailPagePrimaryContainer.detailRibbon {
+[dir="ltr"] .detailPagePrimaryContainer > .detailRibbon {
     padding-left: var(--sidePadding);
 }
 
@@ -53,7 +48,7 @@
     padding-right: var(--sidePadding) !important;
 }
 
-/* this places main media buttons below the title on 10.11.0 */
+/* this places main media buttons below the title, since 10.11 */
 .layout-desktop [dir="ltr"] .detailRibbon,
 .layout-tv [dir="ltr"] .detailRibbon {
     flex-direction: column;
@@ -63,8 +58,9 @@
     padding-top: 0;
 }
 
+/* the !important overrides Jellyfin, which keeps room above the details, 1em on phones, in a style sheet that it
+loads with the page, after the theme */
 .detailPageSecondaryContainer {
-    /* use !important for pre-10.11.0 compatibility */
     padding-top: 0 !important;
 }
 

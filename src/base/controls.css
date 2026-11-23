@@ -49,10 +49,6 @@
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-.playstatebutton-icon-played {
-    color: rgb(34, 197, 94);
-}
-
 .videoOsdBottom.videoOsdBottom-maincontrols .btnPause {
     font-size: 2em;
 }

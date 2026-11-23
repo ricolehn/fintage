@@ -160,9 +160,9 @@ The image is only loaded at a quarter of the screen width, so the tint hides whe
     height: var(--heroHeight);
 }
 
-/* the !important overrides the theme, which clips every card to its corners */
+/* the theme clips every card to its corners; this card lets its glow reach beyond them */
 .layout-desktop #itemDetailPage:--episode .detailImageContainer .backdropCard .cardScalable {
-    overflow: visible !important;
+    overflow: visible;
     border-radius: var(--largerRadius);
     box-shadow: var(--heroShadow);
 }

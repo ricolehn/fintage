@@ -1,19 +1,182 @@
-/* Material Symbols Rounded - Minimal */
-/* https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=add,airplay,album,animated_images,arrow_back,arrow_circle_right,arrow_forward,arrow_upward,audiotrack,autorenew,backspace,book,brightness_high,call_split,cast,check,chevron_left,chevron_right,clear,close,closed_caption,cloud_download,content_copy,dashboard,delete,devices_other,download,drag_handle,dvr,exit_to_app,expand_more,explore,fast_forward,fast_rewind,favorite,fiber_manual_record,fiber_smart_record,file_download,filter_alt,folder,folder_open,forward_30,fullscreen,get_app,groups,home,image,info,info_outline,keyboard,keyboard_arrow_down,keyboard_arrow_left,keyboard_arrow_right,keyboard_arrow_up,keyboard_return,library_add_check,live_tv,local_movies,lock,lyrics,menu,mode_edit,more_vert,movie,music_note,music_video,navigate_before,navigate_next,pause,pause_circle_filled,pause_circle_outline,person,phonelink_lock,photo,photo_album,picture_in_picture_alt,play,play_arrow,play_circle_filled,play_circle_outline,playlist_add,preview,queue,queue_music,quiz,redo,refresh,remove_circle,remove_red_eye,repeat,repeat_one,replay,replay_10,save,schedule,search,settings,shuffle,skip_next,skip_previous,sort_by_alpha,space_bar,star,stop,storage,subtitles,sync,text_decrease,text_increase,theaters,toc,tv,undo,update,video_library,videocam,view_comfy,volume_off,volume_up */
+/* Inter, the font of the text, from the files next to the theme; each file holds the letters of a few alphabets,
+and the browser only loads the files whose letters a page shows, for most pages the latin one of about 70 KB */
 @font-face {
-    font-family: "Material Symbols Rounded Minimal";
+    font-family: "Inter";
     font-style: normal;
-    font-weight: 100 700;
-    src: url(https://fonts.gstatic.com/l/font?kit=sykg-zNym6YjUruM-QrEh7-nyTnjDwKNJ_190FjzarESMdAUY9qjb3u1M7e05tMSFFiwiIx7ihGnzWmz-lkbjBJUko54uQNlqhKP2qww7THOuDASqI-hkRJowUB4AMXqmksLbVSypWpZCoCuR4ppEVE-Vm2EBGaEWVT1QQVqin1CJL8x-Ze-xGUuG3wq4dfIUCyyVOwlP0NhUaux0cITqh7BYw&skey=70ddea8fe54d532e&v=v362)
-        format("woff2");
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("assets/fonts/inter/inter-latin-normal.woff2") format("woff2");
+    unicode-range:
+        U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+        U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* Material Symbols Rounded - Full */
-/* https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200 */
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("assets/fonts/inter/inter-latin-ext-normal.woff2") format("woff2");
+    unicode-range:
+        U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF,
+        U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("assets/fonts/inter/inter-cyrillic-normal.woff2") format("woff2");
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("assets/fonts/inter/inter-cyrillic-ext-normal.woff2") format("woff2");
+    unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("assets/fonts/inter/inter-greek-normal.woff2") format("woff2");
+    unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("assets/fonts/inter/inter-greek-ext-normal.woff2") format("woff2");
+    unicode-range: U+1F00-1FFF;
+}
+
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("assets/fonts/inter/inter-vietnamese-normal.woff2") format("woff2");
+    unicode-range:
+        U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304,
+        U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+
+@font-face {
+    font-family: "Inter";
+    font-style: italic;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("assets/fonts/inter/inter-latin-italic.woff2") format("woff2");
+    unicode-range:
+        U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+        U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: "Inter";
+    font-style: italic;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("assets/fonts/inter/inter-latin-ext-italic.woff2") format("woff2");
+    unicode-range:
+        U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF,
+        U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-family: "Inter";
+    font-style: italic;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("assets/fonts/inter/inter-cyrillic-italic.woff2") format("woff2");
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+    font-family: "Inter";
+    font-style: italic;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("assets/fonts/inter/inter-cyrillic-ext-italic.woff2") format("woff2");
+    unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+
+@font-face {
+    font-family: "Inter";
+    font-style: italic;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("assets/fonts/inter/inter-greek-italic.woff2") format("woff2");
+    unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+
+@font-face {
+    font-family: "Inter";
+    font-style: italic;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("assets/fonts/inter/inter-greek-ext-italic.woff2") format("woff2");
+    unicode-range: U+1F00-1FFF;
+}
+
+@font-face {
+    font-family: "Inter";
+    font-style: italic;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("assets/fonts/inter/inter-vietnamese-italic.woff2") format("woff2");
+    unicode-range:
+        U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304,
+        U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+
+/* Material Symbols Rounded, the icons. Jellyfin chooses each icon by its code, so the browser can take each icon from
+the first file that has it: it loads the small file with the icons of Jellyfin (about 120 KB), and the file with all
+icons from Google Fonts (about 5 MB) only once a page shows an icon that the small file does not have, e.g. of a plugin.
+For icons with the same code, the browser looks in the file that comes last first, so the small file comes last.
+Icons that are written as their name, like "album", are made of letters, which come from the file with all icons, so
+that the icons of plugins always show; Fintage writes its own icons as their code, like "\e88a" for home */
 @font-face {
     font-family: "Material Symbols Rounded";
     font-style: normal;
     font-weight: 100 700;
     src: url(https://fonts.gstatic.com/s/materialsymbolsrounded/v362/sykg-zNym6YjUruM-QrEh7-nyTnjDwKNJ_190Fjzag.woff2)
         format("woff2");
+}
+
+/* the small file is made by Google Fonts from this link, which names the icons it holds:
+https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=add,airplay,album,animated_images,arrow_back,arrow_circle_right,arrow_forward,arrow_upward,audiotrack,autorenew,backspace,book,brightness_high,call_split,cast,check,chevron_left,chevron_right,clear,close,closed_caption,cloud_download,content_copy,dashboard,delete,devices_other,download,drag_handle,dvr,exit_to_app,expand_more,explore,fast_forward,fast_rewind,favorite,fiber_manual_record,fiber_smart_record,file_download,filter_alt,folder,folder_open,forward_30,fullscreen,get_app,groups,home,image,info,info_outline,keyboard,keyboard_arrow_down,keyboard_arrow_left,keyboard_arrow_right,keyboard_arrow_up,keyboard_return,library_add_check,live_tv,local_movies,lock,lyrics,menu,mode_edit,more_vert,movie,music_note,music_video,navigate_before,navigate_next,pause,pause_circle_filled,pause_circle_outline,person,phonelink_lock,photo,photo_album,picture_in_picture_alt,play,play_arrow,play_circle_filled,play_circle_outline,playlist_add,preview,queue,queue_music,quiz,redo,refresh,remove_circle,remove_red_eye,repeat,repeat_one,replay,replay_10,save,schedule,search,settings,shuffle,skip_next,skip_previous,sort_by_alpha,space_bar,star,stop,storage,subtitles,sync,text_decrease,text_increase,theaters,toc,tv,undo,update,video_library,videocam,view_comfy,volume_off,volume_up */
+@font-face {
+    font-family: "Material Symbols Rounded";
+    font-style: normal;
+    font-weight: 100 700;
+    src: url("assets/fonts/material-symbols/material-symbols-rounded-subset.woff2") format("woff2");
+    unicode-range:
+        U+E019, U+E01C, U+E01F-E020, U+E028, U+E02C, U+E02E, U+E034-E039, U+E03B-E03D, U+E040-E045, U+E047-E048,
+        U+E04A-E04B, U+E04F-E050, U+E053, U+E055, U+E057, U+E059, U+E061-E063, U+E0B6, U+E0DC, U+E145, U+E14A,
+        U+E14C-E14D, U+E150, U+E15A, U+E15C-E15D, U+E161, U+E166, U+E171, U+E192, U+E1A2, U+E1AC, U+E1B2, U+E1BF,
+        U+E1C4, U+E1DB, U+E251, U+E254, U+E256, U+E25D, U+E2C0, U+E2C4, U+E2C7-E2C8, U+E307, U+E312-E316, U+E31B,
+        U+E333, U+E337, U+E3A1, U+E3C4, U+E3C9, U+E3F4, U+E404-E405, U+E408-E409, U+E410-E411, U+E417, U+E42A, U+E432,
+        U+E54D, U+E5C4, U+E5C8, U+E5CA-E5CD, U+E5CF-E5D0, U+E5D2, U+E5D4-E5D5, U+E5D8, U+E627, U+E639-E63B, U+E644,
+        U+E668, U+E679, U+E684, U+E693, U+E6A4, U+E7FD, U+E7FF, U+E838, U+E83A, U+E863, U+E865, U+E86E, U+E871-E872,
+        U+E879-E87A, U+E87D-E87E, U+E884-E885, U+E88A, U+E88D-E88E, U+E897, U+E899, U+E8A6, U+E8AE, U+E8B5-E8B6, U+E8B8,
+        U+E8DA, U+E8DE, U+E8F4, U+E911, U+E923-E924, U+E92E, U+E996, U+E9B2, U+E9B7, U+EA06, U+EAAA, U+EADD, U+EAE2,
+        U+EC0B, U+EF4F, U+EF7A, U+EFD6, U+F035, U+F04C, U+F06F, U+F08F-F090, U+F097, U+F099-F09A, U+F0D3, U+F1C5,
+        U+F233, U+F2BE, U+F49A;
+}
+
+/* the small file alone, for those who chose it in --iconPack before */
+@font-face {
+    font-family: "Material Symbols Rounded Minimal";
+    font-style: normal;
+    font-weight: 100 700;
+    src: url("assets/fonts/material-symbols/material-symbols-rounded-subset.woff2") format("woff2");
 }

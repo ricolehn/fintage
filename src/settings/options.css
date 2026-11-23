@@ -41,18 +41,16 @@
        use --headerColorGradientAlt otherwise */
     --headerBackground: var(--headerColorGradient);
 
-    /* fill out YOUR-JELLYFIN-SERVER-ADDRESS with a relevant host address;
-       url("<YOUR-JELLYFIN-SERVER-ADDRESS>/Branding/Splashscreen?format=webp&foregroundLayer=1&quality=33&width=3840&height=2160&blur=2"); */
-    --loginPageBgUrl: url("");
+    /* the title above the form of the login page */
     --loginPageText: "Sign in to continue";
 
     /* use 2.8em keep the overlay play button at bottom-left corner [default];
        use 50% to place it at the center of a card */
     --overlayPlayButtonPosition: 2.8em;
 
-    /* use 'Material Symbols Rounded' for the new icons (~5mb) [default]; 
-       use 'Material Symbols Rounded Minimal' to reduce bandwidth usage (~115kb) (may break compatibility with plugins); */
-    /* use 'Material Icons' to revert to stock Jellyfin icons */
+    /* use 'Material Symbols Rounded' for the rounded icons [default]: the browser loads a small file with the icons
+       of Jellyfin (~120 KB), and the file with all icons (~5 MB) only when a page shows another icon, e.g. of a plugin;
+       use 'Material Icons' to revert to stock Jellyfin icons */
     --iconPack: "Material Symbols Rounded";
 
     /* none: hides the watched and mark favorite buttons on hover [default];

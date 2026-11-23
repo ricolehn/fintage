@@ -9,7 +9,6 @@
 .layout-desktop .itemExternalLinks > a:hover,
 .itemExternalLinks > a:active {
     background-color: var(--accentColor) !important;
-    color: #fff !important;
 }
 
 .layout-desktop .itemExternalLinks > a[href*="themoviedb.org"]:hover,
@@ -109,7 +108,7 @@
 }
 
 .overview-expand.emby-button::after {
-    content: "keyboard_arrow_down";
+    content: "\e313"; /* keyboard_arrow_down */
     font-family:
         var(--iconPack),
         Material Icons;

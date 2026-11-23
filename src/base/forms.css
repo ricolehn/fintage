@@ -32,7 +32,6 @@
     .emby-select-withcolor:focus,
     .emby-input:focus,
     .emby-textarea:focus {
-        border-color: var(--highlightOutlineColor) !important;
         background-color: var(--textareaBackgroundColor);
     }
 }

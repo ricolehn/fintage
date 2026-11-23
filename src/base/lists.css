@@ -209,10 +209,6 @@ and the buttons, which come after the image, stay above it */
     border-radius: 0.7em;
 }
 
-.Mui-selected {
-    color: #fff;
-}
-
 .actionsheetDivider {
     height: 2px;
     background: var(--dividerColor);
