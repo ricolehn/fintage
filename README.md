@@ -297,14 +297,14 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
 <details>
   <summary><i>15. All optional scripts with one paste, always up to date (optional JavaScript)</i></summary>
 
-> - Some things are beyond custom CSS, so Fintage comes with a few optional scripts, described in options 16 to 18. This loader brings all of them at once, in their newest version and on every device: you paste it once, and new and improved scripts arrive by themselves, the way the import does it for the theme.
+> - Some things are beyond custom CSS, so Fintage comes with a few optional scripts, described in options 16 to 19. This loader brings all of them at once, in their newest version and on every device: you paste it once, and new and improved scripts arrive by themselves, the way the import does it for the theme.
 > - It needs a plugin that adds JavaScript to the web client, such as [JavaScript Injector](https://github.com/n00bcodr/Jellyfin-JavaScript-Injector):
 >   1. Open Dashboard > Plugins > Catalog, click the settings icon and add the repository of the plugin for your Jellyfin version: `https://raw.githubusercontent.com/n00bcodr/jellyfin-plugins/main/12/manifest.json` for Jellyfin 12, `https://raw.githubusercontent.com/n00bcodr/jellyfin-plugins/main/10.11/manifest.json` for Jellyfin 10.11.
 >   2. Install JavaScript Injector from the Catalog and restart your Jellyfin server.
 >   3. Open Dashboard > Plugins > JavaScript Injector, click Add Script, paste the content of [fintage-scripts.js](Theme/assets/add-ons/fintage-scripts.js) and save.
 >   4. Reload the web page once without the cache: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd> (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd> on a Mac). In the Jellyfin apps, clear the cache of the app instead (on Android: Settings > Apps > Jellyfin > Storage > Clear cache). A normal reload is not enough, since the page from before the plugin was installed stays in the cache.
 > - The browser console (<kbd>F12</kbd>) then shows the version of the scripts, like `Fintage: scripts v1.1.1 are loaded`, and a line for each script.
-> - To leave out a script, name it in the loader, like `window.fintageScriptsOff = ["short-track-names"];`. The names are those of the files in options 16 to 18.
+> - To leave out a script, name it in the loader, like `window.fintageScriptsOff = ["short-track-names"];`. The names are those of the files in options 16 to 19.
 > - Each device fetches the scripts again once a day. jsDelivr, which delivers them, can keep an older version for up to 12 hours.
 > - The loader runs whatever is on the main branch of this repository, on every device that opens Jellyfin. To stay on a version you have looked at, replace `@main` in it with a release, like `@v1.1.1`.
 > - If you added single scripts of options 16 to 18 before, remove them: older copies of them would run a second time next to the loader.
@@ -346,12 +346,13 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
   <summary><i>19. The faster version of the theme (optional JavaScript)</i></summary>
 
 > - Jellyfin does not tell its pages apart by a class, so the theme recognises the page of a movie, a season or an episode by what is on it, and the browser checks this again for every element it styles. With the loader of option 15, a small script answers these questions once whenever the page changes, and the faster version of the theme only reads the answers.
-> - It looks exactly like the normal version, and the browser has about two thirds less work on the pages of movies, shows, seasons, episodes and albums: on a phone, about 0.2 instead of 0.6 seconds of styling per page, on a desktop about 40 instead of 110 milliseconds.
+> - It looks exactly like the normal version, and the browser has less than half of the styling work on the pages of movies, shows, seasons, episodes and albums: on a phone with a slow processor about 0.25 instead of 0.6 seconds per page, on a desktop about 45 instead of 140 milliseconds. The script itself needs about 40 of these milliseconds per page on such a phone, and 15 on a desktop.
 > - To use it, set up the loader of option 15, and replace the import of the theme with this one:
 >   ```css
 >   @import url("https://cdn.jsdelivr.net/gh/ricolehn/fintage@main/Theme/Fintage-js-latest-minified.css");
 >   ```
-> - The browser console (<kbd>F12</kbd>) then also shows `Fintage: page state is active`. Without this script, e.g. when `page-state` is named in `window.fintageScriptsOff`, the pages of movies, shows, seasons, episodes and albums of the faster version lose their card, so leave it on.
+> - The script is [page-state.js](Theme/assets/add-ons/page-state.js), and the loader brings it. The browser console (<kbd>F12</kbd>) then also shows `Fintage: page state is active`. Without this script, e.g. when `page-state` is named in `window.fintageScriptsOff`, the pages of movies, shows, seasons, episodes and albums of the faster version lose their card, so leave it on.
+> - The plugin loads the scripts once Jellyfin has started, so when the page of a movie or a show is opened directly, e.g. by reloading it, its card can appear a moment after the page. Moving between pages is not affected.
 
 </details>
 
@@ -473,7 +474,7 @@ The screenshots show Fintage v1.4.1 on Jellyfin 12.3 with the optional scripts o
 <details>
   <summary><i>Which version am I using?</i></summary>
 
-> - The version is shown at the bottom of the settings, like `Fintage v1.4.4`.
+> - The version is shown at the bottom of the settings, like `Fintage v1.5.0`.
 
 </details>
 
