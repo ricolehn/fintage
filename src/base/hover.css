@@ -1,0 +1,93 @@
+@media (hover: hover) and (pointer: fine) {
+    .paper-icon-button-light:hover:not(:disabled) {
+        color: var(--zeroContrastColor);
+        text-shadow: none !important;
+        background-color: var(--hoverBackgroundColor);
+    }
+
+    .emby-select-withcolor:hover:not(.emby-select[disabled], :focus),
+    .emby-input:hover:not(:focus),
+    .emby-textarea:hover:not(:focus) {
+        border-color: var(--dimTextColor) !important;
+    }
+
+    .checkboxContainer:hover .checkboxOutline:not(.multiSelectCheckboxOutline) {
+        border-color: var(--checkboxCheckedBgColor);
+        border-width: var(--borderWidthDouble);
+    }
+
+    .button-flat:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: var(--fullContrastColor);
+    }
+
+    .btnPlay.detailButton:hover {
+        background-color: var(--btnPlayColor);
+        color: var(--zeroContrastColor);
+        transform: translateY(-0.06em);
+        filter: brightness(1.06);
+    }
+
+    .alphaPickerButton:hover {
+        color: var(--fullContrastColor);
+    }
+
+    .listItem-largeImage:hover {
+        backdrop-filter: var(--blurLargest);
+    }
+
+    .listItem:not(.actionSheetMenuItem:has(.check)):hover {
+        color: var(--hoverTextColor) !important;
+        background: var(--activeBackgroundColor) !important;
+    }
+
+    .listItem:hover .listItemBodyText,
+    .listItem:hover .secondary {
+        color: var(--hoverTextColor) !important;
+    }
+
+    .navMenuOption:not(.navMenuOption-selected):hover {
+        color: var(--hoverTextColor) !important;
+        background: var(--activeBackgroundColor) !important;
+    }
+
+    .actionSheetMenuItem:has(.listItemIcon.check[style*="hidden"]):hover {
+        color: var(--hoverTextColor) !important;
+        background: var(--activeBackgroundColor) !important;
+    }
+
+    .searchfields-icon:hover,
+    .inputContainer .emby-input-iconbutton:hover {
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    #scenesContent .cardScalable:hover {
+        border-color: var(--dimTextColor) !important;
+    }
+
+    .sectionTitleTextButton:hover {
+        background: transparent !important;
+        color: var(--fullContrastColor) !important;
+    }
+
+    .button-link:hover {
+        color: var(--textColor) !important;
+        text-decoration: none;
+    }
+
+    .sectionTabs .emby-tab-button:hover {
+        color: var(--zeroContrastColor);
+        background-color: var(--hoverTabBackgroundColor);
+    }
+}
+
+.paper-icon-button-light:active:not(:disabled) {
+    color: var(--zeroContrastColor);
+    text-shadow: none !important;
+    background-color: var(--hoverBackgroundColor);
+}
+
+.layout-mobile .cardOverlayButton-br:active > .cardOverlayButtonIcon {
+    color: var(--zeroContrastColor);
+    text-shadow: none;
+}

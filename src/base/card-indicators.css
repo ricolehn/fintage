@@ -1,0 +1,54 @@
+.cardIndicators {
+    -webkit-align-items: center;
+    align-items: center;
+    top: 0.5em;
+}
+
+[dir="ltr"] .cardIndicators {
+    right: 0.5em;
+}
+
+.layout-mobile .cardIndicators {
+    top: 0.45em;
+    right: 0.5em;
+}
+
+.playedIndicator {
+    background: rgb(34, 197, 94);
+}
+
+.videoIndicator {
+    padding: 0.5em;
+    transform: scale(0.85);
+    font-size: 0.75em;
+}
+
+.videoIndicator:has(.photo_album, .folder) {
+    background: peru;
+}
+
+.videoIndicator:has(.photo) {
+    background: steelblue;
+}
+
+.videoIndicator:has(.videocam) {
+    background: indianred;
+}
+
+.defaultCardBackground,
+.cardScalable {
+    background: var(--cardBackgroundGradient);
+}
+
+div[data-type="Book"] .play_arrow::before {
+    content: "book";
+    font-size: 85%;
+}
+
+div[data-type="Photo"] .play_arrow::before {
+    content: "photo";
+}
+
+div[data-type="PhotoAlbum"] .play_arrow::before {
+    content: "animated_images";
+}

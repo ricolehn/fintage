@@ -1,0 +1,130 @@
+/* these are the section titles in the library views of the modern layout (e.g. Suggestions and Genres),
+styled like the ones on the home page */
+.sectionTitleTextButton.MuiLink-root {
+    display: inline-flex;
+    align-items: center;
+    color: var(--textColor);
+}
+
+.sectionTitleTextButton.MuiLink-root > .MuiSvgIcon-root {
+    display: none;
+}
+
+.sectionTitleTextButton.MuiLink-root::after {
+    content: "arrow_circle_right";
+    padding-inline-start: 0.25em;
+    font-family:
+        var(--iconPack),
+        Material Icons;
+    font-feature-settings: "liga";
+    font-size: 1.5rem;
+    font-weight: normal;
+    line-height: 1;
+    font-variation-settings:
+        "FILL" 0,
+        "wght" var(--wght),
+        "GRAD" var(--grad),
+        "opsz" 48;
+}
+
+/* this is the alphabet picker on library pages, styled like the one in the legacy layout */
+.alphaPicker-fixed-right > .MuiPaper-root {
+    background: transparent;
+}
+
+.alphaPicker-fixed-right .MuiToggleButton-root {
+    font-family: monospace;
+    color: var(--dimTextColor);
+    border-radius: var(--smallerRadius) !important;
+    margin: 0.1em !important;
+    border: none;
+}
+
+.alphaPicker-fixed-right .MuiToggleButton-root.Mui-selected {
+    color: var(--zeroContrastColor) !important;
+    background-color: var(--btnPlayColor) !important;
+}
+
+/* menus and popups */
+.MuiPopover-paper,
+.MuiMenu-paper {
+    background: var(--drawerColor) !important;
+    border-radius: var(--largeRadius) !important;
+}
+
+.MuiMenu-paper > .MuiList-root.MuiMenu-list {
+    background-color: transparent;
+}
+
+.MuiPopover-paper > .MuiList-root:not(.MuiMenu-list) {
+    padding: 0.375em;
+}
+
+.MuiMenuItem-root {
+    border-radius: var(--smallRadius);
+}
+
+/* the current option in the sort and view settings menus of the library header is highlighted like the selected
+options in the legacy menus (see selection and focus below), and its check icon takes the color of its text */
+#sort-popover .MuiMenuItem-root:has(> .MuiListItemIcon-root > .MuiSvgIcon-root) .MuiSvgIcon-root,
+#selectview-popover .MuiMenuItem-root:has(> .MuiListItemIcon-root > .MuiSvgIcon-root) .MuiSvgIcon-root {
+    color: inherit;
+}
+
+/* these are the sections of the filter menu in the library header */
+.MuiPopover-paper .MuiAccordion-root {
+    color: inherit;
+    background: transparent;
+    box-shadow: none;
+}
+
+.MuiPopover-paper .MuiAccordion-root::before {
+    background-color: var(--dividerColor);
+}
+
+.MuiPopover-paper .MuiAccordion-root.Mui-expanded {
+    margin: 0;
+}
+
+.MuiPopover-paper .MuiAccordionSummary-root {
+    border-radius: var(--smallRadius);
+}
+
+.MuiMenu-list > .MuiDivider-root {
+    margin: 0.375em 0;
+    border-color: var(--dividerColor);
+}
+
+.MuiListSubheader-root {
+    color: var(--dimTextColor);
+}
+
+.MuiTooltip-tooltip {
+    border-radius: var(--smallRadius);
+}
+
+/* these are the form fields of the settings pages, styled like the legacy inputs */
+.MuiFilledInput-root {
+    border: var(--defaultLighterBorder);
+}
+
+.MuiFilledInput-root::before,
+.MuiFilledInput-root::after {
+    content: none !important;
+}
+
+.MuiFilledInput-root.Mui-focused {
+    border-color: var(--highlightOutlineColor);
+}
+
+.MuiInputLabel-root.Mui-focused {
+    color: var(--fullContrastColor);
+}
+
+/* this keeps the save button of the settings pages always in view */
+.userPreferencesPage .MuiButton-containedPrimary[type="submit"] {
+    position: sticky;
+    bottom: calc(1em + max(env(safe-area-inset-bottom), var(--safe-area-inset-bottom, 1px)));
+    box-shadow: 0 0.75em 2em 2em var(--darkerGradientPoint);
+    z-index: 2;
+}

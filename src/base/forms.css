@@ -1,0 +1,71 @@
+.emby-textarea {
+    font-family: consolas, monaco, monospace;
+}
+
+.customCssContainer textarea {
+    max-height: 40vh;
+    overflow-y: auto !important;
+}
+
+.emby-select-withcolor,
+.emby-select,
+.emby-input,
+.emby-textarea {
+    background-color: var(--selectorBackgroundColor);
+    border: var(--defaultLighterBorder);
+    padding: 0.5em !important;
+}
+
+.inputLabelFocused,
+.selectLabelFocused,
+.textareaLabelFocused {
+    color: var(--fullContrastColor);
+}
+
+.emby-select-withcolor:focus,
+.emby-input:focus,
+.emby-textarea:focus {
+    border-color: var(--highlightOutlineColor) !important;
+}
+
+@supports (display: revert) {
+    .emby-select-withcolor:focus,
+    .emby-input:focus,
+    .emby-textarea:focus {
+        border-color: var(--highlightOutlineColor) !important;
+        background-color: var(--textareaBackgroundColor);
+    }
+}
+
+.emby-select-withcolor > option {
+    color: inherit;
+    background-color: var(--selectorBackgroundColor);
+}
+
+.inputContainer .emby-input-iconbutton {
+    color: rgba(255, 255, 255, 0.5);
+    margin-left: -2.5em;
+    background-color: transparent !important;
+}
+
+.searchfields-txtSearch {
+    padding: 0.75em 1.5em !important;
+    border-radius: 4em;
+}
+
+.searchfields-icon {
+    padding: 0.25em;
+    margin-left: -1.75em;
+    margin-bottom: 0;
+    border-radius: var(--largeRadius);
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.searchfields-icon:active,
+.inputContainer .emby-input-iconbutton:active {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.searchFields > .searchFieldsInner {
+    flex-direction: row-reverse;
+}

@@ -1,0 +1,543 @@
+.detailPageWrapperContainer {
+    padding-top: unset;
+    margin-top: unset;
+}
+
+.layout-desktop .detailPageWrapperContainer {
+    min-height: 46vh;
+    background: linear-gradient(180deg, transparent, 17vh, var(--darkerGradientPointAlpha) 50vh);
+}
+
+.layout-tv .detailPageWrapperContainer {
+    padding-left: 30vw;
+    min-height: 46vh;
+    background: linear-gradient(0deg, var(--darkerGradientPointAlpha) 70%, 85%, transparent);
+}
+
+.detailPagePrimaryContainer {
+    align-content: space-between;
+    align-items: stretch;
+    justify-content: end;
+    flex-direction: column;
+    /* center content on desktop */
+    align-items: center;
+    /* this aligns the plot to left on 10.11.0 */
+    text-align: left;
+}
+
+/* this disables block padding on pre-10.11.0 */
+.layout-mobile .detailPagePrimaryContainer.detailRibbon,
+/* this disables block padding on 10.11.0 */
+.layout-mobile .detailPagePrimaryContainer > .detailRibbon {
+    padding: 0 var(--sidePadding);
+}
+
+.layout-desktop .detailPagePrimaryContainer {
+    background: transparent;
+}
+
+.layout-desktop .detailPageSecondaryContainer {
+    background-color: transparent;
+}
+
+/* this removes the extra large left padding on 10.11.0 */
+.detailPagePrimaryContainer > .detailPagePrimaryContent,
+[dir="ltr"] .detailPagePrimaryContainer > .detailRibbon,
+/* this removes the extra large left padding on pre-10.11.0 */
+[dir="ltr"] .detailPagePrimaryContainer.detailRibbon {
+    padding-left: var(--sidePadding);
+}
+
+.layout-mobile .detailPagePrimaryContent {
+    padding-left: var(--sidePadding) !important;
+    padding-right: var(--sidePadding) !important;
+}
+
+/* this places main media buttons below the title on 10.11.0 */
+.layout-desktop [dir="ltr"] .detailRibbon,
+.layout-tv [dir="ltr"] .detailRibbon {
+    flex-direction: column;
+}
+
+.detailPagePrimaryContainer > .detailPagePrimaryContent {
+    padding-top: 0;
+}
+
+.detailPageSecondaryContainer {
+    /* use !important for pre-10.11.0 compatibility */
+    padding-top: 0 !important;
+}
+
+/* this hides the header home button everywhere except the main media page */
+.skinHeader-withBackground:not(.semiTransparent) .headerHomeButton {
+    display: none;
+}
+
+/* workaround to show the header home button on the main media page on phones;
+like the conditions on the pages of episodes and seasons below, it is checked from the background container,
+which Jellyfin places before the header and the pages: checked from <html> or <body>, every card that was added
+made the browser restyle every element of the page. :where() keeps the specificity as it was */
+.layout-mobile :where(.backgroundContainer):has(~ * #itemDetailPage:not(.hide)) ~ * .headerHomeButton {
+    display: block;
+}
+
+.pageTitle {
+    height: 1.5em;
+}
+
+.headerLeft .pageTitle {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.paper-icon-button-light {
+    transition: none;
+}
+
+.paper-icon-button-light > .material-icons {
+    font-size: 1.25em;
+}
+
+#itemDetailPage .emby-scroller-container,
+#itemDetailPage .emby-scroller,
+#itemDetailPage .scrollX {
+    margin: 0 calc(-1 * var(--sidePadding));
+    padding-left: var(--sidePadding);
+}
+
+/* on TVs, the lower part of the page had no space on the right, so the rows reached past the screen,
+and Jellyfin, which centers whatever has the focus, moved the whole page sideways when it opened;
+with the space, the rows end at the edge of the screen, and they start right below their titles,
+also when Jellyfin scrolls a row to the current item, e.g. the row of the other episodes of the season */
+.layout-tv #itemDetailPage .detailPageSecondaryContainer {
+    padding-right: var(--sidePadding);
+}
+
+.layout-tv #itemDetailPage .emby-scroller-container,
+.layout-tv #itemDetailPage .emby-scroller,
+.layout-tv #itemDetailPage .scrollX {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.layout-desktop .emby-scroller-container,
+.layout-desktop .emby-scroller,
+.layout-desktop .scrollX {
+    --itemColumnGap: 0.5em;
+}
+
+/* horizontal rows scroll freely; scroll-padding only keeps focused cards away from the screen edge */
+.emby-scroller,
+.scrollX {
+    padding-left: var(--sidePadding);
+    scroll-padding-inline: var(--sidePadding);
+}
+
+/* the rows never show a scrollbar; with a mouse, Jellyfin shows arrows above them instead,
+and on touch screens they scroll with a swipe */
+.emby-scroller:not([data-horizontal="false"]),
+.scrollX {
+    scrollbar-width: none;
+}
+
+.emby-scroller:not([data-horizontal="false"])::-webkit-scrollbar,
+.scrollX::-webkit-scrollbar {
+    display: none;
+}
+
+.sectionTabs .scrollX {
+    padding-left: 0;
+}
+
+.itemsContainer:not(.editorsChoiceItemsContainer, .vertical-list) {
+    column-gap: var(--itemColumnGap);
+    row-gap: 1em;
+}
+
+/* this is a workaround to add a gap between the last child and the edge of the screen on phones */
+.layout-mobile .itemsContainer:not(.editorsChoiceItemsContainer, .vertical-wrap, .vertical-list)::after {
+    content: "13";
+    color: transparent;
+}
+
+[dir="ltr"] .emby-scrollbuttons,
+.emby-scrollbuttons {
+    padding-top: 0;
+}
+
+.emby-scrollbuttons-button.paper-icon-button-light > .material-icons {
+    font-size: 1.5em;
+    place-content: center;
+}
+
+.detailRibbon {
+    background-color: transparent;
+}
+
+.mediaInfoItem {
+    border-radius: var(--smallRadius);
+    font-weight: 500;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.itemMiscInfo-primary {
+    column-gap: 0.5em;
+}
+
+.mediaInfoOfficialRating {
+    background: transparent !important;
+    font-size: 0.75em;
+    font-family: "Noto Sans", sans-serif;
+    line-height: 1.5em;
+    transform: translateY(-0.15em);
+    font-weight: 600;
+    border: var(--defaultBorder);
+    color: var(--textColor);
+    border-color: var(--lighterBorderColor);
+    border-radius: var(--smallerRadius);
+}
+
+.starIcon {
+    --tmdb: linear-gradient(to right, #90cea1, #01b4e4);
+    --imdb: linear-gradient(to right, #f2db83, #dba506);
+    --colors: var(--tmdb);
+    background: var(--colors);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-left: -0.125em;
+    transform: translateY(-0.02em);
+}
+
+[dir="ltr"] .mediaInfoCriticRating {
+    background-size: 30%;
+    padding-left: 1.5em;
+}
+
+[dir="ltr"] .mediaInfoCriticRating::after {
+    content: "%";
+}
+
+@media (max-width: 31.25em) {
+    .itemMiscInfo .endsAt {
+        display: var(--endsAtVisibility);
+    }
+
+    .mediaInfoCriticRating {
+        display: var(--criticsRatingVisibility);
+    }
+}
+
+.detailRibbon:has(.portraitCard .folder) {
+    min-height: 32vh;
+    align-content: flex-end;
+}
+
+.layout-desktop .detailRibbon:has(.person) {
+    min-height: 15vh;
+    align-content: flex-end;
+}
+
+.layout-desktop .detailRibbon {
+    height: 100%;
+    min-height: 25vh;
+    margin-top: unset;
+}
+
+@keyframes animMoveDown {
+    from {
+        transform: translateY(-2em);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes animMoveDownSecondaryPage {
+    from {
+        transform: translateY(-2em);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 0.3;
+    }
+}
+
+@keyframes animMoveUp {
+    from {
+        transform: translateY(-90%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(-100%);
+        opacity: 1;
+    }
+}
+
+body:not(.hide-scroll) > .videoPlayerContainer {
+    position: relative !important;
+    -webkit-mask: var(--headerBlurMask);
+    mask: var(--headerBlurMask);
+    height: 80vh;
+}
+
+.layout-mobile body:not(.hide-scroll) > .videoPlayerContainer {
+    height: 40vh;
+    z-index: 1;
+}
+
+.layout-desktop > body:not(.hide-scroll) > .videoPlayerContainer ~ #reactRoot > .backgroundContainer.withBackdrop {
+    opacity: 0.25;
+}
+
+.itemBackdrop {
+    display: block !important;
+}
+
+.layout-desktop .itemBackdrop {
+    height: calc(100vh - 27vh - var(--primaryItemPageNegativeSpace));
+}
+
+.layout-mobile .itemBackdrop {
+    margin-top: 0 !important;
+    position: sticky;
+    top: -30%;
+    -webkit-mask: var(--itemBackdropMask);
+    mask: var(--itemBackdropMask);
+    animation: animMoveDown 0.5s ease-out forwards;
+    height: 45vh;
+}
+
+/* Jellyfin lays a dark shade over the upper half of the backdrop on phones, which kept bright images from their
+full brightness; only a soft band at the top stays, so the icons of the app bar stay readable on bright images */
+.layout-mobile #itemDetailPage .itemBackdrop::before {
+    background: none;
+    box-shadow: inset 0 6em 4em -3em hsla(0, 0%, 0%, 0.5);
+}
+
+.layout-tv .itemBackdrop {
+    height: 33vh;
+}
+
+#itemDetailPage:has(.subtitle, .musicParentName) .itemBackdrop,
+#itemDetailPage:has(.detailImageContainer :is(.backdropCard, .squareCard, .person, .queue, .book, .live_tv))
+    .itemBackdrop {
+    height: calc(100vh - 27vh - var(--secondaryItemPageNegativeSpace));
+}
+
+#itemDetailPage:has(.detailImageContainer .cardPadder-square > .person) .itemBackdrop {
+    height: calc(100vh - 4vh - var(--secondaryItemPageNegativeSpace));
+}
+
+.detailLogo {
+    display: var(--clearLogoVisibility);
+    top: calc(100vh - var(--clearLogoBottomSpace) - var(--primaryItemPageNegativeSpace));
+    left: 0;
+    width: 40%;
+    transform: translateY(-100%);
+    margin: auto 30%;
+    height: 25vh;
+    filter: var(--clearLogoFilter);
+    background-position: bottom;
+}
+
+.layout-mobile .detailLogo {
+    display: var(--clearLogoVisibility);
+    z-index: 1;
+    position: absolute;
+    left: 1em;
+    top: 45vh;
+    margin: auto 0%;
+    width: calc(100vw - 2em);
+    max-height: 17vh;
+    animation: animMoveUp 1s ease-out forwards;
+}
+
+.layout-tv .detailLogo {
+    display: var(--clearLogoVisibility);
+    height: 20vh;
+    top: 39vh;
+    left: 30vw;
+    width: 60vw;
+    margin: auto 5vw;
+}
+
+#itemDetailPage:has(.subtitle) .detailLogo {
+    top: calc(100vh - 6em - var(--secondaryItemPageNegativeSpace));
+}
+
+.layout-desktop #itemDetailPage:has(.detailImageContainer .person) .detailLogo {
+    top: calc(100vh - var(--secondaryItemPageNegativeSpace));
+}
+
+.layout-mobile #itemDetailPage:has(.subtitle) .detailLogo {
+    top: calc(100vh - 11em - var(--secondaryItemPageNegativeSpace));
+}
+
+/* on TVs, the pages of seasons and episodes started higher than the page of the series, so the logo of the series
+reached into the header on the page of a season; they start a little lower now, so the buttons are at the same height
+on the pages of a series, its seasons and its episodes. Jellyfin scrolls the page when the focused button is below
+the middle of the screen, so they stay above it, also with a title in two lines */
+.layout-tv #itemDetailPage:--season:has(.detailLogo:not(.hide)) .itemBackdrop {
+    height: 23vh;
+}
+
+.layout-tv #itemDetailPage:--season:has(.detailLogo:not(.hide)) .detailLogo {
+    top: calc(50vh - 6em);
+}
+
+.layout-tv #itemDetailPage:--episode .itemBackdrop {
+    height: 16.5vh;
+}
+
+.layout-desktop .detailImageContainer .card {
+    position: relative !important;
+    width: 22vh !important;
+    float: none;
+    left: 0 !important;
+    top: 0;
+    right: 0;
+    margin: auto;
+    margin-bottom: 0;
+    place-self: center;
+}
+
+.detailImageContainer .card.backdropCard {
+    width: 40vh !important;
+    max-width: 50vw;
+}
+
+/* the image of a detail page is no card in a row, so it does not grow or shrink with the width transition of the cards */
+.detailImageContainer .card {
+    display: none;
+    transition: none;
+}
+
+.layout-tv .detailImageContainer .card {
+    width: 25vw !important;
+    display: block !important;
+    position: fixed !important;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    left: var(--sidePadding);
+    align-content: center;
+    transform: none;
+}
+
+.layout-mobile .detailImageContainer .card {
+    filter: drop-shadow(0 0 0.25rem rgba(0, 0, 0, 0.25));
+    position: inherit !important;
+    margin-top: -150%;
+    max-width: 60vw;
+}
+
+/* this brings the buttons and title to the center in main media page */
+.layout-mobile [dir="ltr"] .infoWrapper,
+.layout-mobile .infoWrapper {
+    padding-left: 0;
+}
+
+.infoWrapper {
+    align-content: end;
+    place-items: center;
+    display: grid;
+    /* this centers the title and other text on 10.11.0 */
+    text-align: center;
+    color: var(--textColor);
+}
+
+/* Both the blocks below position the poster in main media page in the center */
+.layout-mobile .detailImageContainer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-left: 0 !important;
+}
+
+.layout-mobile .detailImageContainer:has(.card:not(.portraitCard)) {
+    height: 0;
+}
+
+.layout-mobile .detailPageWrapperContainer {
+    padding-top: 0;
+    margin-top: 0.5em;
+}
+
+/* this hides the detail logo when media card is visible */
+#itemDetailPage:has(.detailImageContainer :is(.backdropCard, .album)) .detailLogo {
+    z-index: 2;
+    display: none;
+}
+
+#itemDetailPage:has(.detailImageContainer .person) .detailLogo {
+    z-index: 2;
+    display: var(--artistClearLogoVisibility);
+}
+
+/* this hides the main media title when the clear logo is available*/
+.detailLogo:not(.hide) ~ .detailPageWrapperContainer .nameContainer h1 {
+    z-index: 2;
+    display: var(--itemTitleVisibility);
+}
+
+.detailImageContainer:has(.squareCard .person) ~ .nameContainer h1 {
+    display: var(--artistTitleVisibility);
+}
+
+/* this shows the main media title and the poster when the clear logo is unavailable*/
+.detailLogo.hide ~ .detailPageWrapperContainer .nameContainer h1 {
+    display: block !important;
+}
+
+.detailImageContainer:has(.backdropCard, .album) ~ .nameContainer h1 {
+    display: block !important;
+}
+
+.detailImageContainer .card.backdropCard:has(.cardImageIcon.album) {
+    max-width: 20vh;
+}
+
+.detailImageContainer .card.backdropCard:has(.cardImageIcon.album) .cardScalable {
+    aspect-ratio: 1 / 1;
+}
+
+#childrenContent:has(.listItem[data-type="Audio"]),
+.programGuideSection {
+    border-radius: var(--largeRadius);
+    padding: 0.5em;
+    background-color: var(--lighterGradientPointAlpha);
+}
+
+/* this shows the poster in the cast, book, live tv and other pages */
+.detailImageContainer > .backdropCard,
+.detailImageContainer > .squareCard,
+.detailImageContainer > .card:has(.book, .person, .album, .queue, .live_tv) {
+    display: block;
+}
+
+/* this hides artist's poster */
+.detailImageContainer .squareCard:has(.person) {
+    display: none;
+}
+
+#itemDetailPage:has(.subtitle, .musicParentName) {
+    background: var(--backgroundAlphaOverlay);
+}
+
+#itemDetailPage:has(.detailImageContainer .cardPadder-square > .person) {
+    background: var(--artistPageBackground, var(--backgroundAlphaOverlay));
+}
+
+.layout-mobile #itemDetailPage:has(.detailImageContainer .backdropCard) .itemBackdrop,
+.layout-mobile #itemDetailPage:has(.subtitle, .musicParentName) .itemBackdrop {
+    animation: animMoveDownSecondaryPage 0.5s ease-out forwards;
+}

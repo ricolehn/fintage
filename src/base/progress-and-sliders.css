@@ -1,0 +1,162 @@
+.buttonActive {
+    color: var(--accentColor) !important;
+}
+
+#divRunningTasks progress {
+    width: calc(100% - 7em);
+}
+
+.listItemImage .itemProgressBar {
+    position: absolute;
+    margin: 8%;
+}
+
+.layout-mobile .listItemImage .itemProgressBar {
+    position: absolute;
+    justify-self: center;
+    margin-bottom: 5%;
+}
+
+.layout-mobile .itemProgressBar:not(.backgroundProgress, .playbackProgress, .transcodingProgress) {
+    width: calc(100% - 2em);
+}
+
+.layout-mobile .backdropCard .itemProgressBar:not(.backgroundProgress, .playbackProgress, .transcodingProgress),
+.layout-mobile .portraitCard .itemProgressBar:not(.backgroundProgress, .playbackProgress, .transcodingProgress) {
+    width: 100%;
+    width: -webkit-fill-available;
+}
+
+.backgroundProgress > div,
+.backgroundProgress {
+    background-color: var(--darkerGradientPoint);
+}
+
+.playbackProgress > div {
+    background-color: var(--accentColor);
+}
+
+::-moz-progress-bar {
+    background: var(--accentColor) !important;
+}
+
+::-webkit-progress-value {
+    background: var(--accentColor) !important;
+}
+
+progress,
+::-webkit-progress-bar {
+    background: var(--darkerGradientPoint) !important;
+    border: var(--defaultBorder) !important;
+    border-radius: var(--smallRadius);
+    overflow: hidden;
+}
+
+progress + span {
+    color: var(--accentColor) !important;
+}
+
+.mdl-spinner__circle {
+    border-color: var(--textColor);
+    border-style: inset;
+    border-width: 0.25em;
+}
+
+.sliderContainer {
+    --thumb: 0.4em;
+}
+
+.mdl-slider-container {
+    height: 1em;
+}
+
+.mdl-slider {
+    height: unset;
+}
+
+.mdl-slider-background-flex-container {
+    padding: 0 calc(var(--thumb) / 2);
+}
+
+.sliderBubbleTrack {
+    margin: 0 calc(var(--thumb) / 2);
+}
+
+.sliderBubbleText {
+    font-size: 1.5em;
+}
+
+/* this is the osd player slider */
+.mdl-slider-background-flex {
+    border-radius: var(--thumb);
+    height: var(--thumb);
+    margin-top: calc(var(--thumb) / -2);
+    background: var(--osdSeekBarBufferedColorAlpha);
+    transition: 0.2s linear;
+}
+
+.sliderContainer:active .mdl-slider-background-flex {
+    --h: calc(var(--thumb) * 1.5);
+    height: var(--h);
+    border-radius: var(--h);
+    margin-top: calc(var(--h) / -2);
+}
+
+.mdl-slider-background-lower {
+    background-color: var(--osdSeekBarPlayedColor);
+}
+
+.mdl-slider-background-upper {
+    background-color: var(--osdSeekBarBufferedColorAlpha);
+}
+
+.mdl-slider::-webkit-slider-thumb {
+    background: var(--osdSeekBarThumbColor);
+    width: var(--thumb) !important;
+    height: var(--thumb) !important;
+    border-radius: var(--thumb);
+    transition: 0.2s linear;
+}
+
+.mdl-slider:hover::-webkit-slider-thumb,
+.layout-mobile .mdl-slider::-webkit-slider-thumb,
+.mdl-slider.show-focus:focus::-webkit-slider-thumb {
+    width: calc(var(--thumb) * 1.25) !important;
+    height: calc(var(--thumb) * 5) !important;
+    border-radius: var(--thumb);
+    transform: scale(0.5);
+}
+
+/* These Firefox thumb styles are separate because combining them breaks the effect on chrome */
+.mdl-slider::-moz-range-thumb {
+    background: var(--osdSeekBarThumbColor);
+    width: var(--thumb) !important;
+    height: var(--thumb) !important;
+    border-radius: var(--thumb);
+    transition: 0.2s linear;
+}
+
+.mdl-slider:hover::-moz-range-thumb,
+.mdl-slider.show-focus:focus::-moz-range-thumb {
+    width: calc(var(--thumb) * 1.25) !important;
+    height: calc(var(--thumb) * 5) !important;
+    border-radius: var(--thumb);
+    transform: scale(0.5);
+}
+
+.sliderMarkerContainer {
+    margin: 0 0.1em;
+}
+
+.sliderMarker.watched {
+    background-color: var(--osdSeekBarPlayedColor);
+}
+
+.sliderMarker {
+    height: 4px;
+    border-radius: 2px;
+}
+
+.iconOsdProgressInner {
+    background: var(--osdSeekBarPlayedColor);
+}

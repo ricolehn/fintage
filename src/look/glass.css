@@ -1,0 +1,73 @@
+/* glass surfaces start
+panels, dialogs, menus and bars share one frosted glass material */
+.dialog,
+.MuiPopover-paper,
+.MuiMenu-paper,
+.toast,
+.upNextContainer,
+.MuiTooltip-tooltip {
+    backdrop-filter: var(--fintageGlassBlur);
+    box-shadow: var(--fintageGlassHighlight), var(--fintageGlassShadow) !important;
+}
+
+.dialog:not(.dialog-fullscreen),
+.MuiPopover-paper,
+.MuiMenu-paper,
+.toast,
+.upNextContainer,
+.MuiTooltip-tooltip {
+    border: var(--fintageGlassBorder) !important;
+}
+
+/* tooltips have the color of the fields as their background, which is light in the light theme,
+so their text takes the color of the text instead of white */
+.MuiTooltip-tooltip {
+    color: var(--textColor);
+}
+
+.dialog:not(.dialog-fullscreen) {
+    border-radius: var(--largerRadius) !important;
+}
+
+/* the page behind dialogs is dimmed and softly blurred */
+.dialogBackdropOpened {
+    opacity: 0.6;
+    backdrop-filter: var(--blurSmallest);
+}
+
+.mainDrawer,
+.drawer-open,
+.MuiDrawer-paper {
+    border-right: var(--fintageGlassBorder);
+    backdrop-filter: var(--fintageGlassBlur);
+}
+
+.appfooter {
+    background-color: var(--headerColor) !important;
+    color: var(--textColor);
+    border-top: var(--fintageGlassBorder);
+    box-shadow: var(--fintageGlassHighlight);
+    backdrop-filter: var(--fintageGlassBlur) !important;
+}
+
+.layout-desktop .nowPlayingInfoContainer,
+.infoBanner,
+.programGuideSection,
+#childrenContent:has(.listItem[data-type="Audio"]) {
+    border: var(--fintageGlassBorder) !important;
+    box-shadow: var(--fintageGlassHighlight);
+}
+
+fieldset,
+table:not(.MuiTable-root.MuiTable-stickyHeader) {
+    border-color: var(--fintageGlassBorderColor) !important;
+}
+
+.playerStats,
+.iconOsd {
+    border-radius: var(--largeRadius);
+    background-color: var(--fintageGlassColor);
+    border: var(--fintageGlassBorder);
+    backdrop-filter: var(--fintageGlassBlur);
+}
+/* glass surfaces end */

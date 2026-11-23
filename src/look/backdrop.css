@@ -1,0 +1,27 @@
+/* backdrop start
+the backdrop gets a soft vignette and fades into the page */
+.backgroundContainer.withBackdrop {
+    opacity: 0.9;
+    background:
+        radial-gradient(120% 90% at 50% 25%, transparent 55%, var(--fintageVignetteColor)),
+        linear-gradient(0deg, var(--darkerGradientPoint), 45%, var(--fintageBackdropFadeColor));
+}
+
+.layout-tv .backgroundContainer.withBackdrop {
+    background: linear-gradient(0deg, var(--darkerGradientPoint), 45%, var(--darkerGradientPointAlpha));
+}
+
+.layout-mobile .backgroundContainer.withBackdrop,
+.withSectionTabs .backgroundContainer.withBackdrop {
+    background: var(--darkerGradientPoint);
+}
+
+/* on phones, the splash screen of the server shows behind the login form as it does on desktops: Jellyfin shows it as
+the backdrop of the login page, which the theme covers on phones, since the pages of movies and shows bring their own there */
+.layout-mobile .backgroundContainer.withBackdrop:has(~ * #loginPage:not(.hide)) {
+    opacity: 0.9;
+    background:
+        radial-gradient(120% 90% at 50% 25%, transparent 55%, var(--fintageVignetteColor)),
+        linear-gradient(0deg, var(--darkerGradientPoint), 45%, var(--fintageBackdropFadeColor));
+}
+/* backdrop end */

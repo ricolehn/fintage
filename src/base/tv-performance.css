@@ -1,0 +1,19 @@
+/* performance improvements for low-end TVs - start */
+
+.layout-tv .show-focus:focus,
+.layout-tv .show-animation:focus,
+.emby-select-focusscale:focus {
+    transform: none !important;
+}
+
+.layout-tv .focuscontainer,
+.layout-tv .backdropImage {
+    animation-duration: 0s !important;
+    backdrop-filter: none;
+}
+
+.card.show-animation .cardBox {
+    transition: transform 0.05s ease-out;
+}
+
+/* performance improvements for low-end TVs - end */

@@ -1,0 +1,151 @@
+/* the bar at the top while items are selected; it is opaque, so it needs no blur behind it.
+Jellyfin draws its close button, the number of selected items and its menu button in the text color of the gold buttons,
+which nearly matched the bar in both looks, so they could not be seen; here they take the text color of the page.
+Without Jellyfin's padding below them, they sit in the middle of the bar, and with a fallback for the variable,
+the top padding keeps the safe area where the variable is not set, instead of being dropped */
+.selectionCommandsPanel {
+    --jf-palette-primary-contrastText: var(--textColor);
+    --jf-palette-primary-dark: transparent;
+    background: var(--lighterGradientPoint);
+    border-bottom: var(--defaultBorder);
+    height: 3.5em;
+    padding-top: max(env(safe-area-inset-top), var(--safe-area-inset-top, 0px));
+    padding-bottom: 0;
+}
+
+.selectionCommandsPanel > h1 {
+    font-size: large;
+}
+
+/* Jellyfin also fills the buttons of the bar on hover and focus, so a button stayed filled after a tap;
+now they fill like the other round icon buttons: while pressed, under the mouse and when the keyboard reaches them */
+.selectionCommandsPanel .paper-icon-button-light:active {
+    --jf-palette-primary-dark: var(--hoverBackgroundColor);
+}
+
+.selectionCommandsPanel .paper-icon-button-light:focus-visible {
+    --jf-palette-primary-dark: var(--hoverBackgroundColor);
+    color: var(--zeroContrastColor);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .selectionCommandsPanel .paper-icon-button-light:hover {
+        --jf-palette-primary-dark: var(--hoverBackgroundColor);
+    }
+}
+
+.itemSelectionPanel {
+    border: unset;
+    background-color: transparent;
+}
+
+.emby-checkbox:checked + span + .checkboxOutline {
+    border-radius: var(--smallerRadius) !important;
+    background: transparent;
+    border-color: var(--fullContrastColor);
+    border-style: solid;
+    border-width: var(--borderWidthDouble);
+    outline: none;
+}
+
+.emby-checkbox:checked + span + .multiSelectCheckboxOutline {
+    box-shadow: inset 0em 7em 10em 20px var(--multiSelectOverlayColor);
+}
+
+@supports (display: revert) {
+    .emby-checkbox:checked + span + .checkboxOutline {
+        outline: solid var(--borderWidth) #fff;
+    }
+}
+
+.checkboxOutline {
+    top: unset;
+    height: 1.3em;
+    width: 1.3em;
+    border-radius: var(--smallerRadius);
+}
+
+.itemSelectionPanel .material-icons.check::before {
+    font-size: 4em;
+    color: var(--fullContrastColor);
+    padding: 0.25em;
+}
+
+.cardText-first + .itemSelectionPanel > .checkboxContainer {
+    height: calc(100% - 1.75em);
+}
+
+.overflowBackdropCard .cardText-first + .itemSelectionPanel > .checkboxContainer {
+    height: 100%;
+}
+
+.checkboxContainer .emby-checkbox:checked + span + .checkboxOutline.multiSelectCheckboxOutline {
+    border-radius: var(--largeRadius) !important;
+}
+
+#castCollapsible .checkboxContainer .emby-checkbox:checked + span + .checkboxOutline.multiSelectCheckboxOutline,
+#guestCastContent .checkboxContainer .emby-checkbox:checked + span + .checkboxOutline.multiSelectCheckboxOutline {
+    border-radius: 50% !important;
+}
+
+.cardPadder {
+    text-align: center;
+}
+
+#castCollapsible .cardPadder .cardImageIcon,
+#guestCastContent .cardPadder .cardImageIcon {
+    display: none;
+}
+
+.cardText-secondary + .itemSelectionPanel > .checkboxContainer,
+.cardText.cardTextCentered:not(.cardText-secondary, .cardText-first) + .itemSelectionPanel > .checkboxContainer {
+    height: calc(100% - 3em);
+}
+
+.cardText-secondary,
+.fieldDescription,
+.guide-programNameCaret,
+.listItem .secondary,
+.nowPlayingBarSecondaryText,
+.programSecondaryTitle,
+.secondaryText {
+    color: var(--dimTextColor);
+}
+
+.cardFooter + .itemSelectionPanel > .checkboxContainer,
+.cardScalable + .itemSelectionPanel > .checkboxContainer {
+    height: 100%;
+}
+
+.checkboxOutline.multiSelectCheckboxOutline {
+    border-radius: var(--largeRadius);
+    border-width: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.checkboxOutline:not(.multiSelectCheckboxOutline) .checkboxIcon {
+    font-size: 0.9em;
+    font-weight: 900;
+}
+
+.checkboxOutline:not(.multiSelectCheckboxOutline) {
+    background-color: #fff;
+}
+
+.emby-checkbox:focus:not(:checked) + span + .checkboxOutline {
+    border-color: var(--highlightOutlineColor) !important;
+    outline: none;
+}
+
+.emby-checkbox:focus + span + .checkboxOutline {
+    border-color: var(--highlightOutlineColor) !important;
+    outline: none;
+}
+
+@supports (display: revert) {
+    .emby-checkbox:focus + span + .checkboxOutline {
+        border-color: #fff !important;
+        outline: var(--borderWidth) solid var(--highlightOutlineColor);
+    }
+}

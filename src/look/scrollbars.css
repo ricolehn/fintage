@@ -1,0 +1,26 @@
+::selection {
+    color: var(--accentTextColor);
+    background: var(--accentColor);
+}
+
+/* thin, quiet scrollbars */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--fintageScrollbarColor) transparent;
+}
+
+::-webkit-scrollbar {
+    width: 0.6em;
+    height: 0.6em;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--fintageScrollbarColor);
+    background-clip: padding-box;
+    border: 0.15em solid transparent;
+    border-radius: 1em;
+}

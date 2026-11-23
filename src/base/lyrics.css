@@ -1,0 +1,23 @@
+.lyricPage {
+    padding: 0 var(--sidePadding);
+}
+
+.lyricsLine {
+    font-size: 2em;
+    color: var(--textColor);
+    text-align: center;
+    align-self: center;
+    font-weight: 600;
+    transition: transform 0.125s;
+}
+
+.pastLyric,
+.futureLyric {
+    transform: scale(0.85);
+    font-weight: 400;
+    text-align: center;
+}
+
+.pastLyric {
+    opacity: 0.45;
+}

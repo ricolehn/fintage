@@ -1,0 +1,255 @@
+/* episode page start
+episode pages are recognised by the season link in their title;
+the image of the episode is the backdrop of the page, with the logo of the series above the episode title,
+and the series name becomes a small heading when the series has no logo */
+#itemDetailPage:--episode .nameContainer > h1.parentName {
+    display: block;
+    font-size: 0.95em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dimTextColor);
+    padding-bottom: 0.5em;
+}
+
+#itemDetailPage:--episode .nameContainer > h1.parentName a {
+    font-weight: 600;
+}
+
+#itemDetailPage:--episode .nameContainer > .subtitle {
+    font-size: 2.4em;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: normal;
+    color: var(--fullContrastColor);
+    margin: 0;
+    padding: 0 0 0.4em;
+}
+
+/* with the optional script of option 18, the title has two lines: the season and the number of the episode,
+smaller and a little darker, and the name of the episode below them */
+#itemDetailPage .itemName .fintageEpisodeNumbers {
+    display: block;
+    margin-bottom: 0.2em;
+    font-size: 0.55em;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--dimTextColor);
+}
+
+#itemDetailPage .itemName .fintageEpisodeName {
+    display: block;
+}
+
+/* an original title follows right below the name of the episode, in the space the name keeps below itself
+(0.4em of its size, which is 2.4 times the text), and that space moves below the original title */
+#itemDetailPage:--episode .nameContainer > .subtitle + .originalTitle {
+    margin: -0.8em 0 0;
+    padding: 0 0 0.75em;
+}
+
+/* on phones, the name is 1.6 times the text */
+.layout-mobile #itemDetailPage:--episode .nameContainer > .subtitle + .originalTitle {
+    margin-top: -0.5em;
+}
+
+:is(.layout-desktop, .layout-mobile) #itemDetailPage:--episode {
+    background: none;
+}
+
+/* the logo of the series replaces the series name, like the logo replaces the title on the series page;
+the !important overrides the rule that always shows the series name next to a landscape image.
+On phones, the logo stands small in the corner of the card of the episode, see below */
+:is(.layout-desktop, .layout-mobile) #itemDetailPage:--episode .detailLogo:not(.hide) {
+    display: var(--clearLogoVisibility);
+    z-index: 1;
+}
+
+.layout-desktop
+    #itemDetailPage:--episode
+    .detailLogo:not(.hide)
+    ~ .detailPageWrapperContainer
+    .nameContainer
+    > h1.parentName {
+    display: var(--itemTitleVisibility) !important;
+}
+
+/* on phones, the text below the card of an episode starts with its season and number, its name and its original title;
+the !important overrides the rule that shows every title of a page whose item has no logo */
+.layout-mobile #itemDetailPage:--episode .nameContainer > h1.parentName {
+    display: none !important;
+}
+
+/* on desktops, the series name above the title stands on the card of the episode, see the card on desktops below */
+.layout-desktop #itemDetailPage:--episode .nameContainer > h1.parentName {
+    color: var(--textColor);
+}
+
+/* the backdrop of the series is hidden when the episode has an image of its own;
+the containers of the backdrop come before the pages, so they look for the episode page themselves */
+.layout-desktop
+    .backdropContainer:has(~ * #itemDetailPage:not(.hide) .itemName [data-type="Season"]):has(
+        ~ * #itemDetailPage:not(.hide) .detailImageContainer > .backdropCard
+    ) {
+    display: none;
+}
+
+/* this turns the card of the image into the card of the page, on desktop and on phones */
+:is(.layout-desktop, .layout-mobile) #itemDetailPage:--episode .detailImageContainer .backdropCard,
+:is(.layout-desktop, .layout-mobile) #itemDetailPage:--episode .detailImageContainer .backdropCard .cardBox,
+:is(.layout-desktop, .layout-mobile) #itemDetailPage:--episode .detailImageContainer .backdropCard .cardScalable {
+    position: relative !important;
+    width: 100% !important;
+    height: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    filter: none;
+}
+
+/* on phones, Jellyfin moves the card down by 1.6em, which left a strip above the image */
+:is(.layout-desktop, .layout-mobile) #itemDetailPage:--episode .detailImageContainer .backdropCard {
+    top: 0;
+    left: 0;
+    max-height: none;
+}
+
+:is(.layout-desktop, .layout-mobile) #itemDetailPage:--episode .detailImageContainer .backdropCard .cardScalable {
+    border: none !important;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+:is(.layout-desktop, .layout-mobile) #itemDetailPage:--episode .detailImageContainer .backdropCard .cardPadder {
+    display: none;
+}
+
+/* the image fills the top of the page right away and fades in quickly; before, the width transition of the cards
+let it grow from a small card in the middle to the full width, as if it slid open to both sides */
+@keyframes fintageFadeIn {
+    from {
+        opacity: 0;
+    }
+}
+
+:is(.layout-desktop, .layout-mobile) #itemDetailPage:--episode .detailImageContainer:has(> .backdropCard) {
+    animation: fintageFadeIn 0.3s ease-out;
+}
+
+/* episodes without a landscape image show the backdrop of the series in the card, see the card on desktops below */
+.layout-desktop
+    #itemDetailPage:--episode
+    .detailPagePrimaryContainer
+    > .detailImageContainer:not(:has(> .backdropCard)) {
+    display: none;
+}
+
+/* on phones, the image of the episode is a card of its own below the app bar: whole, with rounded corners and a soft
+glow of its own colors around it, like the ambient light of a screen. The card is 16:9 and as wide as the page,
+on tablets at most 45em, and on a phone held sideways only as tall as leaves room for the title below it.
+Movies, shows, collections and seasons show their backdrop in the same card, see the card on phones below */
+.layout-mobile #itemDetailPage:--episode .nameContainer > .subtitle {
+    font-size: 1.6em;
+}
+
+.layout-mobile #itemDetailPage {
+    --detailCardTop: 4.25em;
+    --detailCardWidth: min(100vw - 2.5em, 45em, (100vh - 12em) * 16 / 9);
+    --detailCardHeight: calc(var(--detailCardWidth) * 9 / 16);
+    /* the glow is the image itself, blurred, a little larger and more colorful */
+    --detailCardGlow: blur(2.5em) saturate(1.7);
+    --detailCardShadow: 0 1.5em 2.5em -1em hsla(0, 0%, 0%, 0.6);
+    /* the logo of the series stands in the lower left corner of the card, a little away from its edges,
+    and a soft shade at the bottom of the image keeps light logos readable on bright images */
+    --detailCardLogoInset: calc(var(--detailCardHeight) * 0.075);
+    --detailCardLogoShade: inset 0 -4.5em 3.5em -2.5em hsla(0, 0%, 0%, 0.55);
+    /* the logo of a movie, a show or a collection stands below the card in a box of this height */
+    --detailTitleLogoHeight: min(6.25em, 12vh);
+}
+
+.layout-mobile #itemDetailPage:--episode {
+    --episodeTitleTop: calc(var(--detailCardTop) + var(--detailCardHeight) + 1em);
+}
+
+/* the !important overrides the backdrop of the series that is set on the element itself */
+.layout-mobile #itemDetailPage:--episode-with-image .itemBackdrop {
+    height: var(--episodeTitleTop);
+    background-image: none !important;
+    animation: none;
+}
+
+/* the card lies below the app bar, so the shade for its icons is not needed */
+.layout-mobile #itemDetailPage:--episode .itemBackdrop::before {
+    box-shadow: none;
+}
+
+/* the title starts at the same height with and without an image of the episode */
+.layout-mobile #itemDetailPage:--episode .detailPageWrapperContainer {
+    margin-top: 0;
+}
+
+/* the card lies below the title, the details and the buttons, so its glow, which reaches below the card,
+is behind the text; Jellyfin lifts the card above them, which painted the glow over the text.
+The block of the title and the buttons is a layer of its own, so the card stays above the page */
+.layout-mobile #itemDetailPage:--episode-with-image .detailRibbon {
+    isolation: isolate;
+}
+
+.layout-mobile #itemDetailPage:--episode-with-image .infoWrapper > .detailImageContainer {
+    position: absolute;
+    top: calc(var(--detailCardTop) - var(--episodeTitleTop));
+    left: calc(50% - var(--detailCardWidth) / 2);
+    width: var(--detailCardWidth);
+    height: var(--detailCardHeight);
+    z-index: -1;
+}
+
+/* the image keeps its rounded corners itself, so the glow behind it can reach beyond the card;
+the !important overrides the theme, which clips every card to its corners */
+.layout-mobile #itemDetailPage:--episode .detailImageContainer .backdropCard .cardScalable {
+    overflow: visible !important;
+    border-radius: var(--largeRadius);
+    box-shadow: var(--detailCardShadow);
+}
+
+.layout-mobile #itemDetailPage:--episode .detailImageContainer .backdropCard .cardImageContainer {
+    border-radius: var(--largeRadius);
+}
+
+/* the glow is the small blurred placeholder that Jellyfin draws while the image loads; it stays behind the image
+instead of being hidden, so the glow costs nearly nothing and shows right away */
+.layout-mobile #itemDetailPage:--episode .detailImageContainer .backdropCard .blurhash-canvas {
+    z-index: -1;
+    opacity: 0.75;
+    transform: scale(1.12, 1.3);
+    filter: var(--detailCardGlow);
+}
+
+/* the logo of the series is at most 40% as wide as the card and a fifth as high, so it covers little of the image,
+in the corner where the least happens, and nothing below the card moves; it lies above the card.
+On the page of a season, it stands in the same corner of the card with the backdrop of the series */
+.layout-mobile #itemDetailPage:--episode .detailLogo:not(.hide),
+.layout-mobile #itemDetailPage:--season .detailLogo:not(.hide) {
+    top: calc(var(--detailCardTop) + var(--detailCardHeight) - var(--detailCardLogoInset));
+    left: calc(50% - var(--detailCardWidth) / 2 + var(--detailCardLogoInset) * 1.2);
+    width: calc(var(--detailCardWidth) * 0.4);
+    height: calc(var(--detailCardHeight) * 0.19);
+    max-height: none;
+    margin: 0;
+    background-position: left bottom;
+    z-index: 3;
+}
+
+.layout-mobile
+    #itemDetailPage:--episode:has(.detailLogo:not(.hide))
+    .detailImageContainer
+    .backdropCard
+    .cardImageContainer {
+    box-shadow: var(--detailCardLogoShade);
+}
+
+/* episodes without a landscape image show the backdrop of the series in the same card, with the same glow,
+see the card on phones below */
+.layout-mobile #itemDetailPage:--episode .detailImageContainer:not(:has(> .backdropCard)) {
+    display: none;
+}
+/* episode page end */

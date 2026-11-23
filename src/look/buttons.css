@@ -1,0 +1,66 @@
+/* buttons start */
+/* the buttons next to the play button, e.g. trailer, played and favorite, are only icons without a visible button;
+they grow a little on hover and shrink when pressed, and the focus on TVs keeps its white fill so it stays visible */
+.detailButton:not(.btnPlay) {
+    background: transparent;
+    border-color: transparent;
+    text-shadow: var(--shadow);
+    transition:
+        color 0.25s var(--fintageEase),
+        transform 0.3s var(--fintageEase);
+}
+
+.detailButton:not(.btnPlay):active {
+    color: var(--fullContrastColor);
+    background: transparent;
+    transform: scale(0.92);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .layout-desktop .detailButton:not(.btnPlay):hover {
+        color: var(--fullContrastColor);
+        background: transparent;
+        transform: scale(1.15);
+    }
+}
+
+.emby-button.block,
+.button-alt,
+.raised,
+.raised:focus,
+.manageRecordingButton,
+.dashboardActionsContainer > .emby-button,
+.fab {
+    border-color: var(--fintageGlassBorderColor);
+    box-shadow: var(--fintageGlassHighlight);
+}
+
+.button-submit,
+.upNextContainer .btnStartNow,
+/* the :not() keeps the text buttons of the Jellyfin 12 app bar from getting a solid fill */
+.MuiButton-colorPrimary:not(.MuiButton-text) {
+    background: var(--btnSubmitColor) !important;
+    border: solid var(--btnSubmitBorderColor) var(--borderWidth) !important;
+    color: var(--accentTextColor) !important;
+    font-weight: 600;
+    box-shadow:
+        inset 0 var(--borderWidth) 0 hsla(0, 0%, 100%, 0.35),
+        var(--fintageButtonShadow);
+}
+
+.itemExternalLinks > .button-link {
+    color: var(--textColor);
+    margin-bottom: 0.5em;
+    padding: 0.2em 0.75em;
+    border-radius: 2em;
+    font-size: 0.85em;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    background-color: hsla(0, 0%, 100%, 0.06);
+    border: var(--fintageGlassBorder);
+}
+
+:root[data-theme="light"] .itemExternalLinks > .button-link {
+    background-color: hsla(30, 25%, 25%, 0.06);
+}
+/* buttons end */

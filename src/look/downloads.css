@@ -1,0 +1,135 @@
+/* downloads start
+the subtitles and lyrics found by a search, and the subtitles an item already has, are glass cards like the cards of the audio
+and the subtitles on the pages of movies and shows, under small labels with the names of their sources; the details of a result
+are quiet pills instead of bright blue ones, and its values stay whole when a line is full. Downloading is a round button
+with a gold icon, also on the images found by a search for images. The selectors are written out instead of grouped with :is(),
+which the older browsers of TVs skip, since they would lose the fill of the focus */
+.subtitleResults > h2,
+.lyricsResults > h2 {
+    margin: 1.75em 0 0.75em;
+    font-size: 0.75em;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dimTextColor);
+}
+
+.subtitleResults > h2:first-child,
+.lyricsResults > h2:first-child {
+    margin-top: 0.5em;
+}
+
+/* the !important overrides the line below the rows of lists, which the theme makes transparent */
+.subtitleList .listItem,
+.subtitleResults .listItem,
+.lyricsResults .listItem {
+    margin: 0 0 0.6em;
+    background: hsla(0, 0%, 100%, 0.04);
+    border: var(--borderWidth) solid var(--fintageGlassBorderColor) !important;
+    border-radius: var(--largeRadius);
+    box-shadow: var(--fintageGlassHighlight);
+}
+
+:root[data-theme="light"] .subtitleList .listItem,
+:root[data-theme="light"] .subtitleResults .listItem,
+:root[data-theme="light"] .lyricsResults .listItem {
+    background: hsla(40, 45%, 97%, 0.65);
+}
+
+/* on TVs, a card that has the focus keeps the fill of the focus, also in the light theme */
+.subtitleList .listItem:focus,
+.subtitleResults .listItem:focus,
+.lyricsResults .listItem:focus,
+:root[data-theme="light"] .subtitleList .listItem:focus,
+:root[data-theme="light"] .subtitleResults .listItem:focus,
+:root[data-theme="light"] .lyricsResults .listItem:focus {
+    background: var(--highlightOutlineColor);
+}
+
+.subtitleList .listItemBody,
+.subtitleResults .listItemBody,
+.lyricsResults .listItemBody {
+    padding-top: 0.6em;
+    padding-bottom: 0.6em;
+}
+
+.subtitleList .listItemIcon,
+.subtitleResults .listItemIcon,
+.lyricsResults .listItemIcon {
+    color: var(--accentColor);
+}
+
+/* Jellyfin writes the values without spaces between them, so they only wrap between each other as blocks of their own */
+.subtitleResults .listItemBodyText > span {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.subtitleResults .subtitleFeaturePillow,
+.lyricsResults .lyricsFeaturePillow {
+    margin: 0.45em 0.35em 0 0;
+    padding: 0.2em 0.75em;
+    font-size: 0.8em;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--textColor);
+    background: hsla(0, 0%, 100%, 0.06);
+    border: var(--fintageGlassBorder);
+    border-radius: 2em;
+}
+
+:root[data-theme="light"] .subtitleResults .subtitleFeaturePillow,
+:root[data-theme="light"] .lyricsResults .lyricsFeaturePillow {
+    background: hsla(30, 25%, 25%, 0.06);
+}
+
+/* the pills of a card that has the focus take the dark text of the focus */
+.subtitleResults .listItem:focus .subtitleFeaturePillow,
+.lyricsResults .listItem:focus .lyricsFeaturePillow {
+    color: inherit;
+    background: transparent;
+    border-color: currentColor;
+}
+
+/* the buttons of a card: download, preview and delete */
+.subtitleList .listItemButton,
+.subtitleResults .listItemButton,
+.lyricsResults .listItemButton,
+.btnDownloadRemoteImage {
+    width: 2.5em;
+    height: 2.5em;
+    padding: 0;
+    margin-left: 0.4em;
+    color: var(--textColor);
+    background: hsla(0, 0%, 100%, 0.06);
+    border: var(--fintageGlassBorder);
+    border-radius: 50%;
+}
+
+:root[data-theme="light"] .subtitleList .listItemButton,
+:root[data-theme="light"] .subtitleResults .listItemButton,
+:root[data-theme="light"] .lyricsResults .listItemButton,
+:root[data-theme="light"] .btnDownloadRemoteImage {
+    background: hsla(30, 25%, 25%, 0.06);
+}
+
+.subtitleResults .btnDownload,
+.lyricsResults .btnDownload,
+.btnDownloadRemoteImage {
+    color: var(--accentColor);
+}
+
+.btnDownloadRemoteImage {
+    margin: 0.35em auto 0.15em;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .subtitleResults .btnDownload:hover,
+    .lyricsResults .btnDownload:hover,
+    .btnDownloadRemoteImage:hover {
+        color: var(--accentTextColor);
+        background: var(--accentColor);
+        border-color: transparent;
+    }
+}
+/* downloads end */

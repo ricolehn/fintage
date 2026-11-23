@@ -1,0 +1,69 @@
+/* typography start
+headings are set a little tighter, like display type */
+h1,
+h2,
+.sectionTitle,
+.MuiTypography-h1,
+.MuiTypography-h2,
+.MuiTypography-h3 {
+    letter-spacing: -0.015em;
+}
+
+.sectionTitle {
+    font-size: 1.4rem !important;
+    font-weight: 600;
+}
+
+.layout-mobile .sectionTitle {
+    font-size: 1.25rem !important;
+}
+
+/* the arrow next to the section titles stays in the background until it is needed */
+.sectionTitleTextButton > .chevron_right,
+.sectionTitleTextButton.MuiLink-root::after {
+    opacity: 0.45;
+    transition: opacity 0.3s var(--fintageEase);
+}
+
+.sectionTitleTextButton:hover > .chevron_right,
+.sectionTitleTextButton.MuiLink-root:hover::after {
+    opacity: 1;
+}
+
+.nameContainer > h1.itemName,
+.nameContainer > h1.parentName,
+.nameContainer > h1.itemName a,
+.nameContainer > h1.parentName a {
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+}
+
+.tagline {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: -0.01em;
+    color: var(--fullContrastColor);
+}
+
+/* long plots are easier to read in shorter lines */
+.layout-desktop .detailSectionContent .overview,
+.layout-desktop .detailSectionContent .tagline {
+    max-width: 52em;
+    line-height: 1.65;
+}
+
+.layout-desktop .detail-clamp-text {
+    -webkit-line-clamp: 3;
+}
+
+.cardText {
+    letter-spacing: -0.005em;
+}
+
+.cardText-first {
+    font-weight: 500;
+}
+/* typography end */

@@ -1,0 +1,364 @@
+.portraitCard {
+    min-width: 5em;
+}
+
+.bannerCard {
+    --cardCount: 2;
+}
+
+/* if the window width is equal to or more than (at minimum) 300em then the code in the query will trigger */
+/* 16 posters, 12 thumbs */
+@media (min-width: 300em) {
+    .portraitCard,
+    .squareCard {
+        --cardCount: 16;
+    }
+
+    .overflowPortraitCard,
+    .overflowSquareCard {
+        --cardCount: 15;
+    }
+
+    .squareCard:has(.cardFooter) {
+        --cardCount: 12;
+    }
+
+    .backdropCard {
+        --cardCount: 12;
+    }
+
+    .overflowBackdropCard {
+        --cardCount: 11;
+    }
+}
+
+/* if the window width is equal to or less than (at maximum) 300em then the code in the query will trigger */
+/* 15 posters, 11 thumbs */
+@media (max-width: 300em) {
+    .portraitCard,
+    .squareCard {
+        --cardCount: 15;
+    }
+
+    .overflowPortraitCard,
+    .overflowSquareCard {
+        --cardCount: 14;
+    }
+
+    .squareCard:has(.cardFooter) {
+        --cardCount: 11;
+    }
+
+    .backdropCard {
+        --cardCount: 11;
+    }
+
+    .overflowBackdropCard {
+        --cardCount: 10;
+    }
+}
+
+/* 14 posters, 10 thumbs */
+@media (max-width: 270em) {
+    .portraitCard,
+    .squareCard {
+        --cardCount: 14;
+    }
+
+    .overflowPortraitCard,
+    .overflowSquareCard {
+        --cardCount: 13;
+    }
+
+    .squareCard:has(.cardFooter) {
+        --cardCount: 10;
+    }
+
+    .backdropCard {
+        --cardCount: 10;
+    }
+
+    .overflowBackdropCard {
+        --cardCount: 9;
+    }
+}
+
+/* 13 posters, 10 thumbs */
+@media (max-width: 240em) {
+    .portraitCard,
+    .squareCard {
+        --cardCount: 13;
+    }
+
+    .overflowPortraitCard,
+    .overflowSquareCard {
+        --cardCount: 12;
+    }
+
+    .squareCard:has(.cardFooter) {
+        --cardCount: 10;
+    }
+
+    .backdropCard {
+        --cardCount: 10;
+    }
+
+    .overflowBackdropCard {
+        --cardCount: 9;
+    }
+}
+
+/* 12 posters, 9 thumbs, 2160p*/
+@media (max-width: 220em) {
+    .portraitCard,
+    .squareCard {
+        --cardCount: 12;
+    }
+
+    .overflowPortraitCard,
+    .overflowSquareCard {
+        --cardCount: 11;
+    }
+
+    .squareCard:has(.cardFooter) {
+        --cardCount: 9;
+    }
+
+    .backdropCard,
+    .overflowBackdropCard {
+        --cardCount: 7;
+    }
+}
+
+/* 11 posters, 9 thumbs */
+@media (max-width: 200em) {
+    .portraitCard,
+    .squareCard {
+        --cardCount: 11;
+    }
+
+    .overflowPortraitCard,
+    .overflowSquareCard {
+        --cardCount: 10;
+    }
+
+    .squareCard:has(.cardFooter) {
+        --cardCount: 9;
+    }
+}
+
+/* 10 posters, 8 thumbs, 1440p */
+@media (max-width: 170em) {
+    .portraitCard,
+    .squareCard {
+        --cardCount: 10;
+    }
+
+    .overflowPortraitCard,
+    .overflowSquareCard {
+        --cardCount: 9;
+    }
+
+    .squareCard:has(.cardFooter) {
+        --cardCount: 9;
+    }
+
+    .backdropCard,
+    .overflowBackdropCard {
+        --cardCount: 6;
+    }
+}
+
+/* 9 posters, 7 thumbs */
+@media (max-width: 140em) {
+    .portraitCard,
+    .squareCard {
+        --cardCount: 9;
+    }
+
+    .overflowPortraitCard,
+    .overflowSquareCard {
+        --cardCount: 8;
+    }
+
+    .squareCard:has(.cardFooter) {
+        --cardCount: 7;
+    }
+
+    .backdropCard,
+    .overflowBackdropCard {
+        --cardCount: 5;
+    }
+}
+
+/* 8 posters, 7 thumbs, 1080p */
+@media (max-width: 120em) {
+    .portraitCard,
+    .squareCard {
+        --cardCount: 8;
+    }
+
+    .overflowPortraitCard,
+    .overflowSquareCard {
+        --cardCount: 7;
+    }
+
+    .squareCard:has(.cardFooter) {
+        --cardCount: 6;
+    }
+
+    .backdropCard,
+    .layout-tv .portraitCard,
+    .layout-tv .squareCard,
+    .layout-tv .overflowPortraitCard,
+    .layout-tv .overflowSquareCard,
+    .overflowBackdropCard {
+        --cardCount: 5;
+    }
+
+    .layout-tv .backdropCard,
+    .layout-tv .overflowBackdropCard {
+        --cardCount: 3;
+    }
+}
+
+/* 7 posters, 6 thumbs */
+@media (max-width: 100em) {
+    .portraitCard,
+    .squareCard,
+    .overflowPortraitCard,
+    .overflowSquareCard {
+        --cardCount: 7;
+    }
+
+    .squareCard:has(.cardFooter) {
+        --cardCount: 6;
+    }
+
+    .backdropCard,
+    .overflowBackdropCard {
+        --cardCount: 4;
+    }
+}
+
+/* 6 posters, 5 thumbs */
+@media (max-width: 80em) {
+    .portraitCard,
+    .squareCard,
+    .overflowPortraitCard,
+    .overflowSquareCard {
+        --cardCount: 6;
+    }
+
+    .squareCard:has(.cardFooter) {
+        --cardCount: 5;
+    }
+
+    .overflowBackdropCard,
+    .backdropCard {
+        --cardCount: 4;
+    }
+}
+
+/* 5 posters, 4 thumbs */
+@media (max-width: 62em) {
+    .portraitCard,
+    .squareCard,
+    .overflowPortraitCard,
+    .overflowSquareCard {
+        --cardCount: 5;
+    }
+
+    .squareCard:has(.cardFooter) {
+        --cardCount: 4;
+    }
+
+    .backdropCard,
+    .overflowBackdropCard {
+        --cardCount: 4;
+    }
+}
+
+/* 4 posters, 3 thumbs */
+@media (max-width: 48.125em) {
+    .portraitCard,
+    .squareCard,
+    .overflowPortraitCard,
+    .overflowSquareCard {
+        --cardCount: 4;
+    }
+
+    .squareCard:has(.cardFooter) {
+        --cardCount: 3;
+    }
+
+    .backdropCard,
+    .overflowBackdropCard {
+        --cardCount: 3;
+    }
+}
+
+/* 3 posters, 2 thumbs, 2 with footer */
+@media (max-width: 30em) {
+    .portraitCard,
+    .squareCard,
+    .overflowPortraitCard,
+    .overflowSquareCard,
+    .layout-mobile .portraitCard,
+    .layout-mobile .squareCard,
+    .layout-mobile .overflowPortraitCard,
+    .layout-mobile .overflowSquareCard {
+        --cardCount: 3;
+    }
+
+    .squareCard:has(.cardFooter) {
+        --cardCount: 2;
+    }
+
+    .backdropCard,
+    .overflowBackdropCard {
+        --cardCount: 2;
+    }
+}
+
+.cardBox {
+    margin-top: 0;
+}
+
+.card {
+    --padding: 0.375em;
+    --effectiveWidth: calc(((100vw - (var(--padding) * 2)) - (var(--sidePadding) * 2)));
+    --cardWidth: calc(var(--effectiveWidth) / var(--cardCount) - var(--itemColumnGap));
+    width: var(--cardWidth) !important;
+    padding: var(--padding);
+    transition: width 0.5s;
+    box-sizing: content-box;
+}
+
+/* this makes the cards bigger and center aligned on older browsers */
+@supports (aspect-ratio: 1 / 1) {
+    .card {
+        box-sizing: border-box;
+    }
+}
+
+.layout-mobile .card {
+    --padding: 1px;
+}
+
+/* this makes the card sizes smaller when phone is in landscape mode */
+@media (orientation: landscape) and (max-height: 40em) {
+    .layout-mobile .card {
+        --effectiveWidth: calc((65vw - (var(--sidePadding) * 2)));
+    }
+}
+
+#homeTab .overflowBackdropCard[data-positionticks],
+.nextUpItems > .card,
+#resumableItems > .card {
+    width: calc(var(--cardWidth) * var(--resumeCardScale)) !important;
+}
+
+.card .cardTextCentered {
+    text-shadow: var(--shadow);
+}

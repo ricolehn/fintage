@@ -1,0 +1,200 @@
+.detailSectionContent a:not(.overview-expand) {
+    text-align: start;
+}
+
+.layout-desktop .detailSectionContent {
+    display: grid;
+    align-content: end;
+    min-height: 16vh;
+}
+
+.detailSectionContent:has(.tagline.hide + .overview.hide) {
+    min-height: unset;
+}
+
+/* about start
+the about area, with the directors, the writers, the studios and the genres, is the end of the page, below the cast
+and the suggestions, like the credits at the end of a film: a thin line across the page, and below it small columns
+side by side, as many as fit, each with its label above its names, one name per line.
+Jellyfin puts it right below the plot, inside the block of the plot and the tracks, and CSS cannot move it out of there;
+so the page itself becomes the reference for its position instead of the blocks around it, and it is placed right below
+the end of the page, where it takes over the room the page keeps below its last row. The page grows by its height, since
+all of the content of a page already lies outside its box, which is only as high as the screen.
+The block of the plot is isolated, so that it is still painted above the image of an episode, which reaches into it on desktop,
+and the logo is lifted, so that the shade of the page is not painted over its lower edge; it lets clicks through, since on TVs
+it now lies above the buttons of pages whose buttons are higher up, e.g. those of songs */
+.detailPageWrapperContainer {
+    position: relative;
+}
+
+.detailPagePrimaryContainer {
+    position: static;
+}
+
+.detailPagePrimaryContent {
+    position: static;
+    isolation: isolate;
+}
+
+.detailLogo {
+    z-index: 1;
+    pointer-events: none;
+}
+
+#itemDetailPage .itemDetailsGroup {
+    /* the line is this far below the last row, and as wide as the rows */
+    --aboutLineTop: 2.25em;
+    --aboutInset: var(--sidePadding);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(12.5em, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 12.5em), 1fr));
+    gap: 1.75em 2.5em;
+    margin: 0;
+    padding: calc(var(--aboutLineTop) + 2.25em) var(--aboutInset) 4.5em;
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 4.5em);
+}
+
+/* the area takes over the room the page keeps below its last row */
+.detailPageWrapperContainer:has(.detailsGroupItem:not(.hide)) > .detailPageSecondaryContainer {
+    padding-bottom: 0 !important;
+}
+
+/* on desktops and TVs, the page lies on a shade that ends with it, so the area continues the shade */
+.layout-desktop #itemDetailPage .itemDetailsGroup,
+.layout-tv #itemDetailPage .itemDetailsGroup {
+    background: var(--darkerGradientPointAlpha);
+}
+
+/* on phones, the last row keeps a little room below itself, and two columns fit next to each other */
+.layout-mobile #itemDetailPage .itemDetailsGroup {
+    --aboutLineTop: 1.25em;
+    grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 9em), 1fr));
+    gap: 1.5em 1.25em;
+}
+
+/* on TVs, the poster stays on the left, so the area starts where the rows start, and the last row keeps more room below itself */
+.layout-tv #itemDetailPage .itemDetailsGroup {
+    --aboutLineTop: 0.5em;
+    --aboutInset: calc(var(--sidePadding) * 0.7);
+    padding-left: calc(30vw + var(--aboutInset));
+}
+
+/* the line; the first kind of credit draws it, so that there is no line where there are no credits */
+.itemDetailsGroup > :not(:empty):not(.hide)::before {
+    content: "";
+    position: absolute;
+    top: var(--aboutLineTop);
+    left: var(--aboutInset);
+    right: var(--aboutInset);
+    border-top: var(--borderWidth) solid var(--dividerColor);
+}
+
+.layout-tv .itemDetailsGroup > :not(:empty):not(.hide)::before {
+    left: calc(30vw + var(--aboutInset));
+}
+
+.itemDetailsGroup > :not(:empty):not(.hide) ~ :not(:empty):not(.hide)::before {
+    content: none;
+}
+
+/* on 12.x, Jellyfin keeps an empty box for each kind of credit the item has none of,
+and older versions hide the kinds they have none of */
+.itemDetailsGroup > :empty {
+    display: none;
+}
+
+/* this hides the area when the item has no credits at all (e.g. most seasons) */
+#itemDetailPage .itemDetailsGroup:not(:has(.detailsGroupItem:not(.hide))) {
+    display: none;
+}
+
+.itemDetailsGroup .detailsGroupItem {
+    display: block;
+    margin: 0 !important;
+    min-width: 0;
+}
+
+/* the label of each kind, small and quiet above its names */
+.itemDetailsGroup .detailsGroupItem > .label {
+    margin: 0 0 0.55rem;
+    font-size: 0.75em;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dimTextColor);
+}
+
+/* one name per line; the names are links of their own, and the commas between them are hidden */
+.itemDetailsGroup .detailsGroupItem > .focuscontainer-x {
+    font-size: 0;
+}
+
+.itemDetailsGroup .detailsGroupItem > .focuscontainer-x > * {
+    display: block;
+}
+
+.itemDetailsGroup .detailsGroupItem > .focuscontainer-x > * + * {
+    margin-top: 0.4rem;
+}
+
+.itemDetailsGroup .detailsGroupItem > .focuscontainer-x a {
+    font-size: 1rem;
+    font-weight: 450;
+    line-height: 1.35;
+    text-align: start;
+    color: var(--textColor);
+    text-underline-offset: 0.2em;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .itemDetailsGroup .detailsGroupItem > .focuscontainer-x a:hover {
+        text-decoration: underline;
+    }
+}
+
+/* on TVs, the kinds of credits are rows instead of columns, each with its label and then its names side by side:
+Jellyfin keeps the remote within the names of one kind for left and right, so it moves along the names
+with left and right, and to the next kind with up and down. The names are apart by a dot, and the focus is a fill
+around the name */
+.layout-tv #itemDetailPage .itemDetailsGroup {
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 1em 2.5em;
+    align-items: baseline;
+}
+
+.layout-tv .itemDetailsGroup > div,
+.layout-tv .itemDetailsGroup .detailsGroupItem {
+    display: contents;
+}
+
+.layout-tv .itemDetailsGroup .detailsGroupItem > .label {
+    margin: 0;
+}
+
+.layout-tv .itemDetailsGroup .detailsGroupItem > .focuscontainer-x > * {
+    display: inline;
+}
+
+.layout-tv .itemDetailsGroup .detailsGroupItem > .focuscontainer-x > * + * {
+    margin: 0;
+}
+
+.layout-tv .itemDetailsGroup .detailsGroupItem > .focuscontainer-x > * + *::before {
+    content: "·";
+    padding: 0 0.7rem;
+    font-size: 1rem;
+    color: var(--dimTextColor);
+}
+
+.layout-tv .itemDetailsGroup .detailsGroupItem > .focuscontainer-x a {
+    margin: -0.1em -0.35em;
+    padding: 0.1em 0.35em;
+    border-radius: var(--smallRadius);
+}
+/* about end */

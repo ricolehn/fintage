@@ -1,0 +1,48 @@
+.nameContainer > h3,
+.nameContainer > h1 {
+    word-break: break-word;
+    overflow: hidden;
+}
+
+.nameContainer > h1.itemName,
+.nameContainer > h1.parentName {
+    font-size: 4em;
+    white-space: pre-wrap;
+    padding-bottom: 0.5ch;
+    color: var(--fullContrastColor);
+}
+
+.nameContainer > h1.itemName bdi,
+.nameContainer > h1.parentName bdi,
+.nameContainer > h1.itemName a,
+.nameContainer > h1.parentName a {
+    overflow: hidden;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.layout-mobile .nameContainer > h1.itemName,
+.layout-mobile .nameContainer > h1.parentName,
+.layout-mobile .nameContainer > h1.parentNameLast {
+    font-size: 2em;
+    word-wrap: break-word;
+    padding-bottom: 0ch;
+}
+
+.subtitle {
+    font-size: 2em;
+    padding-bottom: 1em;
+}
+
+.layout-mobile .subtitle {
+    font-size: 1.5em;
+    padding-bottom: 0.5em;
+}
+
+.itemName.originalTitle {
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+    color: var(--dimTextColor);
+    display: var(--itemOriginalTitleVisibility);
+}

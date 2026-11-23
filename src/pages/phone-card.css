@@ -1,0 +1,176 @@
+/* the card on phones start
+on phones, movies, shows, collections and seasons show their backdrop in a card below the app bar, the way episodes
+show their image: whole, with rounded corners and a soft glow of its own colors around it, instead of across the top
+of the page. Where the logo stands tells what a page is: below the card, it is the title of a movie, a show or
+a collection; small in the corner of the card, the page is part of a show, like a season or an episode,
+and its own title follows below the card.
+Movies, shows and collections are recognised by the placeholder icon of their poster, which stays hidden on phones;
+seasons and episodes have a title below the name of their show instead, and music and pages that show an image
+of their own, like videos with a landscape image, keep their layout */
+
+/* the element of the backdrop keeps the image for the card and its glow, but does not paint it itself;
+the card scrolls with the page, while the backdrop stopped and let the page slide over it */
+.layout-mobile #itemDetailPage:--movie-show-or-collection .itemBackdrop,
+.layout-mobile #itemDetailPage:--season .itemBackdrop,
+.layout-mobile #itemDetailPage:--episode-without-image .itemBackdrop {
+    position: relative;
+    top: 0;
+    background-position: 0 -500vh;
+    background-repeat: no-repeat;
+    -webkit-mask: none;
+    mask: none;
+    animation: fintageFadeIn 0.3s ease-out;
+}
+
+/* the logo of a movie, a show or a collection follows below the card, the title of a season or an episode 1em below it */
+.layout-mobile #itemDetailPage:--movie-show-or-collection .itemBackdrop {
+    height: calc(var(--detailCardTop) + var(--detailCardHeight));
+}
+
+/* the page keeps 0.5em above the title, also on a season without an image, where the logo stands above the title */
+.layout-mobile #itemDetailPage:--season .itemBackdrop {
+    height: calc(var(--detailCardTop) + var(--detailCardHeight) + 0.5em);
+}
+
+.layout-mobile #itemDetailPage:--episode-without-image .itemBackdrop {
+    height: var(--episodeTitleTop);
+}
+
+.layout-mobile #itemDetailPage:--movie-show-or-collection .itemBackdrop::before,
+.layout-mobile #itemDetailPage:--movie-show-or-collection .itemBackdrop::after,
+.layout-mobile #itemDetailPage:--season .itemBackdrop::before,
+.layout-mobile #itemDetailPage:--season .itemBackdrop::after,
+.layout-mobile #itemDetailPage:--episode-without-image .itemBackdrop::before,
+.layout-mobile #itemDetailPage:--episode-without-image .itemBackdrop::after {
+    content: "";
+    position: absolute;
+    top: var(--detailCardTop);
+    left: calc(50% - var(--detailCardWidth) / 2);
+    width: var(--detailCardWidth);
+    height: var(--detailCardHeight);
+    border-radius: var(--largeRadius);
+    background: none;
+    background-image: inherit;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: var(--detailCardImagePosition, center);
+}
+
+/* without a backdrop, Jellyfin shows the poster instead, and the card shows it from a little below its top,
+where posters usually show the faces */
+.layout-mobile #itemDetailPage .itemBackdrop[style*="/Images/Primary"] {
+    --detailCardImagePosition: center 25%;
+}
+
+/* the glow; the shade for the icons of the app bar is not needed, since the card lies below the app bar */
+.layout-mobile #itemDetailPage:--movie-show-or-collection .itemBackdrop::before,
+.layout-mobile #itemDetailPage:--season .itemBackdrop::before,
+.layout-mobile #itemDetailPage:--episode-without-image .itemBackdrop::before {
+    opacity: 0.75;
+    transform: scale(1.12, 1.3);
+    filter: var(--detailCardGlow);
+    box-shadow: none;
+}
+
+.layout-mobile #itemDetailPage:--movie-show-or-collection .itemBackdrop::after,
+.layout-mobile #itemDetailPage:--season .itemBackdrop::after,
+.layout-mobile #itemDetailPage:--episode-without-image .itemBackdrop::after {
+    box-shadow:
+        inset 0 0 0 var(--borderWidth) var(--fintageRingColor),
+        var(--detailCardShadow);
+}
+
+/* the soft shade at the bottom of the card keeps the logo in its corner readable on bright images */
+.layout-mobile #itemDetailPage:--season:has(.detailLogo:not(.hide)) .itemBackdrop::after,
+.layout-mobile #itemDetailPage:--episode-without-image:has(.detailLogo:not(.hide)) .itemBackdrop::after {
+    box-shadow:
+        inset 0 0 0 var(--borderWidth) var(--fintageRingColor),
+        var(--detailCardLogoShade),
+        var(--detailCardShadow);
+}
+
+/* on a phone held sideways, the card of a movie, a show or a collection also leaves room for the logo below it */
+.layout-mobile #itemDetailPage:--movie-show-or-collection {
+    --detailCardWidth: min(100vw - 2.5em, 45em, (100vh - 12em - var(--detailTitleLogoHeight)) * 16 / 9);
+}
+
+/* the logo stands below the card in a box of its own, which takes its place in the page instead of lying on it,
+so the details, the buttons and the plot follow right below the logo, or right below the card when there is no logo;
+a logo of any shape is centered in its box. A season without an image shows the logo of its show like this too */
+.layout-mobile #itemDetailPage:--movie-show-or-collection .detailLogo,
+.layout-mobile #itemDetailPage:--season .itemBackdrop:not(.lazy-hidden, [style*="url("]) ~ .detailLogo {
+    position: relative;
+    inset: auto;
+    width: calc(var(--detailCardWidth) * 0.8);
+    height: var(--detailTitleLogoHeight);
+    max-height: none;
+    margin: 1.25em auto 0;
+    background-position: center;
+    transform: none;
+    animation: fintageFadeIn 0.5s ease-out;
+}
+
+/* without an image, e.g. when the details banner is turned off in the display settings, there is no card and the page
+starts below the app bar; while the image loads, the card keeps its place, so nothing below it moves when it shows */
+.layout-mobile #itemDetailPage:--movie-show-or-collection .itemBackdrop:not(.lazy-hidden, [style*="url("]),
+.layout-mobile #itemDetailPage:--season .itemBackdrop:not(.lazy-hidden, [style*="url("]) {
+    height: var(--detailCardTop);
+}
+
+.layout-mobile #itemDetailPage:--movie-show-or-collection .itemBackdrop:not(.lazy-hidden, [style*="url("])::before,
+.layout-mobile #itemDetailPage:--movie-show-or-collection .itemBackdrop:not(.lazy-hidden, [style*="url("])::after,
+.layout-mobile #itemDetailPage:--season .itemBackdrop:not(.lazy-hidden, [style*="url("])::before,
+.layout-mobile #itemDetailPage:--season .itemBackdrop:not(.lazy-hidden, [style*="url("])::after {
+    content: none;
+}
+
+/* the title of a season is as large as the title of an episode */
+.layout-mobile #itemDetailPage:--season .nameContainer > .subtitle {
+    font-size: 1.6em;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: normal;
+    color: var(--fullContrastColor);
+    margin: 0;
+    padding: 0 0 0.4em;
+}
+
+/* the name of the show, shown when it has no logo, is a small heading above the title of the season,
+on phones and on desktops */
+:is(.layout-mobile, .layout-desktop) #itemDetailPage:--season .nameContainer > h1.parentName {
+    font-size: 0.95em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dimTextColor);
+    padding-bottom: 0.5em;
+}
+
+/* in the light theme, the card leaves the sand of the page behind the app bar, so its icons are dark,
+like on the other pages, instead of white for an image behind them, on phones and on desktops;
+the card gets the warmer shadow of light cards.
+The app bar comes before the page, so it looks for the icon of a movie, a show, a collection, a season or an episode */
+:root[data-theme="light"].layout-mobile #itemDetailPage {
+    --detailCardShadow: 0 1.5em 2.5em -1em hsla(30, 25%, 20%, 0.35);
+}
+
+:root[data-theme="light"]:is(.layout-mobile, .layout-desktop)
+    .MuiAppBar-colorTransparent:--before-poster-page
+    .MuiButtonBase-root:not(:hover, .MuiButton-textPrimary),
+:root[data-theme="light"]:is(.layout-mobile, .layout-desktop)
+    :where(.backgroundContainer):has(
+        ~ * #itemDetailPage:not(.hide) .detailImageContainer .cardImageIcon:is(.movie, .tv, .video_library, .folder)
+    )
+    ~ *
+    :is(.skinHeader-withBackground.semiTransparent, .skinHeader.headroom:has(.pageTitle:empty))
+    .headerButton:not(:hover) {
+    color: var(--textColor);
+    text-shadow: none;
+}
+
+:root[data-theme="light"]:is(.layout-mobile, .layout-desktop)
+    .MuiAppBar-colorTransparent:--before-poster-page
+    :not(.MuiButton-textPrimary, :hover)
+    > :has(> .MuiSvgIcon-root):not(:hover) {
+    filter: none;
+}
+/* the card on phones end */

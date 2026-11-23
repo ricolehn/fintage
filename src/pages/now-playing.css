@@ -1,0 +1,172 @@
+.startTimeText,
+.endTimeText,
+.positionTime,
+.runtime {
+    width: 4.5em;
+    box-sizing: border-box;
+    font-variant-numeric: tabular-nums;
+}
+
+.startTimeText {
+    margin: 0 !important;
+}
+
+.endTimeText {
+    padding-inline-end: 0.8em;
+    margin: 0 0 0 0.75em !important;
+}
+
+.startTimeText,
+.endTimeText {
+    padding-top: 0.25em;
+}
+
+.startTimeText,
+.positionTime {
+    text-align: start;
+    justify-content: left;
+}
+
+.endTimeText,
+.runtime {
+    text-align: end;
+    justify-content: right;
+}
+
+.filterIndicator {
+    background: var(--accentColor);
+}
+
+.overflowBackdropCard[data-type="CollectionFolder"] .cardPadder-overflowBackdrop,
+.overflowBackdropCard[data-type="UserView"] .cardPadder-overflowBackdrop {
+    padding-bottom: 50%;
+}
+
+.overflowBackdropCard[data-type="CollectionFolder"] .cardText-first,
+.overflowBackdropCard[data-type="UserView"] .cardText-first {
+    display: var(--libraryLabelVisibility);
+}
+
+.nowPlayingButtonsContainer {
+    margin-top: 1em;
+}
+
+.nowPlayingPageImageContainerNoAlbum {
+    border: var(--defaultBorder);
+    border-radius: var(--smallRadius);
+    overflow: hidden;
+}
+
+.nowPlayingPageImageContainerNoAlbum .defaultCardBackground {
+    background: repeating-radial-gradient(#000, transparent 10em);
+}
+
+.nowPlayingPageImageContainerNoAlbum .cardImageContainer .cardImageIcon {
+    color: var(--borderColor);
+}
+
+.layout-mobile .playlistSection .playlist {
+    padding: 4.3em 0;
+    top: 0;
+    bottom: 4.3em;
+    background: var(--headerColor);
+    backdrop-filter: var(--blurLargest);
+    z-index: 0;
+}
+
+.layout-mobile .playlistSectionButton {
+    background: var(--drawerColor);
+    border-top: var(--defaultBorder);
+    backdrop-filter: var(--blurSmallest);
+    color: var(--textColor);
+    z-index: 1;
+}
+
+.layout-mobile .playlistSectionButton.playlistSectionButtonTransparent {
+    background: transparent;
+    border-top: var(--defaultBorder);
+    border-color: transparent;
+    color: var(--textColor);
+}
+
+.layout-desktop .nowPlayingInfoContainer {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 5em;
+    padding: 1em;
+    margin-bottom: 2em;
+    backdrop-filter: var(--blurLargest);
+    /* the look gives it a glass border and highlight; browsers without :has() skip that rule and keep these */
+    border: var(--defaultLighterBorder);
+    box-shadow: var(--shadow);
+    z-index: 2;
+    background-color: var(--headerColor);
+    border-radius: var(--largerRadius);
+    box-sizing: border-box;
+}
+
+.layout-desktop .nowPlayingInfoControls {
+    margin: 0em 2em;
+}
+
+.nowPlayingPageImage {
+    box-shadow: var(--shadow);
+    border-radius: var(--smallRadius);
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+}
+
+.nowPlayingBar .playPauseButton {
+    font-size: 2em;
+}
+
+.nowPlayingInfoContainer .btnPlayPause {
+    font-size: 3em;
+}
+
+.nowPlayingBar .nowPlayingImage {
+    background-size: cover;
+    border-radius: var(--smallerRadius);
+    height: 3.5em;
+    margin: 0.25em;
+    width: 3.5em;
+}
+
+.nowPlayingBarPositionContainer {
+    top: -0.7em;
+}
+
+@media (orientation: portrait) and (max-width: 43em) {
+    .nowPlayingPageImageContainerNoAlbum .cardImageContainer .cardImageIcon {
+        font-size: 8em !important;
+    }
+
+    .nowPlayingInfoContainer {
+        height: calc(95% - 4.2em);
+    }
+}
+
+.nowPlayingSongName.nowPlayingEpisode {
+    margin-bottom: 1em;
+    font-size: 1.25em;
+    color: var(--textColor);
+}
+
+.nowPlayingAlbum.nowPlayingSeason {
+    color: var(--dimTextColor);
+    margin-bottom: 0.5em;
+}
+
+.nowPlayingArtist.nowPlayingSerie {
+    margin-bottom: 0.5em;
+}
+
+.playlistIndexIndicatorImage {
+    background-blend-mode: difference;
+    background-color: var(--textColor);
+    background-size: contain !important;
+}
+
+.playlistIndexIndicatorImage.defaultCardBackground .audiotrack {
+    display: none;
+}

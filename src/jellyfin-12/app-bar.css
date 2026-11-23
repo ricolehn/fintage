@@ -1,0 +1,145 @@
+/* Jellyfin 12 modern layout support - start
+the modern layout is the default display mode on Jellyfin 12 (Auto);
+the legacy display modes do not render a <main> element or a MUI app bar,
+so most of the rules below only apply to the modern layout; the MUI color palette is mapped to the colors
+of Fintage in the look below */
+
+/* this is the app bar of the modern layout; it follows the same app bar style variables as the legacy header,
+and its background is painted by the layer below */
+.MuiAppBar-root {
+    color: var(--textColor);
+    background: none;
+    border: var(--appBarBorder, none);
+    border-width: 0 0 var(--borderWidth) 0;
+    box-shadow: var(--appBarShadow, none);
+}
+
+/* this layer paints the app bar; its blur reaches 3em below the bar and is cut back to it,
+so content right at the bottom edge gets blurred as well */
+.MuiAppBar-root::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: -3em;
+    left: 0;
+    right: 0;
+    background: var(--appBarColor, var(--headerBackground));
+    background-repeat: no-repeat;
+    background-size: 100% calc(100% - 3em);
+    backdrop-filter: var(--appBarBlurStrength, none) var(--appBarBlurFill,);
+    -webkit-mask: linear-gradient(#000 calc(100% - 3em), transparent 0);
+    mask: linear-gradient(#000 calc(100% - 3em), transparent 0);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* during video playback the app bar stays in the page without any content;
+this keeps its border from showing as a thin line at the top of the video */
+.MuiAppBar-root:empty {
+    border: none;
+    box-shadow: none;
+}
+
+.MuiAppBar-root:empty::before {
+    content: none;
+}
+
+.MuiAppBar-root::after {
+    content: var(--appBarSeamlessBlur, "");
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    backdrop-filter: var(--blurLargest);
+    -webkit-mask: var(--headerBlurMask);
+    mask: var(--headerBlurMask);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* this keeps the app bar transparent on top of the backdrop in main media pages until the page is scrolled,
+and on the login and other standalone pages */
+.MuiAppBar-colorTransparent:--before-item-page,
+.MuiAppBar-root:--before-standalone-page {
+    --appBarSeamlessBlur: none;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.MuiAppBar-colorTransparent:--before-item-page::before,
+.MuiAppBar-root:--before-standalone-page::before {
+    content: none;
+}
+
+.MuiAppBar-colorTransparent:--before-item-page .MuiButtonBase-root:not(:hover, .MuiButton-textPrimary) {
+    color: #fff;
+    text-shadow: var(--iconShadow);
+}
+
+/* the rounded icons are painted through a mask, which would cut off a shadow of their own, so the shadow goes on
+whatever holds them, except in the current library link and while the mouse is over a button */
+.MuiAppBar-colorTransparent:--before-item-page
+    :not(.MuiButton-textPrimary, :hover)
+    > :has(> .MuiSvgIcon-root):not(:hover) {
+    filter: drop-shadow(1px 1px 1px hsla(0, 0%, 0%, 0.5));
+}
+
+/* this removes the empty space reserved for the app bar in main media pages and standalone pages
+so that the backdrop fills the top of the page like on the legacy layout */
+.MuiAppBar-root + [aria-hidden="true"]:--before-item-page,
+.MuiAppBar-root + [aria-hidden="true"]:--before-standalone-page {
+    height: 0 !important;
+}
+
+/* this removes the legacy header padding from pages since the modern layout reserves space for its app bar */
+main .libraryPage:not(.itemDetailPage),
+.layout-mobile main #myPreferencesMenuPage {
+    padding-top: 0 !important;
+}
+
+/* these are the library links in the app bar, styled like the section tabs of the legacy layout */
+.MuiAppBar-root .MuiStack-root > .MuiButton-root {
+    padding: 0.3em 1em;
+    color: var(--textColor);
+    white-space: nowrap;
+}
+
+.MuiAppBar-root .MuiStack-root > .MuiButton-textPrimary {
+    color: var(--zeroContrastColor);
+    background-color: var(--btnPlayColor);
+    text-shadow: none !important;
+}
+
+/* this replaces the colored circle behind the user icon with the outlined style of the legacy layout */
+.MuiAppBar-root .MuiAvatar-root {
+    width: 1.75em;
+    height: 1.75em;
+    background-color: transparent;
+    border: var(--defaultBorder);
+}
+
+.MuiAppBar-root .MuiAvatar-root > .MuiSvgIcon-root {
+    width: 70%;
+    height: 70%;
+}
+
+/* this makes the modern layout use the Fintage font and heading weights instead of the stock ones */
+.MuiTypography-root,
+.MuiButtonBase-root,
+.MuiInputBase-root,
+.MuiFormLabel-root,
+.MuiFormHelperText-root,
+.MuiChip-root,
+.MuiListSubheader-root,
+.MuiTooltip-tooltip,
+.MuiAlert-message,
+.MuiTableCell-root {
+    font-family: inherit;
+}
+
+.MuiTypography-h1,
+.MuiTypography-h2,
+.MuiTypography-h3 {
+    font-weight: 600;
+}

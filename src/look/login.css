@@ -1,0 +1,124 @@
+/* login page start
+the form to sign in is a compact glass card below its title: slim fields, the sign-in button across the card,
+and the other choices, e.g. Quick Connect, Forgot Password, Manual Login and Change Server, as small pills side by side
+below it, so that the card takes little room, also on phones */
+#loginPage {
+    --loginCardPadding: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1em;
+    overflow-y: auto;
+    box-sizing: border-box;
+    /* browsers without CSS variables skip the background below and keep this */
+    background-repeat: no-repeat;
+    background:
+        radial-gradient(70% 55% at 50% 0%, hsla(39, 52%, 67%, 0.09), transparent 70%),
+        linear-gradient(to bottom, var(--darkerGradientPointAlpha), var(--darkerGradientPoint)), var(--loginPageBgUrl);
+    background-size: cover;
+    background-position: center;
+}
+
+.layout-mobile #loginPage {
+    --loginCardPadding: 1.25rem;
+}
+
+/* the card is moved down by half the height of the title above it, so that both together are in the middle */
+#loginPage .padded-left.padded-right.padded-bottom-page {
+    width: 25em;
+    max-width: 100%;
+    padding: var(--loginCardPadding) !important;
+    box-sizing: border-box;
+    transform: translateY(1.5em);
+    background: var(--fintageGlassColor);
+    border: var(--fintageGlassBorder);
+    border-radius: var(--largerRadius);
+    box-shadow: var(--fintageGlassHighlight), var(--fintageGlassShadow);
+    backdrop-filter: var(--fintageGlassBlur);
+}
+
+#loginPage .inputContainer {
+    margin-bottom: 1em;
+}
+
+#loginPage .inputLabel {
+    margin-bottom: 0.35em;
+    font-size: 0.9em;
+}
+
+#loginPage .checkboxContainer {
+    margin-bottom: 1em;
+}
+
+#loginPage .button-submit {
+    margin: 0;
+    padding: 0.8em 1em;
+}
+
+/* the other choices; the !important overrides the column the theme makes of this block on other pages,
+and the margin Jellyfin gives it on the element itself */
+#loginPage .readOnlyContent {
+    display: flex;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5em;
+    margin: 0.75em 0 0 !important;
+}
+
+/* the pills look like the links to IMDb and TMDB on the pages of movies and shows; Cancel, which leads back
+from the form to the users, is a pill of its own below the sign-in button */
+#loginPage .readOnlyContent > .emby-button,
+#loginPage .btnCancel {
+    flex: 1 1 auto;
+    width: auto;
+    margin: 0;
+    padding: 0.7em 1.1em;
+    font-size: 0.85em;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--textColor);
+    background: hsla(0, 0%, 100%, 0.06);
+    border: var(--fintageGlassBorder);
+    border-radius: 2em;
+    box-shadow: none;
+}
+
+:root[data-theme="light"] #loginPage .readOnlyContent > .emby-button,
+:root[data-theme="light"] #loginPage .btnCancel {
+    background: hsla(30, 25%, 25%, 0.06);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    #loginPage .readOnlyContent > .emby-button:hover,
+    #loginPage .btnCancel:hover {
+        color: var(--fullContrastColor);
+        background: hsla(0, 0%, 100%, 0.12);
+    }
+
+    :root[data-theme="light"] #loginPage .readOnlyContent > .emby-button:hover,
+    :root[data-theme="light"] #loginPage .btnCancel:hover {
+        background: hsla(30, 25%, 25%, 0.12);
+    }
+}
+
+#loginPage .btnCancel {
+    display: inline-flex;
+    justify-content: center;
+}
+
+#loginPage .manualLoginForm > div:last-child {
+    text-align: center;
+}
+
+/* the note of the server below the choices, which only takes room when there is one */
+#loginPage .loginDisclaimerContainer {
+    flex: 0 0 100%;
+    margin: 0;
+}
+
+#loginPage .loginDisclaimer:not(:empty) {
+    margin-top: 0.75em;
+}
+/* login page end */

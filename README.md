@@ -446,8 +446,8 @@ The screenshots show Fintage v1.4.1 on Jellyfin 12.3 with the optional scripts o
 | File | What it is |
 | --- | --- |
 | `Theme/Fintage-latest-minified.css` | the newest version of Fintage, minified; this is what the import loads |
-| `Theme/Fintage_v1.4.4.css` | Fintage v1.4.4, readable |
-| `Theme/assets/add-ons/` | the add-ons (`*-latest-min.css` to import, `*-v1.4.4.css` readable) and the optional scripts (`fintage-scripts.js` is the loader, `fintage-scripts-latest.js` the file it loads) |
+| `src/` | the readable source of Fintage and its add-ons, in files by topic; `src/fintage.css` lists them in order |
+| `Theme/assets/add-ons/` | the add-ons (`*-latest-min.css` to import) and the optional scripts (`fintage-scripts.js` is the loader, `fintage-scripts-latest.js` the file it loads) |
 | `Theme/ElegantFin-theme-v*.css` and the dated add-ons | the releases of ElegantFin up to v26.09.05, which Fintage is based on |
 
 <hr>

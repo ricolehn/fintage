@@ -1,0 +1,23 @@
+/* season page start
+season pages are recognised by the series link above their title, without the season link of episode pages;
+the backdrop of the series is the card of the page, with the logo of the series in its corner on phones
+and above the title of the season on desktops, see the cards on phones and on desktops below */
+:is(.layout-desktop, .layout-mobile) #itemDetailPage:--season {
+    background: none;
+}
+
+/* the title, the buttons and the plot follow right below the backdrop, without the room the theme kept above them */
+:is(.layout-desktop, .layout-mobile) #itemDetailPage:--season .detailRibbon {
+    min-height: unset;
+    text-shadow: var(--shadow);
+}
+
+/* the plot follows right below the buttons, without the room the theme keeps there for the details of a series */
+:is(.layout-desktop, .layout-mobile) #itemDetailPage:--season .detailSectionContent {
+    min-height: unset;
+}
+
+:is(.layout-desktop, .layout-mobile) #itemDetailPage:--season .itemGenres:empty {
+    margin: 0;
+}
+/* season page end */
