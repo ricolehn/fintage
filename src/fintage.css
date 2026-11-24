@@ -21,9 +21,9 @@ npm run build joins the files into Theme/Fintage-latest-minified.css */
 @import "base/card-grid.css"; /* how many cards fit next to each other */
 @import "pages/detail-page.css"; /* the page of an item: layout, logo, title and the rows below */
 @import "pages/episode.css"; /* the page of an episode */
-@import "pages/season.css"; /* the page of a season */
-@import "pages/phone-card.css"; /* the card of a movie, show, collection, season or episode on phones */
-@import "pages/desktop-card.css"; /* the card of a movie, show, collection, season or episode on desktops */
+@import "pages/season.css"; /* the page of a season: its poster as the card, in a wash of its colors */
+@import "pages/phone-card.css"; /* the card of a movie, show, collection or episode on phones */
+@import "pages/desktop-card.css"; /* the card of a movie, show, collection or episode on desktops */
 @import "pages/music-phones.css"; /* music on phones: albums, playlists, the small player and the now playing screen */
 @import "base/backdrop.css"; /* library buttons, headings and the backdrop behind the pages */
 @import "base/lyrics.css"; /* lyrics */

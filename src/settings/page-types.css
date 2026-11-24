@@ -24,12 +24,13 @@ has no subtitle like an episode, no artist like an album and no landscape or squ
         :has(.subtitle, .musicParentName, .detailImageContainer :is(.backdropCard, .squareCard))
     );
 
-/* the pages that show their image as a card on desktops: movies, shows, collections, seasons and episodes */
-@custom-selector :--card-page :is(:--movie-show-or-collection, :--season, :--episode);
+/* the pages that show their image as a card on desktops: movies, shows, collections and episodes; seasons show their
+poster instead, see the page of a season */
+@custom-selector :--card-page :is(:--movie-show-or-collection, :--episode);
 
 /* the pages that show their image as a card on phones; episodes with an image of their own show it in a card
-of their own, see the page of an episode */
-@custom-selector :--phone-card-page :is(:--movie-show-or-collection, :--season, :--episode-without-image);
+of their own, see the page of an episode, and seasons show their poster, see the page of a season */
+@custom-selector :--phone-card-page :is(:--movie-show-or-collection, :--episode-without-image);
 
 /* the page of an album or a playlist */
 @custom-selector :--album-or-playlist :has(.infoWrapper > .detailImageContainer .cardImageIcon:is(.album, .queue));
@@ -37,7 +38,7 @@ of their own, see the page of an episode */
 /* The backdrop, the background and the app bar come before the page in the document, so they look for the page
 after themselves; Jellyfin keeps the pages it showed before, hidden, so only the page that is not hidden counts */
 
-/* before a page that shows a card on desktops: a movie, a show or a collection, a season or an episode */
+/* before a page that shows a card on desktops: a movie, a show or a collection, or an episode */
 @custom-selector :--before-card-page
     :is(
         :has(
@@ -49,7 +50,13 @@ after themselves; Jellyfin keeps the pages it showed before, hidden, so only the
                     :is(.subtitle, .musicParentName, .detailImageContainer :is(.backdropCard, .squareCard))
             )
         ),
-        :has(~ * #itemDetailPage:not(.hide) .parentName [data-type="Series"])
+        :has(~ * #itemDetailPage:not(.hide) .itemName [data-type="Season"])
+    );
+
+/* before the page of a season */
+@custom-selector :--before-season-page
+    :has(~ * #itemDetailPage:not(.hide) .parentName [data-type="Series"]):not(
+        :has(~ * #itemDetailPage:not(.hide) .itemName [data-type="Season"])
     );
 
 /* before the page of an item, of any kind */

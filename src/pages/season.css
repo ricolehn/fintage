@@ -1,23 +1,262 @@
 /* season page start
-season pages are recognised by the series link above their title, without the season link of episode pages;
-the backdrop of the series is the card of the page, with the logo of the series in its corner on phones
-and above the title of the season on desktops, see the cards on phones and on desktops below */
-:is(.layout-desktop, .layout-mobile) #itemDetailPage:--season {
+the page of a season shows its own poster instead of the backdrop of the series, which every season shares: the poster
+is the card of the page, and its colors wash over the top of the page, like on the pages of albums on phones. On phones,
+the poster stands below the app bar, above the title; on desktops, it stands on the left of the title, the buttons and
+the plot. TVs keep their layout, see the page of an item.
+Seasons are recognised by the series link above their title, without the season link of episode pages.
+Jellyfin loads the poster at a quarter of the window width, which is soft on phones; the optional script of option 16,
+full-resolution-episode-images.js in the loader of option 15, loads it as large as it is shown */
+:is(.layout-mobile, .layout-desktop) #itemDetailPage:--season {
+    --seasonPosterShadow: 0 1.75em 3em -1em hsla(0, 0%, 0%, 0.7);
+    --seasonWashOpacity: 0.55;
     background: none;
+    /* the wash is wider than the screen, so it is cut at the edges of the screen instead of scrolling sideways */
+    overflow-x: clip;
 }
 
-/* the title, the buttons and the plot follow right below the backdrop, without the room the theme kept above them */
-:is(.layout-desktop, .layout-mobile) #itemDetailPage:--season .detailRibbon {
+:root[data-theme="light"]:is(.layout-mobile, .layout-desktop) #itemDetailPage:--season {
+    --seasonPosterShadow: 0 1.75em 3em -1em hsla(30, 25%, 20%, 0.4);
+    --seasonWashOpacity: 0.4;
+}
+
+/* the poster is the card, so the logo of the series makes way for the name of the series as a small heading above the
+title of the season */
+:is(.layout-mobile, .layout-desktop) #itemDetailPage:--season .detailLogo {
+    display: none;
+}
+
+:is(.layout-mobile, .layout-desktop) #itemDetailPage:--season .nameContainer > h1.parentName {
+    display: block;
+    font-size: 0.95em;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dimTextColor);
+    padding-bottom: 0.45em;
+}
+
+:is(.layout-mobile, .layout-desktop) #itemDetailPage:--season .nameContainer > h1.parentName a {
+    font-weight: 600;
+    letter-spacing: inherit;
+    text-decoration: none;
+}
+
+:is(.layout-mobile, .layout-desktop) #itemDetailPage:--season .detailRibbon {
     min-height: unset;
     text-shadow: var(--shadow);
 }
 
-/* the plot follows right below the buttons, without the room the theme keeps there for the details of a series */
-:is(.layout-desktop, .layout-mobile) #itemDetailPage:--season .detailSectionContent {
+:is(.layout-mobile, .layout-desktop) #itemDetailPage:--season .detailSectionContent {
     min-height: unset;
 }
 
-:is(.layout-desktop, .layout-mobile) #itemDetailPage:--season .itemGenres:empty {
+:is(.layout-mobile, .layout-desktop) #itemDetailPage:--season .itemGenres:empty {
     margin: 0;
+}
+
+/* the poster keeps its rounded corners itself, so its wash can reach beyond the card */
+:is(.layout-mobile, .layout-desktop) #itemDetailPage:--season .detailImageContainer .card {
+    display: block;
+    width: var(--seasonPosterWidth) !important;
+    max-width: none;
+    max-height: none;
+    inset: auto;
+    margin: 0;
+    filter: none;
+}
+
+:is(.layout-mobile, .layout-desktop) #itemDetailPage:--season .detailImageContainer .cardScalable {
+    overflow: visible;
+    border-radius: var(--largeRadius);
+    box-shadow: var(--seasonPosterShadow);
+}
+
+:is(.layout-mobile, .layout-desktop) #itemDetailPage:--season .detailImageContainer .cardImageContainer {
+    border-radius: var(--largeRadius);
+    box-shadow: inset 0 0 0 var(--borderWidth) var(--fintageRingColor);
+}
+
+/* on phones, the poster stands below the app bar, about half as wide as the screen, and leaves room for the title and
+the buttons on the first screen; the backdrop of the series stays away, its element only keeps the room for the app bar */
+.layout-mobile #itemDetailPage:--season {
+    --seasonPosterWidth: max(8em, min(100vw - 10em, 14em, (100vh - 25em) * 2 / 3));
+}
+
+/* the !important overrides the backdrop of the series that is set on the element itself */
+.layout-mobile #itemDetailPage:--season .itemBackdrop {
+    position: relative;
+    top: 0;
+    height: var(--detailCardTop);
+    background-image: none !important;
+    -webkit-mask: none;
+    mask: none;
+    animation: none;
+}
+
+.layout-mobile #itemDetailPage:--season .itemBackdrop::before {
+    box-shadow: none;
+}
+
+.layout-mobile #itemDetailPage:--season .detailPageWrapperContainer {
+    margin-top: 0;
+}
+
+/* the poster lies below the title, the details and the buttons, so its wash is behind the text */
+.layout-mobile #itemDetailPage:--season .detailRibbon {
+    isolation: isolate;
+}
+
+.layout-mobile #itemDetailPage:--season .infoWrapper > .detailImageContainer {
+    position: relative;
+    z-index: -1;
+    height: auto;
+    margin: 0 auto 1.4em;
+}
+
+/* the wash is the small blurred placeholder that Jellyfin draws while the poster loads, enlarged around the middle of
+the poster; it stays behind the poster, so it costs nearly nothing and shows right away. Its blur fades its own edges
+out, so it reaches 6em beyond the poster at the top, which is far beyond the top of the window once it is enlarged:
+otherwise its faded upper edge would be a dark band at the top of the window. It reaches as far at the bottom, where it
+fades out from 6em above the end of the poster to 6em below it */
+.layout-mobile #itemDetailPage:--season .infoWrapper > .detailImageContainer .blurhash-canvas {
+    z-index: -1;
+    top: -6em;
+    height: calc(100% + 12em);
+    opacity: var(--seasonWashOpacity);
+    transform: translateY(calc(var(--seasonPosterWidth) * 0.06)) scale(2.7, 1.85);
+    filter: blur(3em) saturate(2);
+    -webkit-mask: linear-gradient(0deg, transparent, #000 12em);
+    mask: linear-gradient(0deg, transparent, #000 12em);
+}
+
+/* the title of a season is as large as the title of an episode */
+.layout-mobile #itemDetailPage:--season .nameContainer > .subtitle {
+    font-size: 1.6em;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: normal;
+    color: var(--fullContrastColor);
+    margin: 0;
+    padding: 0 0 0.4em;
+}
+
+/* on desktops, the poster stands on the left, and the name of the series, the title, the details, the buttons and the
+plot follow on its right; the episodes and everything else follow below them. Its colors wash over the top of the page
+in place of the backdrop of the series, which stays away */
+.layout-desktop #itemDetailPage:--season {
+    --seasonPosterWidth: clamp(13em, 21vw, 22em);
+}
+
+.layout-desktop .backdropContainer:--before-season-page {
+    display: none;
+}
+
+.layout-desktop .backgroundContainer:--before-season-page:not(.backgroundContainer-transparent) {
+    opacity: 1;
+    background: var(--backgroundGradient);
+}
+
+.layout-desktop #itemDetailPage:--season .itemBackdrop {
+    height: var(--heroTop);
+    animation: none;
+}
+
+.layout-desktop #itemDetailPage:--season .detailPageWrapperContainer {
+    margin-top: 0;
+    min-height: 0;
+    background: none;
+}
+
+/* the block of the poster, the title and the plot is a layer of its own, so the wash stays behind its text */
+.layout-desktop #itemDetailPage:--season .detailPagePrimaryContainer {
+    isolation: isolate;
+    display: grid;
+    grid-template-columns: var(--seasonPosterWidth) minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    column-gap: clamp(2em, 4vw, 4em);
+    align-items: start;
+    padding: 1.75em var(--sidePadding) 0;
+}
+
+.layout-desktop #itemDetailPage:--season .detailPagePrimaryContainer > .detailImageContainer {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    position: relative;
+    z-index: -1;
+    padding: 0;
+}
+
+.layout-desktop #itemDetailPage:--season .detailPagePrimaryContainer > .detailRibbon {
+    grid-column: 2;
+    grid-row: 1;
+    height: auto;
+    min-height: 0;
+    margin: 0;
+    padding: clamp(0.5em, 5vh, 3.5em) 0 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    text-align: start;
+}
+
+.layout-desktop #itemDetailPage:--season .detailPagePrimaryContainer > .detailPagePrimaryContent {
+    grid-column: 2;
+    grid-row: 2;
+    margin: 0;
+    padding: 0.75em 0 0;
+}
+
+.layout-desktop #itemDetailPage:--season .infoWrapper {
+    place-items: start stretch;
+    max-width: 56em;
+}
+
+.layout-desktop #itemDetailPage:--season .infoWrapper,
+.layout-desktop #itemDetailPage:--season .nameContainer > *,
+.layout-desktop #itemDetailPage:--season .nameContainer > * a {
+    text-align: start;
+}
+
+.layout-desktop #itemDetailPage:--season .itemMiscInfo,
+.layout-desktop #itemDetailPage:--season .mainDetailButtons {
+    justify-content: flex-start;
+}
+
+.layout-desktop #itemDetailPage:--season .nameContainer > .subtitle {
+    font-size: 3em;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+    white-space: normal;
+    color: var(--fullContrastColor);
+    margin: 0;
+    padding: 0 0 0.3em;
+}
+
+.layout-desktop #itemDetailPage:--season .overview {
+    max-width: 52em;
+    line-height: 1.65;
+    margin-top: 0.5em;
+}
+
+/* the wash spans the whole width of the window and reaches from its top edge down to the end of the poster, where it has
+faded out, so it never lies over the episodes. Its blur fades its own edges out, so it reaches 10em beyond the window at
+the top and on the sides, two and a half times as far as it is blurred: otherwise its faded upper edge would be a dark
+band at the top of the window. It reaches as far below the poster, so its middle stays at the middle of the room from
+the top of the page to the end of the poster; that part is faded out */
+.layout-desktop #itemDetailPage:--season .detailPagePrimaryContainer > .detailImageContainer .blurhash-canvas {
+    /* the room above the poster: the top of the page and the padding of the block of the poster */
+    --seasonPosterTop: calc(var(--heroTop) + 1.75em);
+    z-index: -1;
+    top: calc(-1 * var(--seasonPosterTop) - 10em);
+    left: calc(-1 * var(--sidePadding) - 10em);
+    right: auto;
+    bottom: auto;
+    width: calc(100vw + 20em);
+    height: calc(var(--seasonPosterTop) + var(--seasonPosterWidth) * 1.5 + 20em);
+    opacity: var(--seasonWashOpacity);
+    filter: blur(4em) saturate(1.8);
+    /* it fades out from a fifth of the height of the poster down to its end */
+    -webkit-mask: linear-gradient(0deg, transparent 10em, #000 calc(10em + var(--seasonPosterWidth) * 1.2));
+    mask: linear-gradient(0deg, transparent 10em, #000 calc(10em + var(--seasonPosterWidth) * 1.2));
 }
 /* season page end */

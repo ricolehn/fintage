@@ -66,11 +66,19 @@ the cover, so it costs nearly nothing and shows right away */
     box-shadow: inset 0 0 0 var(--borderWidth) var(--fintageRingColor);
 }
 
+/* the wash is enlarged around the middle of the cover. Its blur fades its own edges out, so it reaches 6em beyond the
+cover at the top, which is far beyond the top of the window once it is enlarged: otherwise its faded upper edge would be
+a dark band at the top of the window. It reaches as far at the bottom, where it fades out from 6em above the end of the
+cover to 6em below it */
 .layout-mobile #itemDetailPage:--album-or-playlist .infoWrapper > .detailImageContainer .blurhash-canvas {
     z-index: -1;
+    top: -6em;
+    height: calc(100% + 12em);
     opacity: var(--albumWashOpacity, 0.5);
-    transform: translateY(8%) scale(2.6, 2.35);
+    transform: translateY(calc(var(--albumCardSize) * 0.08)) scale(2.6, 2.35);
     filter: blur(3em) saturate(2);
+    -webkit-mask: linear-gradient(0deg, transparent, #000 12em);
+    mask: linear-gradient(0deg, transparent, #000 12em);
 }
 
 .layout-mobile #itemDetailPage:--album-or-playlist .nameContainer h1 {

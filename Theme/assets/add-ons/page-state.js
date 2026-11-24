@@ -44,6 +44,7 @@ e.g. JavaScript Injector, and it is part of the loader of option 15. */
         ["d9ea610", "#itemDetailPage:not(.hide)"],
         ["db54897", '#itemDetailPage:not(.hide) .itemName [data-type="Season"]'],
         ["d11bd75", "#itemDetailPage:not(.hide) .detailImageContainer > .backdropCard"],
+        ["ddee130", '#itemDetailPage:not(.hide) .parentName [data-type="Series"]'],
         [
             "d739c6a",
             "main #itemDetailPage:not(.hide) .detailImageContainer .cardImageIcon:is(.movie, .tv, .video_library, .folder)",
@@ -56,7 +57,6 @@ e.g. JavaScript Injector, and it is part of the loader of option 15. */
             "db7889d",
             "#itemDetailPage:not(.hide) :is(.subtitle, .musicParentName, .detailImageContainer :is(.backdropCard, .squareCard))",
         ],
-        ["ddee130", '#itemDetailPage:not(.hide) .parentName [data-type="Series"]'],
         ["de8ccfb", "#nowPlayingPage:not(.hide)"],
         ["db64277", "main #nowPlayingPage:not(.hide)"],
         [

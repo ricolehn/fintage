@@ -146,7 +146,7 @@ let it grow from a small card in the middle to the full width, as if it slid ope
 /* on phones, the image of the episode is a card of its own below the app bar: whole, with rounded corners and a soft
 glow of its own colors around it, like the ambient light of a screen. The card is 16:9 and as wide as the page,
 on tablets at most 45em, and on a phone held sideways only as tall as leaves room for the title below it.
-Movies, shows, collections and seasons show their backdrop in the same card, see the card on phones below */
+Movies, shows and collections show their backdrop in the same card, see the card on phones below */
 .layout-mobile #itemDetailPage:--episode .nameContainer > .subtitle {
     font-size: 1.6em;
 }
@@ -224,10 +224,8 @@ instead of being hidden, so the glow costs nearly nothing and shows right away *
 }
 
 /* the logo of the series is at most 40% as wide as the card and a fifth as high, so it covers little of the image,
-in the corner where the least happens, and nothing below the card moves; it lies above the card.
-On the page of a season, it stands in the same corner of the card with the backdrop of the series */
-.layout-mobile #itemDetailPage:--episode .detailLogo:not(.hide),
-.layout-mobile #itemDetailPage:--season .detailLogo:not(.hide) {
+in the corner where the least happens, and nothing below the card moves; it lies above the card */
+.layout-mobile #itemDetailPage:--episode .detailLogo:not(.hide) {
     top: calc(var(--detailCardTop) + var(--detailCardHeight) - var(--detailCardLogoInset));
     left: calc(50% - var(--detailCardWidth) / 2 + var(--detailCardLogoInset) * 1.2);
     width: calc(var(--detailCardWidth) * 0.4);

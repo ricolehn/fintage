@@ -1,11 +1,11 @@
 /* the card on desktops start
-on desktops, the card of a movie, a show, a collection, a season or an episode almost fills the screen: whole,
+on desktops, the card of a movie, a show, a collection or an episode almost fills the screen: whole,
 with rounded corners and a soft glow of its own colors around it. The logo, the details and the buttons stand on
 a tinted, frosted area in its lower left corner, and the plot and everything else follow below the card.
 Like on phones, the logo of a movie, a show or a collection is its title, while the small logo of the series marks
-a season or an episode, whose own title stands below it.
+an episode, whose own title stands below it. Seasons show their poster instead, see the page of a season.
 The card shows the backdrop of the page, which lies outside of the page, so it looks for the page itself;
-seasons and episodes are recognised by the series link of their title. Episodes with an image of their own
+episodes are recognised by the season link of their title. Episodes with an image of their own
 show that image in the card instead. The card stands before the backdrop has loaded, so nothing moves when
 the image shows; only in windows narrower than 1000px, where Jellyfin loads no backdrop, there is no card
 and the page starts below the app bar */
@@ -262,18 +262,7 @@ and the plot follows below the card */
     margin-top: 0.75em;
 }
 
-/* the title of a season is as large as the title of an episode */
-.layout-desktop #itemDetailPage:--season .nameContainer > .subtitle {
-    font-size: 2.4em;
-    font-weight: 600;
-    line-height: 1.2;
-    white-space: normal;
-    color: var(--fullContrastColor);
-    margin: 0;
-    padding: 0 0 0.4em;
-}
-
-/* the logo of a movie, a show or a collection is large, the logo of the series of a season or an episode small;
+/* the logo of a movie, a show or a collection is large, the logo of the series of an episode small;
 without anchor positioning, it stands where it does above the text of most pages */
 .layout-desktop #itemDetailPage:--card-page .detailLogo:not(.hide) {
     left: calc(var(--sidePadding) + var(--heroInset));
@@ -288,7 +277,7 @@ without anchor positioning, it stands where it does above the text of most pages
     height: var(--heroLogoHeight);
 }
 
-.layout-desktop :is(#itemDetailPage:--season, #itemDetailPage:--episode) .detailLogo:not(.hide) {
+.layout-desktop #itemDetailPage:--episode .detailLogo:not(.hide) {
     width: min(18em, 25%);
     height: 4.5em;
 }
@@ -296,10 +285,6 @@ without anchor positioning, it stands where it does above the text of most pages
 @supports not (anchor-name: --a) {
     .layout-desktop #itemDetailPage:--movie-show-or-collection .detailLogo:not(.hide) {
         top: calc(var(--heroTop) + var(--heroHeight) - var(--heroInset) - 8.5em);
-    }
-
-    .layout-desktop #itemDetailPage:--season .detailLogo:not(.hide) {
-        top: calc(var(--heroTop) + var(--heroHeight) - var(--heroInset) - 8em);
     }
 
     .layout-desktop #itemDetailPage:--episode .detailLogo:not(.hide) {
@@ -352,7 +337,7 @@ with room for the logo above the text. Wider windows always show the card, which
         > body
         .backgroundContainer:not(.withBackdrop)
         ~ *
-        :is(#itemDetailPage:--season, #itemDetailPage:--episode-without-image):has(> .detailLogo:not(.hide))
+        #itemDetailPage:--episode-without-image:has(> .detailLogo:not(.hide))
         .itemBackdrop {
         height: calc(var(--heroTop) + 5.25em);
     }
@@ -390,7 +375,7 @@ with room for the logo above the text. Wider windows always show the card, which
             > body
             .backgroundContainer:not(.withBackdrop)
             ~ *
-            :is(#itemDetailPage:--season, #itemDetailPage:--episode-without-image)
+            #itemDetailPage:--episode-without-image
             .detailLogo:not(.hide) {
             top: calc(var(--heroTop) + 4.5em);
         }

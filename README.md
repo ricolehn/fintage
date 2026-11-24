@@ -20,9 +20,10 @@
 - made for Jellyfin 12.2: the new layout (`Auto`) as well as the `Desktop (Legacy)`, `Mobile (Legacy)` and `TV` display modes
 - a frosted app bar like milk glass, with a clean bottom edge on every page
 - soft, rounded icons everywhere, also in the app bar, the menus and the sidebar of the new layout
-- movies, shows, collections, seasons and episodes show their image whole in a card with rounded corners and a soft glow in its colors, instead of across the top of the page
-- on phones, the card sits below the app bar: below it, the logo is the title of the page, and small in its corner, the logo of the series marks a season or an episode
-- on desktops, the card almost fills the screen, with the logo, the details and the buttons on a tinted, frosted area in its lower left corner and the plot below it; seasons and episodes carry the small logo of the series above their title
+- movies, shows, collections and episodes show their image whole in a card with rounded corners and a soft glow in its colors, instead of across the top of the page
+- on phones, the card sits below the app bar: below it, the logo is the title of the page, and small in its corner, the logo of the series marks an episode
+- on desktops, the card almost fills the screen, with the logo, the details and the buttons on a tinted, frosted area in its lower left corner and the plot below it; episodes carry the small logo of the series above their title
+- seasons show their own poster instead of the backdrop that all seasons of a show share: the poster is the card of the page and its colors wash over the top of the page, on phones above the title and on desktops next to the title, the buttons and the plot, with the name of the show as a small heading above the title of the season
 - the episodes of a season as a clear list on every device, with 16:9 images and the first three lines of the plot, and on TVs about five episodes on the screen at once
 - music on phones in the colors of its covers: albums and playlists show their cover as a card whose colors wash over the top of the page, their tracks as a calm list with the length of each track, and the albums of the library carry their title and artist below the cover
 - a now playing screen on phones in a quiet color of the current cover, with the cover glowing in front of it and stepping back while the music is paused, and a small player that floats above the page as a bar of glass, in which the cover glows softly, with a thin gold line for the progress
@@ -34,7 +35,7 @@
 - the Upcoming tab of TV shows as a timeline of release days, with the episodes of each day as a compact list
 - smoother scrolling and animations, especially on older devices
 - a light load: the fonts come with the theme, and the rounded icons from a small file of about 120 KB instead of the 5 MB of all icons
-- optional scripts for episode backdrops in full resolution, short track names like `German · EAC3` and episode titles in two lines, all with one paste that keeps them up to date, and with them a faster version of the theme
+- optional scripts for episode backdrops and season posters in full resolution, short track names like `German · EAC3` and episode titles in two lines, all with one paste that keeps them up to date, and with them a faster version of the theme
 
 <hr>
 
@@ -313,10 +314,10 @@ Each option goes into the Custom CSS code box, after the import. To undo one, re
 </details>
 
 <details>
-  <summary><i>16. Episode images in full resolution (optional JavaScript)</i></summary>
+  <summary><i>16. Episode images and season posters in full resolution (optional JavaScript)</i></summary>
 
-> - On the page of an episode, Fintage shows the image of the episode as the backdrop. Jellyfin only loads this image at a quarter of the window width, so it looks soft when it is enlarged, and custom CSS cannot change the size Jellyfin asks for.
-> - This script loads the image in the resolution of your screen instead. It only changes the pages of episodes, and the TV layout keeps the small image.
+> - On the page of an episode, Fintage shows the image of the episode as the backdrop, and on the page of a season, the poster of the season as the card of the page. Jellyfin only loads these images at a quarter of the window width, so they look soft when they are enlarged, and custom CSS cannot change the size Jellyfin asks for.
+> - This script loads the image of an episode in the resolution of your screen instead, and the poster of a season as large as it is shown, in the pixels of your screen. It only changes the pages of episodes and seasons, and the TV layout keeps the small images.
 > - It is part of the loader of option 15. To use it on its own instead, paste the content of [full-resolution-episode-images.js](Theme/assets/add-ons/full-resolution-episode-images.js) into JavaScript Injector, set up as in option 15, and reload the web page once without the cache.
 > - The browser console (<kbd>F12</kbd>) then shows `Fintage: full resolution episode images are active`.
 
@@ -474,7 +475,7 @@ The screenshots show Fintage v1.4.1 on Jellyfin 12.3 with the optional scripts o
 <details>
   <summary><i>Which version am I using?</i></summary>
 
-> - The version is shown at the bottom of the settings, like `Fintage v1.5.0`.
+> - The version is shown at the bottom of the settings, like `Fintage v1.5.5`.
 
 </details>
 
