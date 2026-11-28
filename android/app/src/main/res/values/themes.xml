@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Fintage" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/fintage_window</item>
+        <item name="android:colorAccent">@color/fintage_gold</item>
+    </style>
+
+    <style name="Theme.Fintage.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/fintage_ink</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
+        <item name="postSplashScreenTheme">@style/Theme.Fintage</item>
+    </style>
+
+    <style name="Theme.Fintage.Player" parent="Theme.Fintage">
+        <item name="android:windowBackground">@android:color/black</item>
+    </style>
+</resources>
